@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache
+END
+package-frame.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/package-frame.html
+END
+package-tree.html
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/package-tree.html
+END
+CacheConfig.html
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/CacheConfig.html
+END
+CachingHttpClient.html
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/CachingHttpClient.html
+END
+FileResourceFactory.html
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/FileResourceFactory.html
+END
+HeapResourceFactory.html
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/HeapResourceFactory.html
+END
+ManagedHttpCacheStorage.html
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/ManagedHttpCacheStorage.html
+END
+package-use.html
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/package-use.html
+END
+BasicHttpCacheStorage.html
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/BasicHttpCacheStorage.html
+END
+package-summary.html
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/package-summary.html
+END
+DefaultHttpCacheEntrySerializer.html
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/DefaultHttpCacheEntrySerializer.html
+END
+FileResource.html
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/FileResource.html
+END
+HeapResource.html
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/HeapResource.html
+END

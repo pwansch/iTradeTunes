@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/class-use
+END
+CacheConfig.html
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/class-use/CacheConfig.html
+END
+CachingHttpClient.html
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/class-use/CachingHttpClient.html
+END
+FileResourceFactory.html
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/class-use/FileResourceFactory.html
+END
+HeapResourceFactory.html
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/class-use/HeapResourceFactory.html
+END
+ManagedHttpCacheStorage.html
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/class-use/ManagedHttpCacheStorage.html
+END
+BasicHttpCacheStorage.html
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/class-use/BasicHttpCacheStorage.html
+END
+DefaultHttpCacheEntrySerializer.html
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/class-use/DefaultHttpCacheEntrySerializer.html
+END
+FileResource.html
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/class-use/FileResource.html
+END
+HeapResource.html
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/cache/class-use/HeapResource.html
+END

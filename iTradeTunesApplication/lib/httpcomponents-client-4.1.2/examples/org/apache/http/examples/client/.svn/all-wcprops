@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client
+END
+ClientCustomSSL.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientCustomSSL.java
+END
+ClientPreemptiveDigestAuthentication.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientPreemptiveDigestAuthentication.java
+END
+ClientInteractiveAuthentication.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientInteractiveAuthentication.java
+END
+ClientEvictExpiredConnections.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientEvictExpiredConnections.java
+END
+ClientChunkEncodedPost.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientChunkEncodedPost.java
+END
+ClientAbortMethod.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientAbortMethod.java
+END
+ClientExecuteSOCKS.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientExecuteSOCKS.java
+END
+ClientExecuteProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientExecuteProxy.java
+END
+ClientAuthentication.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientAuthentication.java
+END
+ClientMultiThreadedExecution.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientMultiThreadedExecution.java
+END
+ClientConnectionRelease.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientConnectionRelease.java
+END
+ClientKerberosAuthentication.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientKerberosAuthentication.java
+END
+ClientProxyAuthentication.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientProxyAuthentication.java
+END
+ClientFormLogin.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientFormLogin.java
+END
+ClientWithResponseHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientWithResponseHandler.java
+END
+ClientCustomContext.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientCustomContext.java
+END
+ClientExecuteDirect.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientExecuteDirect.java
+END
+ClientGZipContentCompression.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientGZipContentCompression.java
+END
+ClientPreemptiveBasicAuthentication.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/examples/org/apache/http/examples/client/ClientPreemptiveBasicAuthentication.java
+END

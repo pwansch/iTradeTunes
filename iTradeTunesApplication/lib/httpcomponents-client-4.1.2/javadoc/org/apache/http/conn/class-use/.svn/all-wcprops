@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use
+END
+ConnectTimeoutException.html
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/ConnectTimeoutException.html
+END
+HttpHostConnectException.html
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/HttpHostConnectException.html
+END
+BasicEofSensorWatcher.html
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/BasicEofSensorWatcher.html
+END
+BasicManagedEntity.html
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/BasicManagedEntity.html
+END
+EofSensorInputStream.html
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/EofSensorInputStream.html
+END
+ConnectionReleaseTrigger.html
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/ConnectionReleaseTrigger.html
+END
+ClientConnectionOperator.html
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/ClientConnectionOperator.html
+END
+OperatedClientConnection.html
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/OperatedClientConnection.html
+END
+ConnectionPoolTimeoutException.html
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/ConnectionPoolTimeoutException.html
+END
+ManagedClientConnection.html
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/ManagedClientConnection.html
+END
+ClientConnectionManagerFactory.html
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/ClientConnectionManagerFactory.html
+END
+ClientConnectionRequest.html
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/ClientConnectionRequest.html
+END
+EofSensorWatcher.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/EofSensorWatcher.html
+END
+MultihomePlainSocketFactory.html
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/MultihomePlainSocketFactory.html
+END
+ClientConnectionManager.html
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/ClientConnectionManager.html
+END
+HttpRoutedConnection.html
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/HttpRoutedConnection.html
+END
+ConnectionKeepAliveStrategy.html
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/class-use/ConnectionKeepAliveStrategy.html
+END

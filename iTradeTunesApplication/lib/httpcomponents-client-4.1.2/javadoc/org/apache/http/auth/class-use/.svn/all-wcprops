@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use
+END
+AuthenticationException.html
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use/AuthenticationException.html
+END
+NTCredentials.html
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use/NTCredentials.html
+END
+BasicUserPrincipal.html
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use/BasicUserPrincipal.html
+END
+AuthScheme.html
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use/AuthScheme.html
+END
+AuthScope.html
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use/AuthScope.html
+END
+UsernamePasswordCredentials.html
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use/UsernamePasswordCredentials.html
+END
+AuthSchemeRegistry.html
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use/AuthSchemeRegistry.html
+END
+InvalidCredentialsException.html
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use/InvalidCredentialsException.html
+END
+AuthState.html
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use/AuthState.html
+END
+AUTH.html
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use/AUTH.html
+END
+MalformedChallengeException.html
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use/MalformedChallengeException.html
+END
+AuthSchemeFactory.html
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use/AuthSchemeFactory.html
+END
+NTUserPrincipal.html
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use/NTUserPrincipal.html
+END
+ContextAwareAuthScheme.html
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use/ContextAwareAuthScheme.html
+END
+Credentials.html
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/auth/class-use/Credentials.html
+END

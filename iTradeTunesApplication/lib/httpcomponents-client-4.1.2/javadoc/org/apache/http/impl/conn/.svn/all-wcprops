@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn
+END
+IdleConnectionHandler.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/IdleConnectionHandler.html
+END
+LoggingSessionOutputBuffer.html
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/LoggingSessionOutputBuffer.html
+END
+AbstractClientConnAdapter.html
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/AbstractClientConnAdapter.html
+END
+ProxySelectorRoutePlanner.html
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/ProxySelectorRoutePlanner.html
+END
+SingleClientConnManager.PoolEntry.html
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/SingleClientConnManager.PoolEntry.html
+END
+AbstractPoolEntry.html
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/AbstractPoolEntry.html
+END
+LoggingSessionInputBuffer.html
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/LoggingSessionInputBuffer.html
+END
+DefaultHttpRoutePlanner.html
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/DefaultHttpRoutePlanner.html
+END
+DefaultClientConnectionOperator.html
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/DefaultClientConnectionOperator.html
+END
+SingleClientConnManager.html
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/SingleClientConnManager.html
+END
+DefaultClientConnection.html
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/DefaultClientConnection.html
+END
+SchemeRegistryFactory.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/SchemeRegistryFactory.html
+END
+AbstractPooledConnAdapter.html
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/AbstractPooledConnAdapter.html
+END
+package-frame.html
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/package-frame.html
+END
+Wire.html
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/Wire.html
+END
+package-tree.html
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/package-tree.html
+END
+SingleClientConnManager.ConnAdapter.html
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/SingleClientConnManager.ConnAdapter.html
+END
+DefaultResponseParser.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/DefaultResponseParser.html
+END
+package-use.html
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/package-use.html
+END
+package-summary.html
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/package-summary.html
+END
+ConnectionShutdownException.html
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/ConnectionShutdownException.html
+END

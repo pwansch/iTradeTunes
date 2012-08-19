@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm
+END
+PoolEntryRequest.html
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/PoolEntryRequest.html
+END
+RouteSpecificPool.html
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/RouteSpecificPool.html
+END
+WaitingThread.html
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/WaitingThread.html
+END
+RefQueueHandler.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/RefQueueHandler.html
+END
+BasicPoolEntryRef.html
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/BasicPoolEntryRef.html
+END
+AbstractConnPool.html
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/AbstractConnPool.html
+END
+ConnPoolByRoute.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/ConnPoolByRoute.html
+END
+BasicPoolEntry.html
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/BasicPoolEntry.html
+END
+WaitingThreadAborter.html
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/WaitingThreadAborter.html
+END
+package-frame.html
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/package-frame.html
+END
+package-tree.html
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/package-tree.html
+END
+package-use.html
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/package-use.html
+END
+ThreadSafeClientConnManager.html
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/ThreadSafeClientConnManager.html
+END
+package-summary.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/package-summary.html
+END
+RefQueueWorker.html
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/RefQueueWorker.html
+END
+BasicPooledConnAdapter.html
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/conn/tsccm/BasicPooledConnAdapter.html
+END

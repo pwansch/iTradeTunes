@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use
+END
+ClientParamsStack.html
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/ClientParamsStack.html
+END
+AbstractHttpClient.html
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/AbstractHttpClient.html
+END
+DefaultHttpClient.html
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/DefaultHttpClient.html
+END
+RoutedRequest.html
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/RoutedRequest.html
+END
+AbstractAuthenticationHandler.html
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/AbstractAuthenticationHandler.html
+END
+DefaultRedirectStrategy.html
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/DefaultRedirectStrategy.html
+END
+BasicCookieStore.html
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/BasicCookieStore.html
+END
+DefaultRedirectHandler.html
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/DefaultRedirectHandler.html
+END
+EntityEnclosingRequestWrapper.html
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/EntityEnclosingRequestWrapper.html
+END
+BasicAuthCache.html
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/BasicAuthCache.html
+END
+DefaultHttpRequestRetryHandler.html
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/DefaultHttpRequestRetryHandler.html
+END
+TunnelRefusedException.html
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/TunnelRefusedException.html
+END
+DefaultProxyAuthenticationHandler.html
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/DefaultProxyAuthenticationHandler.html
+END
+RequestWrapper.html
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/RequestWrapper.html
+END
+RedirectLocations.html
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/RedirectLocations.html
+END
+DefaultTargetAuthenticationHandler.html
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/DefaultTargetAuthenticationHandler.html
+END
+BasicCredentialsProvider.html
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/BasicCredentialsProvider.html
+END
+ContentEncodingHttpClient.html
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/ContentEncodingHttpClient.html
+END
+DefaultUserTokenHandler.html
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/DefaultUserTokenHandler.html
+END
+DefaultConnectionKeepAliveStrategy.html
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/DefaultConnectionKeepAliveStrategy.html
+END
+BasicResponseHandler.html
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/BasicResponseHandler.html
+END
+DefaultRequestDirector.html
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/impl/client/class-use/DefaultRequestDirector.html
+END

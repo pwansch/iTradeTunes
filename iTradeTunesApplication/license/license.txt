@@ -1,0 +1,6 @@
+This project contains the following software components:
+    * AppleJavaExtensions (AppleJavaExtensions folder downloaded from http://developer.apple.com/library/mac/samplecode/AppleJavaExtensions/Introduction/Intro.html#//apple_ref/doc/uid/DTS10000677).
+      See README.txt for license information.
+    * HttpClient 4.1.2 (GA) (4.1.2.tar.gz downloaded from http://hc.apache.org/downloads.cgi). See LICENSE.txt for license information.
+    * JSON-java (douglascrockford-JSON-java-ce2f5ed.tar from https://github.com/douglascrockford/JSON-java). See README for license information.
+    * JUnit 4.8.2 (junit-4.8.2.jar downloaded from https://github.com/KentBeck/junit/downloads). See http://www.junit.org/license for license information.

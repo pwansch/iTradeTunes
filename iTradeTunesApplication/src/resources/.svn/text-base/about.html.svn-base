@@ -1,0 +1,37 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="isynctunes.css">
+</head>
+<body>
+	<table border="0" cellspacing="0">
+		<tbody>
+			<tr>
+				<td><font class="appname">iTradeTunes</font> <br> Easily
+					transfer your iTunes music between your computers, or from your
+					iPod. <br> <br>
+				<font class="version">Version 1.6.1</font></td>
+			</tr>
+			<tr>
+				<td>&copy; isynctunes.com 2005, 2008. All rights reserved.</td>
+			</tr>
+			<tr>
+				<td align="right"><img src="images/logo_large.gif"
+					align="right" alt=""></td>
+			</tr>
+			<tr>
+				<td><font class="credits"> This product is powered by
+						Apache Xerces2 (http://xerces.apache.org/xerces2-j/), Apache Axis
+						(http://ws.apache.org/axis), Apache Commons IO
+						(http://jakarta.apache.org/commons/io/), Apache Xalan
+						(http://xalan.apache.org) and uses SysTray for Java
+						(http://systray.sourceforge.net/), BrowserLauncher
+						(http://browserlauncher.sourceforge.net/), Jacksum
+						(http://www.jonelo.de/java/jacksum/) and libgpod
+						(http://www.gtkpod.org/). Art by Mark James
+						(http://www.famfamfam.com/lab/icons/silk) and Tina M. Adams
+						(http://zexmedia.com). </font></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

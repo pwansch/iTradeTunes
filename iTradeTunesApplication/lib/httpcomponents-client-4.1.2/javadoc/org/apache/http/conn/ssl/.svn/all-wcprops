@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/ssl
+END
+AbstractVerifier.html
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/ssl/AbstractVerifier.html
+END
+package-frame.html
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/ssl/package-frame.html
+END
+package-tree.html
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/ssl/package-tree.html
+END
+BrowserCompatHostnameVerifier.html
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/ssl/BrowserCompatHostnameVerifier.html
+END
+TrustSelfSignedStrategy.html
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/ssl/TrustSelfSignedStrategy.html
+END
+StrictHostnameVerifier.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/ssl/StrictHostnameVerifier.html
+END
+AllowAllHostnameVerifier.html
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/ssl/AllowAllHostnameVerifier.html
+END
+package-use.html
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/ssl/package-use.html
+END
+X509HostnameVerifier.html
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/ssl/X509HostnameVerifier.html
+END
+package-summary.html
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/ssl/package-summary.html
+END
+SSLSocketFactory.html
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/ssl/SSLSocketFactory.html
+END
+TrustStrategy.html
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/itradetunes/!svn/ver/29/iTradeTunes/lib/httpcomponents-client-4.1.2/javadoc/org/apache/http/conn/ssl/TrustStrategy.html
+END
