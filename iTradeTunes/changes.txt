@@ -1,0 +1,2 @@
+The following recent changes affect the current driver:
+    * Zend Framework has been updated.
