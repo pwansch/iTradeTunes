@@ -1,0 +1,41 @@
+User
+	user/join
+	user/profile
+	user/reset-password
+	user/change-email
+	user/contact
+	user/invite
+	user/steps
+	user/view
+
+Album
+	album/add
+	album/edit
+	album/delete
+	album/index
+	album/trade
+	album/browse
+
+Trade
+	order/index
+	order/view
+	cart/view
+	cart/checkout
+
+Application
+	index/about
+	index/contact
+	index/guidelines
+	index/help
+	index/index
+	index/news
+	index/privacy
+	index/terms
+	index/watch
+	error/404
+	error/index
+	
+1) Create the views, controllers using default styles
+2) Create the data model
+3) Add the controller code
+4) Style the views
