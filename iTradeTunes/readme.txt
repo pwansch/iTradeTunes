@@ -1,35 +1,60 @@
-This project requires Eclipse PDT 2.2.0 (or higher) installed. Follow these steps:
+In order to run iTradeTunes:
 
-    * Download a package for your platform from the Eclipse PDT 2.2.0 All In Ones / Eclipse PHP Package section at http://www.eclipse.org/pdt/downloads/ such as eclipse-php-helios-macosx-cocoa-x86_64.tar.gz.
-    * Install the Subversion Team Provider feature by following the instructions at http://www.polarion.com/products/svn/subversive/download.php for the Helios release. The next time Eclipse starts, on the first call
-      to any Subversive functionality the Connector Discovery feature will detect that there are no connectors installed and will launch a dialog which displays the SVN Connectors you need and enables download and 
-      installation. Install the SVNKit 1.3.2. If a perspective is in error, reset it. 
+ - For development, add the following line to your /etc/hosts file:
+     127.0.0.1       itradetunes.localhost
 
-This project also requires MySQL 5.0.41 (minimum), 5.1.32 (recommended) or higher, Apache 2.0.59 (minimum), 2.2.3 (recommended) or higher, and PHP 5.2.4 (minimum), 5.2.9 (recommended) or higher. PHP requires the 
-GD extension compiled with TrueType or Freetype support to display the CAPTCHA images.
+ - Set up a virtual host for iTradeTunes, pointing the document root to the 'public' directory under the application root:
+     - In your httpd.conf file, ensure that the following line is not commented out:
+       # Virtual hosts
+       Include /Applications/MAMP/conf/apache/extra/httpd-vhosts.conf
+     - In your httpd-vhosts.conf file add an entry for your iTradeTunes virtual host:
+       <VirtualHost *:80>
+           ServerName itradetunes.localhost
+           DocumentRoot "/Users/pwansch/git/iTradeTunes/iTradeTunes/public"
+           <Directory "/Users/pwansch/git/iTradeTunes/iTradeTunes/public">
+               DirectoryIndex index.php
+               AllowOverride All
+               Order allow,deny
+               Allow from all
+           </Directory>
+       </VirtualHost>
+ 
+ - Ensure that your Apache Web server loads the PHP and rewrite modules by verifying
+   that the following lines are not commented out in httpd.conf:
+     LoadModule php5_module /Applications/MAMP/bin/php/php5.4.4/modules/libphp5.so
+     LoadModule rewrite_module modules/mod_rewrite.so
+ 
+ - Rename config/autoload local.php.[development|test|production] to local.php and edit it to match your environment. 
 
-For Windows, we recommend to use Zend Server CE. Download Zend Server CE (PHP 5.2) from http://www.zend.com/en/products/server-ce/downloads and choose the following options:
+ - Change the default isolation level in your MySQL cnf file:
+     [mysqld]
+     transaction-isolation = READ-UNCOMMITTED
 
-    * Choose "Custom installation".
-    * Select "phpMyAdmin".
-    * Select "MySQL Server".
-    * Use the default port 80. 
+ - Edit and run createdb.sql, loaddb.sql and loadtestdb.sql (for development only) in the 'sql' directory
+   to create the database for your environment.
 
-After you have installed Zend Server go to the Zend Server Community Edition Dashboard and click on Open phpMyAdmin at http://localhost/phpMyAdmin. Log in as root but don't enter a password. 
-On the phpMyAdmin home page click on 'Change password' and change the root password to root.
+ - Change the minimum length of strings returned in a full text search (default is 4 chars): 
+     [mysqld]
+     ft_min_word_len = 3
 
-For Mac OS X, we recommend MAMP. The most current version at the time of writing is 1.9.4 and can be downloaded from http://www.mamp.info/.
+ - Make sure the correct default timezone is set in your PHP ini file like this:
+       date.timezone = 'America/Los_Angeles'
+   Valid timezones can be found at:
+       http://www.php.net/manual/en/timezones.php
 
-To edit gettext catalogs (.po files) and to generate .mo files for the message localization to support languages, install Poedit from http://sourceforge.net/projects/poedit/. 
-The most current version at the time of writing is 1.4.6.1.
+ - For development, make sure that all errors are displayed in your environment by using
+   the following settings in your PHP ini file:
+     error_reporting  =  E_ALL
+     display_errors = On
+     display_startup_errors = On
+   For production, make sure that you use the following settings in your PHP ini file:
+     error_reporting = E_ALL & ~E_NOTICE
+     display_errors = Off
+     display_startup_errors = Off
+     log_errors = On
+     error_log =
 
-For development we recommend Firefox 3.6.12 (or higher) with Firebug 1.5.4 (or higher). Dust-Me Selectors is a Firefox add-on that helps finds unused CSS selectors. 
-It can be downloaded from http://www.sitepoint.com/dustmeselectors/.
-
-Eclipse Settings
-
-    * Ensure that General, Workspace, Text file encoding is set to UTF-8 in the Eclipse preferences.
-    * Include the Zend Framework library folder in the PHP Include Path project properties.
-    * If you use Zend Server CE, set the path to both the PHP executable and the PHP ini file in the PHP, PHP Executables settings and verify that Zend Debugger is selected as the PHP debugger.         
-        
-See application/bootstrap.php for detailed configuration instructions of GoGoVerde for development, test and production environments.
+ - Verify that the resource limits are set to the following values in your PHP ini file:
+     max_execution_time = 180
+     max_input_time = 180
+     memory_limit = 500M

@@ -1,5 +1,6 @@
+- Create the views using default forms and create the controllers to render the views:
 User
-	user/join
+	user/register
 	user/profile
 	user/reset-password
 	user/change-email
@@ -13,14 +14,13 @@ Album
 	album/edit
 	album/delete
 	album/index
-	album/trade
-	album/browse
 
-Trade
-	order/index
-	order/view
-	cart/view
-	cart/checkout
+Message
+	message/create
+	message/view
+	message/index
+	response/create
+	response/view
 
 Application
 	index/about
@@ -35,7 +35,7 @@ Application
 	error/404
 	error/index
 	
-1) Create the views, controllers using default styles
-2) Create the data model
-3) Add the controller code
-4) Style the views
+- Create the data model
+- Add the controller code
+- Style the views
+- Create batch code
