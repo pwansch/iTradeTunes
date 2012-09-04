@@ -1,1 +1,2 @@
 The following recent changes affect the current driver:
+  - Recreate database
