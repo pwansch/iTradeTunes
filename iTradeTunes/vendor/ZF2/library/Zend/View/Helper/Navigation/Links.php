@@ -100,7 +100,7 @@ class Links extends AbstractHelper
      * Helper entry point
      *
      * @param  string|AbstractContainer $container container to operate on
-     * @return Navigation
+     * @return Links
      */
     public function __invoke($container = null)
     {
@@ -124,7 +124,8 @@ class Links extends AbstractHelper
      *
      * @param  string $method             method name
      * @param  array  $arguments          method arguments
-     * @throws Navigation\Exception\ExceptionInterface  if method does not exist in container
+     * @return mixed
+     * @throws Exception\ExceptionInterface  if method does not exist in container
      */
     public function __call($method, array $arguments = array())
     {
@@ -207,6 +208,7 @@ class Links extends AbstractHelper
      * </code>
      *
      * @param  AbstractPage $page  page to find links for
+     * @param null|int $flag
      * @return array related pages
      */
     public function findAllRelations(AbstractPage $page, $flag = null)
@@ -727,7 +729,7 @@ class Links extends AbstractHelper
      *
      * Implements {@link HelperInterface::render()}.
      *
-     * @param  AbstractContainer string|$container [optional] container to render.
+     * @param  AbstractContainer|string|null $container [optional] container to render.
      *                                         Default is to render the
      *                                         container registered in the
      *                                         helper.

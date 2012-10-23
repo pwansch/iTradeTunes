@@ -10,7 +10,6 @@
 
 namespace Zend\EventManager;
 
-use ArrayObject;
 use Zend\Stdlib\CallbackHandler;
 use Zend\Stdlib\PriorityQueue;
 
@@ -74,7 +73,7 @@ class GlobalEventManager
      * @param  string $event
      * @param  string|object $context
      * @param  array|object $argv
-     * @param  callback $callback
+     * @param  callable $callback
      * @return ResponseCollection
      */
     public static function triggerUntil($event, $context, $argv, $callback)
@@ -86,7 +85,7 @@ class GlobalEventManager
      * Attach a listener to an event
      *
      * @param  string $event
-     * @param  callback $callback
+     * @param  callable $callback
      * @param  int $priority
      * @return CallbackHandler
      */

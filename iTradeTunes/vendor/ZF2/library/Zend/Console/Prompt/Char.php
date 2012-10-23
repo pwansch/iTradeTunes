@@ -102,7 +102,7 @@ class Char extends AbstractPrompt
             $mask .= strtoupper($mask);  // uppercase and append
             $mask = str_split($mask);    // convert to array
             $mask = array_unique($mask); // remove duplicates
-            $mask = implode("",$mask);   // convert back to string
+            $mask = implode("", $mask);   // convert back to string
         }
 
         do {
@@ -121,11 +121,13 @@ class Char extends AbstractPrompt
             /**
              * Check if it is an allowed char
              */
-            if (stristr($this->allowedChars,$char) !== false) {
+            if (stristr($this->allowedChars, $char) !== false) {
                 if ($this->echo) {
                     echo trim($char)."\n";
                 } else {
-                    echo "\n";
+                    if ($this->promptText) {
+                        echo "\n";  // skip to next line but only if we had any prompt text
+                    }
                 }
                 break;
             }

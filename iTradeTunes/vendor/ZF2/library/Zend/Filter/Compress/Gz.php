@@ -40,6 +40,7 @@ class Gz extends AbstractCompressionAlgorithm
      * Class constructor
      *
      * @param null|array|\Traversable $options (Optional) Options to set
+     * @throws Exception\ExtensionNotLoadedException if zlib extension not loaded
      */
     public function __construct($options = null)
     {
@@ -63,6 +64,7 @@ class Gz extends AbstractCompressionAlgorithm
      * Sets a new compression level
      *
      * @param integer $level
+     * @throws Exception\InvalidArgumentException
      * @return Gz
      */
     public function setLevel($level)
@@ -129,7 +131,7 @@ class Gz extends AbstractCompressionAlgorithm
      *
      * @param  string $content
      * @return string
-     * @throws Exceptin\RuntimeException if unable to open archive or error during decompression
+     * @throws Exception\RuntimeException if unable to open archive or error during decompression
      */
     public function compress($content)
     {

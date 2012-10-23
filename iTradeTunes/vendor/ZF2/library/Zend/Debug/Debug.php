@@ -10,6 +10,8 @@
 
 namespace Zend\Debug;
 
+use Zend\Escaper\Escaper;
+
 /**
  * Concrete class for generating debug dumps related to the output source.
  *
@@ -18,6 +20,10 @@ namespace Zend\Debug;
  */
 class Debug
 {
+    /**
+     * @var Escaper
+     */
+    protected static $escaper = null;
 
     /**
      * @var string
@@ -39,7 +45,7 @@ class Debug
     }
 
     /**
-     * Set the debug ouput environment.
+     * Set the debug output environment.
      * Setting a value of null causes Zend_Debug to use PHP_SAPI.
      *
      * @param string $sapi
@@ -48,6 +54,31 @@ class Debug
     public static function setSapi($sapi)
     {
         self::$sapi = $sapi;
+    }
+
+    /**
+     * Set Escaper instance
+     *
+     * @param  Escaper $escaper
+     */
+    public static function setEscaper(Escaper $escaper)
+    {
+        static::$escaper = $escaper;
+    }
+
+    /**
+     * Get Escaper instance
+     *
+     * Lazy loads an instance if none provided.
+     *
+     * @return Escaper
+     */
+    public static function getEscaper()
+    {
+        if (null === static::$escaper) {
+            static::setEscaper(new Escaper());
+        }
+        return static::$escaper;
     }
 
     /**
@@ -77,8 +108,8 @@ class Debug
                     . PHP_EOL . $output
                     . PHP_EOL;
         } else {
-            if(!extension_loaded('xdebug')) {
-                $output = htmlspecialchars($output, ENT_QUOTES);
+            if (!extension_loaded('xdebug')) {
+                $output = static::getEscaper()->escapeHtml($output);
             }
 
             $output = '<pre>'
@@ -88,7 +119,7 @@ class Debug
         }
 
         if ($echo) {
-            echo($output);
+            echo $output;
         }
         return $output;
     }

@@ -180,6 +180,7 @@ class AnnotationBuilder implements EventManagerAwareInterface
      * specifications for a form, its elements, and its input filter.
      *
      * @param  string|object $entity Either an instance or a valid class name for an entity
+     * @throws Exception\InvalidArgumentException if $entity is not an object or class name
      * @return ArrayObject
      */
     public function getFormSpecification($entity)
@@ -384,6 +385,7 @@ class AnnotationBuilder implements EventManagerAwareInterface
      *
      * @param string $className
      * @param string $type
+     * @return bool
      */
     protected static function isSubclassOf($className, $type)
     {

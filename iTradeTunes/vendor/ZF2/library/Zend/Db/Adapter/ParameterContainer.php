@@ -15,7 +15,7 @@ namespace Zend\Db\Adapter;
  * @package    Zend_Db
  * @subpackage Adapter
  */
-class ParameterContainer implements \Iterator, \ArrayAccess
+class ParameterContainer implements \Iterator, \ArrayAccess, \Countable
 {
 
     const TYPE_AUTO    = 'auto';
@@ -153,6 +153,7 @@ class ParameterContainer implements \Iterator, \ArrayAccess
      * Offset get errata
      *
      * @param  string|integer $name
+     * @throws Exception\InvalidArgumentException
      * @return mixed
      */
     public function offsetGetErrata($name)
@@ -184,6 +185,7 @@ class ParameterContainer implements \Iterator, \ArrayAccess
      * Offset unset errata
      *
      * @param string|integer $name
+     * @throws Exception\InvalidArgumentException
      */
     public function offsetUnsetErrata($name)
     {
@@ -285,12 +287,25 @@ class ParameterContainer implements \Iterator, \ArrayAccess
     }
 
     /**
-     * @param array $array
+     * @param array|ParameterContainer $parameters
+     * @throws Exception\InvalidArgumentException
      * @return ParameterContainer
      */
-    public function merge(array $array)
+    public function merge($parameters)
     {
-        foreach ($array as $key => $value) {
+        if (!is_array($parameters) && !$parameters instanceof ParameterContainer) {
+            throw new Exception\InvalidArgumentException('$parameters must be an array or an instance of ParameterContainer');
+        }
+
+        if (count($parameters) == 0) {
+            return $this;
+        }
+
+        if ($parameters instanceof ParameterContainer) {
+            $parameters = $parameters->getNamedArray();
+        }
+
+        foreach ($parameters as $key => $value) {
             if (is_int($key)) {
                 $key = null;
             }

@@ -10,8 +10,8 @@
 
 namespace Zend\Cache\Storage\Adapter;
 
-use ArrayObject;
 use stdClass;
+use Traversable;
 use Zend\Cache\Exception;
 use Zend\Cache\Storage\AvailableSpaceCapableInterface;
 use Zend\Cache\Storage\Capabilities;
@@ -34,7 +34,6 @@ class WinCache extends AbstractAdapter implements
      *
      * @param  array|Traversable|WinCacheOptions $options
      * @throws Exception\ExceptionInterface
-     * @return void
      */
     public function __construct($options = null)
     {
@@ -61,7 +60,7 @@ class WinCache extends AbstractAdapter implements
     /**
      * Set options.
      *
-     * @param  array|\Traversable|WinCacheOptions $options
+     * @param  array|Traversable|WinCacheOptions $options
      * @return WinCache
      * @see    getOptions()
      */
@@ -413,7 +412,7 @@ class WinCache extends AbstractAdapter implements
         $options     = $this->getOptions();
         $prefix      = $options->getNamespace() . $options->getNamespaceSeparator();
         $internalKey = $prefix . $normalizedKey;
-        return wincache_ucache_inc($internalKey, (int)$value);
+        return wincache_ucache_inc($internalKey, (int) $value);
     }
 
     /**
@@ -429,7 +428,7 @@ class WinCache extends AbstractAdapter implements
         $options     = $this->getOptions();
         $prefix      = $options->getNamespace() . $options->getNamespaceSeparator();
         $internalKey = $prefix . $normalizedKey;
-        return wincache_ucache_dec($internalKey, (int)$value);
+        return wincache_ucache_dec($internalKey, (int) $value);
     }
 
     /* status */

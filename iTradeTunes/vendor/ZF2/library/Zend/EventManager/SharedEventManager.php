@@ -34,7 +34,7 @@ class SharedEventManager implements SharedEventManagerInterface
     /**
      * Attach a listener to an event
      *
-     * Allows attaching a callback to an event offerred by one or more
+     * Allows attaching a callback to an event offered by one or more
      * identifying components. As an example, the following connects to the
      * "getAll" event of both an AbstractResource and EntityResource:
      *
@@ -57,19 +57,24 @@ class SharedEventManager implements SharedEventManagerInterface
      *
      * @param  string|array $id Identifier(s) for event emitting component(s)
      * @param  string $event
-     * @param  callback $callback PHP Callback
+     * @param  callable $callback PHP Callback
      * @param  int $priority Priority at which listener should execute
-     * @return void
+     * @return CallbackHandler|array Either CallbackHandler or array of CallbackHandlers
      */
     public function attach($id, $event, $callback, $priority = 1)
     {
         $ids = (array) $id;
+        $listeners = array();
         foreach ($ids as $id) {
             if (!array_key_exists($id, $this->identifiers)) {
                 $this->identifiers[$id] = new EventManager();
             }
-            $this->identifiers[$id]->attach($event, $callback, $priority);
+            $listeners[] = $this->identifiers[$id]->attach($event, $callback, $priority);
         }
+        if (count($listeners) > 1) {
+            return $listeners;
+        }
+        return $listeners[0];
     }
 
     /**
@@ -96,6 +101,10 @@ class SharedEventManager implements SharedEventManagerInterface
     public function getEvents($id)
     {
         if (!array_key_exists($id, $this->identifiers)) {
+            //Check if there are any id wildcards listeners
+            if ('*' != $id && array_key_exists('*', $this->identifiers)) {
+                return $this->identifiers['*']->getEvents();
+            }
             return false;
         }
         return $this->identifiers[$id]->getEvents();

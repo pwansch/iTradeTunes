@@ -30,6 +30,7 @@ class Error extends AbstractObject
 
     /**
      * Height is forced
+     * @param bool $recalculate
      * @return integer
      */
     public function getHeight($recalculate = false)
@@ -39,6 +40,7 @@ class Error extends AbstractObject
 
     /**
      * Width is forced
+     * @param bool $recalculate
      * @return integer
      */
     public function getWidth($recalculate = false)

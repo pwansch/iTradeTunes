@@ -11,6 +11,7 @@
 namespace Zend\View\Resolver;
 
 use SplFileInfo;
+use Traversable;
 use Zend\Stdlib\SplStack;
 use Zend\View\Exception;
 use Zend\View\Renderer\RendererInterface as Renderer;
@@ -66,7 +67,6 @@ class TemplatePathStack implements ResolverInterface
      * Constructor
      *
      * @param  null|array|Traversable $options
-     * @return void
      */
     public function __construct($options = null)
     {
@@ -86,13 +86,13 @@ class TemplatePathStack implements ResolverInterface
     /**
      * Configure object
      *
-     * @param  array|\Traversable $options
+     * @param  array|Traversable $options
      * @return void
      * @throws Exception\InvalidArgumentException
      */
     public function setOptions($options)
     {
-        if (!is_array($options) && !$options instanceof \Traversable) {
+        if (!is_array($options) && !$options instanceof Traversable) {
             throw new Exception\InvalidArgumentException(sprintf(
                 'Expected array or Traversable object; received "%s"',
                 (is_object($options) ? get_class($options) : gettype($options))
@@ -233,7 +233,7 @@ class TemplatePathStack implements ResolverInterface
      * Set LFI protection flag
      *
      * @param  bool $flag
-     * @return \Zend\View\TemplatePathStack
+     * @return TemplatePathStack
      */
     public function setLfiProtection($flag)
     {
@@ -255,7 +255,7 @@ class TemplatePathStack implements ResolverInterface
      * Set flag indicating if stream wrapper should be used if short_open_tag is off
      *
      * @param  bool $flag
-     * @return \Zend\View\View
+     * @return TemplatePathStack
      */
     public function setUseStreamWrapper($flag)
     {
@@ -282,7 +282,7 @@ class TemplatePathStack implements ResolverInterface
      * @param  string $name
      * @param  null|Renderer $renderer
      * @return string
-     * @throws Exception\RuntimeException
+     * @throws Exception\DomainException
      */
     public function resolve($name, Renderer $renderer = null)
     {

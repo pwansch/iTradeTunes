@@ -55,6 +55,7 @@ class Encrypt extends AbstractFilter
      *
      * @param  string|array $options (Optional) Encryption options
      * @return Encrypt
+     * @throws Exception\DomainException
      * @throws Exception\InvalidArgumentException
      */
     public function setAdapter($options = null)
@@ -72,16 +73,14 @@ class Encrypt extends AbstractFilter
             $options = array();
         }
 
-        if (file_exists(__DIR__ . '/Encrypt/' . ucfirst($adapter) . '.php')) {
-            $adapter = 'Zend\\Filter\\Encrypt\\' . ucfirst($adapter);
-        }
-
-        if (!class_exists($adapter)) {
+        if (class_exists('Zend\Filter\Encrypt\\' . ucfirst($adapter))) {
+            $adapter = 'Zend\Filter\Encrypt\\' . ucfirst($adapter);
+        } elseif (!class_exists($adapter)) {
             throw new Exception\DomainException(
                 sprintf('%s expects a valid registry class name; received "%s", which did not resolve',
-                        __METHOD__,
-                        $adapter
-                ));
+                    __METHOD__,
+                    $adapter
+            ));
         }
 
         $this->adapter = new $adapter($options);
@@ -99,6 +98,7 @@ class Encrypt extends AbstractFilter
      *
      * @param string       $method  Method to call
      * @param string|array $options Options for this method
+     * @return mixed
      * @throws Exception\BadMethodCallException
      */
     public function __call($method, $options)

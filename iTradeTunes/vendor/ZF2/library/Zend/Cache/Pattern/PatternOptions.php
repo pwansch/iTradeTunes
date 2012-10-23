@@ -10,6 +10,7 @@
 
 namespace Zend\Cache\Pattern;
 
+use Traversable;
 use Zend\Cache\Exception;
 use Zend\Cache\StorageFactory;
 use Zend\Cache\Storage\StorageInterface as Storage;
@@ -151,7 +152,7 @@ class PatternOptions extends AbstractOptions
      * Constructor
      *
      * @param  array|Traversable|null $options
-     * @return AbstractOptions
+     * @return PatternOptions
      * @throws Exception\InvalidArgumentException
      */
     public function __construct($options = null)
@@ -234,6 +235,7 @@ class PatternOptions extends AbstractOptions
      * - ClassCache
      *
      * @param  string $class
+     * @throws Exception\InvalidArgumentException
      * @return PatternOptions
      */
     public function setClass($class)
@@ -318,6 +320,7 @@ class PatternOptions extends AbstractOptions
      * Set directory permission
      *
      * @param  false|int $dirPermission
+     * @throws Exception\InvalidArgumentException
      * @return PatternOptions
      */
     public function setDirPermission($dirPermission)
@@ -358,6 +361,7 @@ class PatternOptions extends AbstractOptions
      * - CaptureCache
      *
      * @param  false|int $umask
+     * @throws Exception\InvalidArgumentException
      * @return PatternOptions
      */
     public function setUmask($umask)
@@ -429,6 +433,7 @@ class PatternOptions extends AbstractOptions
      * Set file permission
      *
      * @param  false|int $filePermission
+     * @throws Exception\InvalidArgumentException
      * @return PatternOptions
      */
     public function setFilePermission($filePermission)
@@ -491,7 +496,8 @@ class PatternOptions extends AbstractOptions
     /**
      * Set object to cache
      *
-     * @param  mixed $value
+     * @param  mixed $object
+     * @throws Exception\InvalidArgumentException
      * @return $this
      */
     public function setObject($object)
@@ -574,7 +580,7 @@ class PatternOptions extends AbstractOptions
      * Used by:
      * - ObjectCache
      *
-     * @param  mixed $value
+     * @param  mixed $objectKey
      * @return $this
      */
     public function setObjectKey($objectKey)
@@ -633,6 +639,7 @@ class PatternOptions extends AbstractOptions
      * - CaptureCache
      *
      * @param  string $publicDir
+     * @throws Exception\InvalidArgumentException
      * @return PatternOptions
      */
     public function setPublicDir($publicDir)
@@ -641,7 +648,7 @@ class PatternOptions extends AbstractOptions
 
         if (!is_dir($publicDir)) {
             throw new Exception\InvalidArgumentException(
-                "Public directory '{$publicDir}' not found or not a directoy"
+                "Public directory '{$publicDir}' not found or not a directory"
             );
         } elseif (!is_writable($publicDir)) {
             throw new Exception\InvalidArgumentException(
@@ -742,7 +749,8 @@ class PatternOptions extends AbstractOptions
      * Create a storage object from a given specification
      *
      * @param  array|string|Storage $storage
-     * @return StorageAdapter
+     * @throws Exception\InvalidArgumentException
+     * @return Storage
      */
     protected function storageFactory($storage)
     {
@@ -750,7 +758,7 @@ class PatternOptions extends AbstractOptions
             $storage = StorageFactory::factory($storage);
         } elseif (is_string($storage)) {
             $storage = StorageFactory::adapterFactory($storage);
-        } elseif ( !($storage instanceof Storage) ) {
+        } elseif (!($storage instanceof Storage)) {
             throw new Exception\InvalidArgumentException(
                 'The storage must be an instanceof Zend\Cache\Storage\StorageInterface '
                 . 'or an array passed to Zend\Cache\Storage::factory '

@@ -13,7 +13,6 @@ namespace Zend\View\Resolver;
 use Countable;
 use IteratorAggregate;
 use Zend\Stdlib\PriorityQueue;
-use Zend\View\Exception;
 use Zend\View\Renderer\RendererInterface as Renderer;
 use Zend\View\Resolver\ResolverInterface as Resolver;
 
@@ -48,7 +47,6 @@ class AggregateResolver implements Countable, IteratorAggregate, ResolverInterfa
      *
      * Instantiate the internal priority queue
      *
-     * @return void
      */
     public function __construct()
     {
@@ -58,7 +56,7 @@ class AggregateResolver implements Countable, IteratorAggregate, ResolverInterfa
     /**
      * Return count of attached resolvers
      *
-     * @return void
+     * @return int
      */
     public function count()
     {
@@ -68,7 +66,7 @@ class AggregateResolver implements Countable, IteratorAggregate, ResolverInterfa
     /**
      * IteratorAggregate: return internal iterator
      *
-     * @return Traversable
+     * @return PriorityQueue
      */
     public function getIterator()
     {

@@ -63,6 +63,7 @@ abstract class AbstractAdapter extends AbstractValidator implements AdapterInter
      * Set name
      *
      * @param string $name
+     * @return AbstractAdapter
      */
     public function setName($name)
     {
@@ -100,6 +101,7 @@ abstract class AbstractAdapter extends AbstractValidator implements AdapterInter
      * Set object state from options array
      *
      * @param  array|Traversable $options
+     * @throws Exception\InvalidArgumentException
      * @return AbstractAdapter
      */
     public function setOptions($options = array())

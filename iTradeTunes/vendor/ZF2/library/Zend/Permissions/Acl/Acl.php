@@ -718,7 +718,7 @@ class Acl
                     return $result;
                 }
 
-                // look for rule on 'allRoles' psuedo-parent
+                // look for rule on 'allRoles' pseudo-parent
                 if (null !== ($rules = $this->getRules($resource, null))) {
                     foreach ($rules['byPrivilegeId'] as $privilege => $rule) {
                         if (self::TYPE_DENY === ($ruleTypeOnePrivilege = $this->getRuleType($resource, null, $privilege))) {
@@ -839,7 +839,7 @@ class Acl
         }
 
         $dfs['visited'][$role->getRoleId()] = true;
-        foreach ($this->getRoleRegistry()->getParents($role) as $roleParentId => $roleParent) {
+        foreach ($this->getRoleRegistry()->getParents($role) as $roleParent) {
             $dfs['stack'][] = $roleParent;
         }
 
@@ -925,7 +925,7 @@ class Acl
         }
 
         $dfs['visited'][$role->getRoleId()] = true;
-        foreach ($this->getRoleRegistry()->getParents($role) as $roleParentId => $roleParent) {
+        foreach ($this->getRoleRegistry()->getParents($role) as $roleParent) {
             $dfs['stack'][] = $roleParent;
         }
 

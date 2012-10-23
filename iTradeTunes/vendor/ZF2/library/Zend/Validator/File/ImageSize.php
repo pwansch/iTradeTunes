@@ -10,6 +10,7 @@
 
 namespace Zend\Validator\File;
 
+use Zend\Stdlib\ErrorHandler;
 use Zend\Validator\AbstractValidator;
 use Zend\Validator\Exception;
 
@@ -17,7 +18,7 @@ use Zend\Validator\Exception;
  * Validator for the image size of a image file
  *
  * @category  Zend
- * @package   Zend_Validate
+ * @package   Zend_Validator
  */
 class ImageSize extends AbstractValidator
 {
@@ -336,7 +337,9 @@ class ImageSize extends AbstractValidator
             return $this->throwError($file, self::NOT_READABLE);
         }
 
-        $size = @getimagesize($value);
+        ErrorHandler::start();
+        $size = getimagesize($value);
+        ErrorHandler::stop();
         $this->setValue($file);
 
         if (empty($size) or ($size[0] === 0) or ($size[1] === 0)) {
@@ -379,7 +382,7 @@ class ImageSize extends AbstractValidator
     {
         if ($file !== null) {
             if (is_array($file)) {
-                if(array_key_exists('name', $file)) {
+                if (array_key_exists('name', $file)) {
                     $this->value = $file['name'];
                 }
             } elseif (is_string($file)) {

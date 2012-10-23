@@ -32,7 +32,6 @@ class Definition implements \Countable, \Iterator
      * Constructor
      *
      * @param  null|array $methods
-     * @return void
      */
     public function __construct($methods = null)
     {
@@ -45,7 +44,7 @@ class Definition implements \Countable, \Iterator
      * Set flag indicating whether or not overwriting existing methods is allowed
      *
      * @param mixed $flag
-     * @return void
+     * @return \Zend\Server\Definition
      */
     public function setOverwriteExistingMethods($flag)
     {
@@ -59,7 +58,7 @@ class Definition implements \Countable, \Iterator
      * @param  array|\Zend\Server\Method\Definition $method
      * @param  null|string $name
      * @return \Zend\Server\Definition
-     * @throws \Zend\Server\Exception if duplicate or invalid method provided
+     * @throws \Zend\Server\Exception\ExceptionInterface if duplicate or invalid method provided
      */
     public function addMethod($method, $name = null)
     {
@@ -202,7 +201,7 @@ class Definition implements \Countable, \Iterator
     /**
      * Iterator: current item
      *
-     * @return mixed
+     * @return Method\Definition
      */
     public function current()
     {
@@ -222,7 +221,7 @@ class Definition implements \Countable, \Iterator
     /**
      * Iterator: advance to next method
      *
-     * @return void
+     * @return Method\Definition
      */
     public function next()
     {

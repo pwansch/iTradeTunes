@@ -89,19 +89,19 @@ class Number extends Line
             $number = parent::show();
             if ($number === "" && !$this->allowEmpty) {
                 $valid = false;
-            } elseif ($number === ""){
+            } elseif ($number === "") {
                 $number = null;
-            } elseif (!is_numeric($number)){
+            } elseif (!is_numeric($number)) {
                 $this->getConsole()->writeLine("$number is not a number\n");
                 $valid = false;
-            } elseif (!$this->allowFloat && (round($number) != $number) ){
-                $this->getConsole()->writeLine("Please enter a non-floating number, i.e. ".round($number)."\n");
+            } elseif (!$this->allowFloat && (round($number) != $number) ) {
+                $this->getConsole()->writeLine("Please enter a non-floating number, i.e. " . round($number) . "\n");
                 $valid = false;
-            } elseif ($this->max !== null && $number > $this->max){
-                $this->getConsole()->writeLine("Please enter a number not greater than ".$this->max."\n");
+            } elseif ($this->max !== null && $number > $this->max) {
+                $this->getConsole()->writeLine("Please enter a number not greater than " . $this->max . "\n");
                 $valid = false;
-            } elseif ($this->min !== null && $number < $this->min){
-                $this->getConsole()->writeLine("Please enter a number not smaller than ".$this->min."\n");
+            } elseif ($this->min !== null && $number < $this->min) {
+                $this->getConsole()->writeLine("Please enter a number not smaller than " . $this->min . "\n");
                 $valid = false;
             }
         } while (!$valid);
@@ -110,7 +110,7 @@ class Number extends Line
          * Cast proper type
          */
         if ($number !== null) {
-            $number = $this->allowFloat ? (double)$number : (int)$number;
+            $number = $this->allowFloat ? (double) $number : (int) $number;
         }
 
         return $this->lastResponse = $number;

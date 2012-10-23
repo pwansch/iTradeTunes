@@ -11,8 +11,8 @@
 namespace Zend\Log\Writer;
 
 use Zend\Log\Exception;
-use Zend\Log\Formatter;
 use Zend\Log\Logger;
+use Zend\Log\Formatter\Simple as SimpleFormatter;
 
 /**
  * Writes log messages to syslog
@@ -90,7 +90,7 @@ class Syslog extends AbstractWriter
     public function __construct(array $params = array())
     {
         if (isset($params['application'])) {
-            $this->application = $params['application'];
+            $this->appName = $params['application'];
         }
 
         $runInitializeSyslog = true;
@@ -102,6 +102,8 @@ class Syslog extends AbstractWriter
         if ($runInitializeSyslog) {
             $this->initializeSyslog();
         }
+
+        $this->setFormatter(new SimpleFormatter('%message%'));
     }
 
     /**
@@ -235,11 +237,7 @@ class Syslog extends AbstractWriter
             $this->initializeSyslog();
         }
 
-        if ($this->formatter instanceof Formatter) {
-            $message = $this->formatter->format($event);
-        } else {
-            $message = $event['message'];
-        }
+        $message = $this->formatter->format($event);
 
         syslog($priority, $message);
     }

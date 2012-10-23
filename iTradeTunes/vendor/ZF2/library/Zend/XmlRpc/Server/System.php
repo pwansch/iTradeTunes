@@ -27,8 +27,7 @@ class System
     /**
      * Constructor
      *
-     * @param  \Zend\XmlRpc\Server\Server $server
-     * @return void
+     * @param \Zend\XmlRpc\Server $server
      */
     public function __construct(\Zend\XmlRpc\Server $server)
     {
@@ -52,6 +51,7 @@ class System
      * Display help message for an XMLRPC method
      *
      * @param string $method
+     * @throws Exception\InvalidArgumentException
      * @return string
      */
     public function methodHelp($method)
@@ -68,6 +68,7 @@ class System
      * Return a method signature
      *
      * @param string $method
+     * @throws Exception\InvalidArgumentException
      * @return array
      */
     public function methodSignature($method)

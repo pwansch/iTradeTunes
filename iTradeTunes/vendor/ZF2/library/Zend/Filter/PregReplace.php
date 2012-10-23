@@ -11,7 +11,6 @@
 namespace Zend\Filter;
 
 use Traversable;
-use Zend\Stdlib\ArrayUtils;
 
 /**
  * @category   Zend
@@ -31,7 +30,6 @@ class PregReplace extends AbstractFilter
      *     'replacement' => replace with this
      *
      * @param  array|Traversable|string|null $options
-     * @return void
      */
     public function __construct($options = null)
     {

@@ -42,6 +42,7 @@ class Rar extends AbstractCompressionAlgorithm
      * Class constructor
      *
      * @param array $options (Optional) Options to set
+     * @throws Exception\ExtensionNotLoadedException if rar extension not loaded
      */
     public function __construct($options = null)
     {
@@ -215,7 +216,7 @@ class Rar extends AbstractCompressionAlgorithm
             throw new Exception\RuntimeException("Error reading the RAR Archive");
         }
 
-        foreach($filelist as $file) {
+        foreach ($filelist as $file) {
             $file->extract($target);
         }
 

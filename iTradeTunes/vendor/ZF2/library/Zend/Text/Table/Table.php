@@ -107,7 +107,6 @@ class Table
     /**
      * Create a basic table object
      *
-     * @param  array             $columns Widths List of all column widths
      * @param  array|Traversable $options Configuration options
      * @throws Exception\UnexpectedValueException When no columns widths were set
      */
@@ -274,7 +273,7 @@ class Table
     /**
      * Get the input charset for column contents
      *
-     * @param string $charset
+     * @return string
      */
     public static function getInputCharset()
     {
@@ -294,7 +293,7 @@ class Table
     /**
      * Get the output charset for column contents
      *
-     * @param string $charset
+     * @return string
      */
     public static function getOutputCharset()
     {
@@ -393,7 +392,7 @@ class Table
                 $result .= "\n";
             } else {
                 // Else check if we have to draw the row separator
-                if (!$hasHorizontal){
+                if (!$hasHorizontal) {
                     $drawSeparator = false; // there is no horizontal character;
                 } elseif ($this->autoSeparate & self::AUTO_SEPARATE_ALL) {
                     $drawSeparator = true;

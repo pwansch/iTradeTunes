@@ -11,7 +11,7 @@
 namespace Zend\Console;
 
 /**
- * An static, utility class for interacting with Console enviroment.
+ * An static, utility class for interacting with Console environment.
  * Declared abstract to prevent from instantiating.
  *
  * @category   Zend
@@ -25,6 +25,13 @@ abstract class Console
     protected static $instance;
 
     /**
+     * Allow overriding whether or not we're in a console env. If set, and
+     * boolean, returns that value from isConsole().
+     * @var bool
+     */
+    protected static $isConsole;
+
+    /**
      * Create and return Adapter\AdapterInterface instance.
      *
      * @param  null|string  $forceAdapter Optional adapter class name. Ccan be absolute namespace or class name
@@ -34,6 +41,7 @@ abstract class Console
      *                                    Zend\Console\Charset\. If not provided, charset will be detected
      *                                    automatically.
      * @throws Exception\InvalidArgumentException
+     * @throws Exception\RuntimeException
      * @return Adapter\AdapterInterface
      */
     public static function getInstance($forceAdapter = null, $forceCharset = null)
@@ -63,6 +71,11 @@ abstract class Console
         } else {
             // Try to detect best instance for console
             $className = static::detectBestAdapter();
+
+            // Check if we were able to detect console adapter
+            if (!$className) {
+                throw new Exception\RuntimeException('Cannot create Console adapter - am I running in a console?');
+            }
         }
 
         // Create adapter instance
@@ -95,11 +108,15 @@ abstract class Console
     /**
      * Check if currently running under MS Windows
      *
+     * @see http://stackoverflow.com/questions/738823/possible-values-for-php-os
      * @return bool
      */
     public static function isWindows()
     {
-        return class_exists('COM', false);
+        return
+            ( defined('PHP_OS') && ( substr_compare(PHP_OS,'win',0,3,true) === 0) ) ||
+            (getenv('OS') != false && substr_compare(getenv('OS'),'windows',0,7,true))
+        ;
     }
 
     /**
@@ -115,11 +132,27 @@ abstract class Console
     /**
      * Check if running in a console environment (CLI)
      *
+     * By default, returns value of PHP_SAPI global constant. If $isConsole is
+     * set, and a boolean value, that value will be returned.
+     *
      * @return bool
      */
     public static function isConsole()
     {
+        if (null !== static::$isConsole && is_bool(static::$isConsole)) {
+            return static::$isConsole;
+        }
         return PHP_SAPI == 'cli';
+    }
+
+    /**
+     * Override the "is console environment" flag
+     *
+     * @param  null|bool $flag
+     */
+    public static function overrideIsConsole($flag)
+    {
+        static::$isConsole = $flag;
     }
 
     /**

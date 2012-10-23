@@ -41,6 +41,7 @@ class Select extends Char
      * @param array     $options        Allowed options
      * @param bool      $allowEmpty     Allow empty (no) selection?
      * @param bool      $echo           True to display selected option?
+     * @throws Exception\BadMethodCallException if no options available
      */
     public function __construct(
         $promptText = 'Please select one option',
@@ -77,28 +78,43 @@ class Select extends Char
      */
     public function show()
     {
-        /**
-         * Show prompt text and available options
-         */
+        // Show prompt text and available options
         $console = $this->getConsole();
         $console->writeLine($this->promptText);
         foreach ($this->options as $k => $v) {
-            $console->writeLine('  '.$k.') '.$v);
+            $console->writeLine('  ' . $k . ') ' . $v);
         }
 
-        /**
-         * Ask for selection
-         */
-        $mask = implode("",array_keys($this->options));
+        //  Prepare mask
+        $mask = implode("", array_keys($this->options));
         if ($this->allowEmpty) {
             $mask .= "\r\n";
         }
-        $this->setAllowedChars($mask);
-        $oldPrompt = $this->promptText;
-        $this->promptText = 'Pick one option: ';
-        $response = parent::show();
-        $this->promptText = $oldPrompt;
 
+        // Prepare other params for parent class
+        $this->setAllowedChars($mask);
+        $oldPrompt        = $this->promptText;
+        $oldEcho          = $this->echo;
+        $this->echo       = false;
+        $this->promptText = null;
+
+        // Retrieve a single character
+        $response = parent::show();
+
+        // Restore old params
+        $this->promptText = $oldPrompt;
+        $this->echo       = $oldEcho;
+
+        // Display selected option if echo is enabled
+        if ($this->echo) {
+            if (isset($this->options[$response])) {
+                $console->writeLine($this->options[$response]);
+            } else {
+                $console->writeLine();
+            }
+        }
+
+        $this->lastResponse = $response;
         return $response;
     }
 
@@ -106,6 +122,7 @@ class Select extends Char
      * Set allowed options
      *
      * @param array|\Traversable $options
+     * @throws Exception\BadMethodCallException
      */
     public function setOptions($options)
     {

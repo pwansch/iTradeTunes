@@ -18,7 +18,7 @@ use Zend\I18n\Exception;
  *
  * All properties in the symbol are defined as public for easier and faster
  * access from the applied closures. An exception are the closure properties
- * themself, as they have to be accessed via the appropriate getter and
+ * themselves, as they have to be accessed via the appropriate getter and
  * setter methods.
  *
  * @category   Zend
@@ -96,7 +96,6 @@ class Symbol
      * @param  Parser  $parser
      * @param  string  $id
      * @param  integer $leftBindingPower
-     * @return void
      */
     public function __construct(Parser $parser, $id, $leftBindingPower)
     {
@@ -132,6 +131,7 @@ class Symbol
     /**
      * Get null denotation.
      *
+     * @throws Exception\ParseException
      * @return Symbol
      */
     public function getNullDenotation()
@@ -151,6 +151,7 @@ class Symbol
      * Get left denotation.
      *
      * @param  Symbol $left
+     * @throws Exception\ParseException
      * @return Symbol
      */
     public function getLeftDenotation($left)

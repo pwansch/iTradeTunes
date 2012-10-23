@@ -14,15 +14,10 @@ use ArrayAccess;
 use Traversable;
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
-use Zend\Mvc\ApplicationInterface;
 use Zend\Mvc\Exception;
 use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\RouteMatch;
 use Zend\Mvc\View\SendResponseListener;
-use Zend\ServiceManager\ConfigInterface;
 use Zend\ServiceManager\ServiceManager;
-use Zend\Stdlib\ArrayUtils;
-use Zend\View\Helper as ViewHelper;
 use Zend\View\HelperPluginManager as ViewHelperManager;
 use Zend\View\Renderer\PhpRenderer as ViewPhpRenderer;
 use Zend\View\Resolver as ViewResolver;
@@ -174,7 +169,7 @@ class ViewManager implements ListenerAggregateInterface
     /**
      * Instantiates and configures the renderer's resolver
      *
-     * @return ViewAggregateResolver
+     * @return ViewResolver\ResolverInterface
      */
     public function getResolver()
     {
@@ -381,7 +376,7 @@ class ViewManager implements ListenerAggregateInterface
      * Register additional mvc rendering strategies
      *
      * If there is a "mvc_strategies" key of the view manager configuration, loop
-     * through it. Pull each as a service fromt the service manager, and, if it
+     * through it. Pull each as a service from the service manager, and, if it
      * is a ListenerAggregate, attach it to the view, at priority 100. This
      * latter allows each to trigger before the default mvc rendering strategy,
      * and for them to trigger in the order they are registered.

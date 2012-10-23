@@ -253,6 +253,7 @@ class Rss extends AbstractFeed
     /**
      * Get the feed lastBuild date
      *
+     * @throws Exception\RuntimeException
      * @return DateTime
      */
     public function getLastBuildDate()
@@ -685,7 +686,7 @@ class Rss extends AbstractFeed
             $entries = $this->xpath->evaluate('//rss:item');
         }
 
-        foreach($entries as $index=>$entry) {
+        foreach ($entries as $index=>$entry) {
             $this->entries[$index] = $entry;
         }
     }

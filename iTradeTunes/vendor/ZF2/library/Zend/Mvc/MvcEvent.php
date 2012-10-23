@@ -235,7 +235,7 @@ class MvcEvent extends Event
      */
     public function isError()
     {
-        return $this->getParam('error', false);
+        return (bool) $this->getParam('error', false);
     }
 
     /**
@@ -283,7 +283,7 @@ class MvcEvent extends Event
     }
 
     /**
-     * Get controller clas
+     * Get controller class
      *
      * @return string
      */

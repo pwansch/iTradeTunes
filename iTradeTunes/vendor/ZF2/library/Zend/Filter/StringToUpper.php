@@ -28,12 +28,12 @@ class StringToUpper extends AbstractUnicode
     /**
      * Constructor
      *
-     * @param string|array|Traversable $options OPTIONAL
+     * @param string|array|Traversable $encodingOrOptions OPTIONAL
      */
     public function __construct($encodingOrOptions = null)
     {
         if ($encodingOrOptions !== null) {
-            if (!static::isOptions($encodingOrOptions)){
+            if (!static::isOptions($encodingOrOptions)) {
                 $this->setEncoding($encodingOrOptions);
             } else {
                 $this->setOptions($encodingOrOptions);

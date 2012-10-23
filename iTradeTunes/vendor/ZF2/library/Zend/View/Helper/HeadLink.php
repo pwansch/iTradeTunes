@@ -10,6 +10,7 @@
 
 namespace Zend\View\Helper;
 
+use stdClass;
 use Zend\View;
 use Zend\View\Exception;
 
@@ -39,7 +40,6 @@ class HeadLink extends Placeholder\Container\AbstractStandalone
      *
      * Use PHP_EOL as separator
      *
-     * @return void
      */
     public function __construct()
     {
@@ -53,6 +53,8 @@ class HeadLink extends Placeholder\Container\AbstractStandalone
      * Returns current object instance. Optionally, allows passing array of
      * values to build link.
      *
+     * @param array $attributes
+     * @param string $placement
      * @return \Zend\View\Helper\HeadLink
      */
     public function __invoke(array $attributes = null, $placement = Placeholder\Container\AbstractContainer::APPEND)
@@ -162,7 +164,7 @@ class HeadLink extends Placeholder\Container\AbstractStandalone
      */
     protected function isValid($value)
     {
-        if (!$value instanceof \stdClass) {
+        if (!$value instanceof stdClass) {
             return false;
         }
 
@@ -217,7 +219,7 @@ class HeadLink extends Placeholder\Container\AbstractStandalone
      * prepend()
      *
      * @param  array $value
-     * @return Zend_Layout_ViewHelper_HeadLink
+     * @return HeadLink
      * @throws Exception\InvalidArgumentException
      */
     public function prepend($value)
@@ -235,7 +237,7 @@ class HeadLink extends Placeholder\Container\AbstractStandalone
      * set()
      *
      * @param  array $value
-     * @return Zend_Layout_ViewHelper_HeadLink
+     * @return HeadLink
      * @throws Exception\InvalidArgumentException
      */
     public function set($value)
@@ -256,30 +258,30 @@ class HeadLink extends Placeholder\Container\AbstractStandalone
      * @param  stdClass $item
      * @return string
      */
-    public function itemToString(\stdClass $item)
+    public function itemToString(stdClass $item)
     {
         $attributes = (array) $item;
-        $link       = '<link ';
+        $link       = '<link';
 
         foreach ($this->itemKeys as $itemKey) {
             if (isset($attributes[$itemKey])) {
-                if(is_array($attributes[$itemKey])) {
-                    foreach($attributes[$itemKey] as $key => $value) {
-                        $link .= sprintf('%s="%s" ', $key, ($this->autoEscape) ? $this->escape($value) : $value);
+                if (is_array($attributes[$itemKey])) {
+                    foreach ($attributes[$itemKey] as $key => $value) {
+                        $link .= sprintf(' %s="%s"', $key, ($this->autoEscape) ? $this->escape($value) : $value);
                     }
                 } else {
-                    $link .= sprintf('%s="%s" ', $itemKey, ($this->autoEscape) ? $this->escape($attributes[$itemKey]) : $attributes[$itemKey]);
+                    $link .= sprintf(' %s="%s"', $itemKey, ($this->autoEscape) ? $this->escape($attributes[$itemKey]) : $attributes[$itemKey]);
                 }
             }
         }
 
         if (method_exists($this->view, 'plugin')) {
-            $link .= ($this->view->plugin('doctype')->isXhtml()) ? '/>' : '>';
+            $link .= ($this->view->plugin('doctype')->isXhtml()) ? ' />' : '>';
         } else {
-            $link .= '/>';
+            $link .= ' />';
         }
 
-        if (($link == '<link />') || ($link == '<link >')) {
+        if (($link == '<link />') || ($link == '<link>')) {
             return '';
         }
 
@@ -330,7 +332,7 @@ class HeadLink extends Placeholder\Container\AbstractStandalone
      * Create item for stylesheet link item
      *
      * @param  array $args
-     * @return stdClass|false Returns fals if stylesheet is a duplicate
+     * @return stdClass|false Returns false if stylesheet is a duplicate
      */
     public function createDataStylesheet(array $args)
     {
@@ -346,7 +348,7 @@ class HeadLink extends Placeholder\Container\AbstractStandalone
 
         if (0 < count($args)) {
             $media = array_shift($args);
-            if(is_array($media)) {
+            if (is_array($media)) {
                 $media = implode(',', $media);
             } else {
                 $media = (string) $media;
@@ -354,14 +356,14 @@ class HeadLink extends Placeholder\Container\AbstractStandalone
         }
         if (0 < count($args)) {
             $conditionalStylesheet = array_shift($args);
-            if(!empty($conditionalStylesheet) && is_string($conditionalStylesheet)) {
+            if (!empty($conditionalStylesheet) && is_string($conditionalStylesheet)) {
                 $conditionalStylesheet = (string) $conditionalStylesheet;
             } else {
                 $conditionalStylesheet = null;
             }
         }
 
-        if(0 < count($args) && is_array($args[0])) {
+        if (0 < count($args) && is_array($args[0])) {
             $extras = array_shift($args);
             $extras = (array) $extras;
         }
@@ -407,11 +409,11 @@ class HeadLink extends Placeholder\Container\AbstractStandalone
         $type  = array_shift($args);
         $title = array_shift($args);
 
-        if(0 < count($args) && is_array($args[0])) {
+        if (0 < count($args) && is_array($args[0])) {
             $extras = array_shift($args);
             $extras = (array) $extras;
 
-            if(isset($extras['media']) && is_array($extras['media'])) {
+            if (isset($extras['media']) && is_array($extras['media'])) {
                 $extras['media'] = implode(',', $extras['media']);
             }
         }

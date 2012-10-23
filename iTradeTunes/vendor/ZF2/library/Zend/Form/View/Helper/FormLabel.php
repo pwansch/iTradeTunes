@@ -11,7 +11,6 @@
 namespace Zend\Form\View\Helper;
 
 use Zend\I18n\Translator\Translator;
-use Zend\I18n\Translator\TranslatorAwareInterface;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 
@@ -20,7 +19,7 @@ use Zend\Form\Exception;
  * @package    Zend_Form
  * @subpackage View
  */
-class FormLabel extends AbstractHelper implements TranslatorAwareInterface
+class FormLabel extends AbstractHelper
 {
     const APPEND  = 'append';
     const PREPEND = 'prepend';
@@ -36,31 +35,11 @@ class FormLabel extends AbstractHelper implements TranslatorAwareInterface
     );
 
     /**
-     * Translator (optional)
-     *
-     * @var Translator
-     */
-    protected $translator;
-
-    /**
-     * Translator text domain (optional)
-     *
-     * @var string
-     */
-    protected $translatorTextDomain = 'default';
-
-    /**
-     * Whether translator should be used
-     *
-     * @var bool
-     */
-    protected $translatorEnabled = true;
-
-
-    /**
      * Generate an opening label tag
      *
      * @param  null|array|ElementInterface $attributesOrElement
+     * @throws Exception\InvalidArgumentException
+     * @throws Exception\DomainException
      * @return string
      */
     public function openTag($attributesOrElement = null)
@@ -120,6 +99,7 @@ class FormLabel extends AbstractHelper implements TranslatorAwareInterface
      * @param  ElementInterface $element
      * @param  null|string $labelContent
      * @param  string $position
+     * @throws Exception\DomainException
      * @return string|FormLabel
      */
     public function __invoke(ElementInterface $element = null, $labelContent = null, $position = null)

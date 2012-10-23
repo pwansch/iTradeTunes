@@ -10,8 +10,8 @@
 
 namespace Zend\Form\View\Helper;
 
-use Traversable;
 use Zend\Form\ElementInterface;
+use Zend\Form\Element\Checkbox as CheckboxElement;
 use Zend\Form\Exception;
 
 /**
@@ -25,11 +25,19 @@ class FormCheckbox extends FormInput
      * Render a form <input> element from the provided $element
      *
      * @param  ElementInterface $element
-     * @throws \Zend\Form\Exception\DomainException
+     * @throws Exception\InvalidArgumentException
+     * @throws Exception\DomainException
      * @return string
      */
     public function render(ElementInterface $element)
     {
+        if (!$element instanceof CheckboxElement) {
+            throw new Exception\InvalidArgumentException(sprintf(
+                '%s requires that the element is of type Zend\Form\Element\Checkbox',
+                __METHOD__
+            ));
+        }
+
         $name = $element->getName();
         if (empty($name) && $name !== 0) {
             throw new Exception\DomainException(sprintf(
@@ -40,15 +48,13 @@ class FormCheckbox extends FormInput
 
         $attributes            = $element->getAttributes();
         $attributes['name']    = $name;
-        $attributes['checked'] = '';
         $attributes['type']    = $this->getInputType();
+        $attributes['value']   = $element->getCheckedValue();
         $closingBracket        = $this->getInlineClosingBracket();
 
-        $value = $element->getValue();
-        if ($value === $element->getCheckedValue()) {
+        if ($element->isChecked()) {
             $attributes['checked'] = 'checked';
         }
-        $attributes['value'] = $element->getCheckedValue();
 
         $rendered = sprintf(
             '<input %s%s',
@@ -56,12 +62,10 @@ class FormCheckbox extends FormInput
             $closingBracket
         );
 
-        $useHiddenElement = $element->useHiddenElement();
-
-        if ($useHiddenElement) {
+        if ($element->useHiddenElement()) {
             $hiddenAttributes = array(
                 'name'  => $attributes['name'],
-                'value' => $element->getUncheckedValue()
+                'value' => $element->getUncheckedValue(),
             );
 
             $rendered = sprintf(
@@ -72,23 +76,6 @@ class FormCheckbox extends FormInput
         }
 
         return $rendered;
-    }
-
-    /**
-     * Invoke helper as functor
-     *
-     * Proxies to {@link render()}.
-     *
-     * @param  ElementInterface $element
-     * @return string|FormCheckbox
-     */
-    public function __invoke(ElementInterface $element = null)
-    {
-        if (!$element) {
-            return $this;
-        }
-
-        return $this->render($element);
     }
 
     /**

@@ -70,7 +70,7 @@ class Smd
     protected $id;
 
     /**
-     * Services offerred
+     * Services offered
      * @var array
      */
     protected $services = array();
@@ -97,7 +97,7 @@ class Smd
      * Set object state via options
      *
      * @param  array $options
-     * @return Zend\Json\Server\Smd
+     * @return Smd
      */
     public function setOptions(array $options)
     {
@@ -114,7 +114,8 @@ class Smd
      * Set transport
      *
      * @param  string $transport
-     * @return Zend\Json\Server\Smd
+     * @throws Exception\InvalidArgumentException
+     * @return \Zend\Json\Server\Smd
      */
     public function setTransport($transport)
     {
@@ -139,7 +140,8 @@ class Smd
      * Set envelope
      *
      * @param  string $envelopeType
-     * @return Zend\Json\Server\Smd
+     * @throws Exception\InvalidArgumentException
+     * @return Smd
      */
     public function setEnvelope($envelopeType)
     {
@@ -165,7 +167,8 @@ class Smd
      * Set content type
      *
      * @param  string $type
-     * @return Zend\Json\Server\Smd
+     * @throws Exception\InvalidArgumentException
+     * @return \Zend\Json\Server\Smd
      */
     public function setContentType($type)
     {
@@ -190,7 +193,7 @@ class Smd
      * Set service target
      *
      * @param  string $target
-     * @return Zend\Json\Server\Smd
+     * @return Smd
      */
     public function setTarget($target)
     {
@@ -211,8 +214,8 @@ class Smd
     /**
      * Set service ID
      *
-     * @param  string $Id
-     * @return Zend\Json\Server\Smd
+     * @param  string $id
+     * @return Smd
      */
     public function setId($id)
     {
@@ -234,7 +237,7 @@ class Smd
      * Set service description
      *
      * @param  string $description
-     * @return Zend\Json\Server\Smd
+     * @return Smd
      */
     public function setDescription($description)
     {
@@ -256,7 +259,7 @@ class Smd
      * Indicate whether or not to generate Dojo-compatible SMD
      *
      * @param  bool $flag
-     * @return Zend\Json\Server\Smd
+     * @return Smd
      */
     public function setDojoCompatible($flag)
     {
@@ -277,8 +280,10 @@ class Smd
     /**
      * Add Service
      *
-     * @param Zend\Json\Server\Smd\Service|array $service
-     * @return void
+     * @param Smd\Service|array $service
+     * @throws Exception\RuntimeException
+     * @throws Exception\InvalidArgumentException
+     * @return Smd
      */
     public function addService($service)
     {
@@ -302,7 +307,7 @@ class Smd
      * Add many services
      *
      * @param  array $services
-     * @return Zend\Json\Server\Smd
+     * @return Smd
      */
     public function addServices(array $services)
     {
@@ -316,7 +321,7 @@ class Smd
      * Overwrite existing services with new ones
      *
      * @param  array $services
-     * @return Zend\Json\Server\Smd
+     * @return Smd
      */
     public function setServices(array $services)
     {
@@ -328,7 +333,7 @@ class Smd
      * Get service object
      *
      * @param  string $name
-     * @return false|Zend\Json\Server\Smd\Service
+     * @return boolean|Smd\Service
      */
     public function getService($name)
     {

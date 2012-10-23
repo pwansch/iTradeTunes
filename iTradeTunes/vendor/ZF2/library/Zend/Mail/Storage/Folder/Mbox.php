@@ -54,7 +54,7 @@ class Mbox extends Storage\Mbox implements FolderInterface
     public function __construct($params)
     {
         if (is_array($params)) {
-            $params = (object)$params;
+            $params = (object) $params;
         }
 
         if (isset($params->filename)) {
@@ -160,14 +160,14 @@ class Mbox extends Storage\Mbox implements FolderInterface
      */
     public function selectFolder($globalName)
     {
-        $this->currentFolder = (string)$globalName;
+        $this->currentFolder = (string) $globalName;
 
         // getting folder from folder tree for validation
         $folder = $this->getFolders($this->currentFolder);
 
         try {
             $this->openMboxFile($this->rootdir . $folder->getGlobalName());
-        } catch(Exception\ExceptionInterface $e) {
+        } catch (Exception\ExceptionInterface $e) {
             // check what went wrong
             if (!$folder->isSelectable()) {
                 throw new Exception\RuntimeException("{$this->currentFolder} is not selectable", 0, $e);

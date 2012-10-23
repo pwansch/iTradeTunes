@@ -101,7 +101,7 @@ class Message
      * only one part is present, the content of this part is returned. If no
      * part had been added, an empty string is returned.
      *
-     * Parts are seperated by the mime boundary as defined in Zend_Mime. If
+     * Parts are separated by the mime boundary as defined in Zend_Mime. If
      * {@link setMime()} has been called before this method, the Zend_Mime
      * object set by this call will be used. Otherwise, a new Zend_Mime object
      * is generated and used.
@@ -149,6 +149,7 @@ class Message
      * Get the headers of a given part as a string
      *
      * @param int $partnum
+     * @param string $EOL
      * @return string
      */
     public function getPartHeaders($partnum, $EOL = Mime::LINEEND)
@@ -160,6 +161,7 @@ class Message
      * Get the (encoded) content of a given part as a string
      *
      * @param int $partnum
+     * @param string $EOL
      * @return string
      */
     public function getPartContent($partnum, $EOL = Mime::LINEEND)
@@ -168,12 +170,13 @@ class Message
     }
 
     /**
-     * Explode MIME multipart string into seperate parts
+     * Explode MIME multipart string into separate parts
      *
      * Parts consist of the header and the body of each MIME part.
      *
      * @param string $body
      * @param string $boundary
+     * @throws Exception\RuntimeException
      * @return array
      */
     protected static function _disassembleMime($body, $boundary)
@@ -183,7 +186,7 @@ class Message
         // find every mime part limiter and cut out the
         // string before it.
         // the part before the first boundary string is discarded:
-        $p = strpos($body, '--'.$boundary."\n", $start);
+        $p = strpos($body, '--' . $boundary."\n", $start);
         if ($p === false) {
             // no parts found!
             return array();
@@ -215,6 +218,7 @@ class Message
      * @param string $message
      * @param string $boundary
      * @param string $EOL EOL string; defaults to {@link Zend_Mime::LINEEND}
+     * @throws Exception\RuntimeException
      * @return \Zend\Mime\Message
      */
     public static function createFromMessage($message, $boundary, $EOL = Mime::LINEEND)

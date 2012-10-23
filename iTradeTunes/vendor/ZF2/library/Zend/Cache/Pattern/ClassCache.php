@@ -23,6 +23,7 @@ class ClassCache extends CallbackCache
      * Set options
      *
      * @param  PatternOptions $options
+     * @return ClassCache
      * @throws Exception\InvalidArgumentException if missing 'class' or 'storage' options
      */
     public function setOptions(PatternOptions $options)
@@ -43,7 +44,8 @@ class ClassCache extends CallbackCache
      * @param  string $method  Method name to call
      * @param  array  $args    Method arguments
      * @return mixed
-     * @throws Exception
+     * @throws Exception\RuntimeException
+     * @throws \Exception
      */
     public function call($method, array $args = array())
     {
@@ -77,7 +79,7 @@ class ClassCache extends CallbackCache
      * @param  string     $method  The method
      * @param  array      $args    Callback arguments
      * @return string
-     * @throws Exception
+     * @throws Exception\RuntimeException
      */
     public function generateKey($method, array $args = array())
     {
@@ -91,10 +93,10 @@ class ClassCache extends CallbackCache
      * Generate a unique key in base of a key representing the callback part
      * and a key representing the arguments part.
      *
-     * @param  callback   $callback  A valid callback
+     * @param  callable   $callback  A valid callback
      * @param  array      $args      Callback arguments
      * @return string
-     * @throws Exception
+     * @throws Exception\RuntimeException
      */
     protected function generateCallbackKey($callback, array $args)
     {
@@ -109,7 +111,8 @@ class ClassCache extends CallbackCache
      * @param  string $method  Method name to call
      * @param  array  $args    Method arguments
      * @return mixed
-     * @throws Exception
+     * @throws Exception\RuntimeException
+     * @throws \Exception
      */
     public function __call($method, array $args)
     {

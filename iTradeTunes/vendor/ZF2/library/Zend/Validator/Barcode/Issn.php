@@ -12,7 +12,7 @@ namespace Zend\Validator\Barcode;
 
 /**
  * @category   Zend
- * @package    Zend_Validate
+ * @package    Zend_Validator
  */
 class Issn extends AbstractAdapter
 {
@@ -73,7 +73,7 @@ class Issn extends AbstractAdapter
         $values   = str_split(substr($value, 0, -1));
         $check    = 0;
         $multi    = 8;
-        foreach($values as $token) {
+        foreach ($values as $token) {
             if ($token == 'X') {
                 $token = 10;
             }

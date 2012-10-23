@@ -27,7 +27,7 @@ class AbstractRenderer
     protected $extensions = array();
 
     /**
-     * @var mixed
+     * @var Writer\AbstractFeed
      */
     protected $container = null;
 
@@ -69,8 +69,7 @@ class AbstractRenderer
     /**
      * Constructor
      *
-     * @param  mixed $container
-     * @return void
+     * @param Writer\AbstractFeed $container
      */
     public function __construct($container)
     {
@@ -112,7 +111,7 @@ class AbstractRenderer
     /**
      * Get data container of items being rendered
      *
-     * @return mixed
+     * @return Writer\AbstractFeed
      */
     public function getDataContainer()
     {

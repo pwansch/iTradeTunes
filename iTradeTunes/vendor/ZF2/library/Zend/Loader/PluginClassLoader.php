@@ -38,7 +38,6 @@ class PluginClassLoader implements PluginClassLocator
      * Constructor
      *
      * @param  null|array|Traversable $map If provided, seeds the loader with a map
-     * @return void
      */
     public function __construct($map = null)
     {
@@ -59,6 +58,7 @@ class PluginClassLoader implements PluginClassLocator
      * A null value will clear the static map.
      *
      * @param  null|array|Traversable $map
+     * @throws Exception\InvalidArgumentException
      * @return void
      */
     public static function addStaticMap($map)
@@ -147,7 +147,7 @@ class PluginClassLoader implements PluginClassLocator
     /**
      * Unregister a short name lookup
      *
-     * @param mixed $shortName
+     * @param  mixed $shortName
      * @return PluginClassLoader
      */
     public function unregisterPlugin($shortName)
@@ -212,7 +212,7 @@ class PluginClassLoader implements PluginClassLocator
      * Returns an instance of ArrayIterator, containing a map of
      * all plugins
      *
-     * @return Iterator
+     * @return ArrayIterator
      */
     public function getIterator()
     {

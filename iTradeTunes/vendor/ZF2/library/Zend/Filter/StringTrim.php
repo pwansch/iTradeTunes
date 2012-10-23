@@ -11,7 +11,6 @@
 namespace Zend\Filter;
 
 use Traversable;
-use Zend\Stdlib\ArrayUtils;
 
 /**
  * @category   Zend
@@ -29,7 +28,7 @@ class StringTrim extends AbstractFilter
     /**
      * Sets filter options
      *
-     * @param  string|array|Traversable $options
+     * @param  string|array|Traversable $charlistOrOptions
      */
     public function __construct($charlistOrOptions = null)
     {
@@ -107,7 +106,7 @@ class StringTrim extends AbstractFilter
             $charlist
         );
 
-        $pattern = '/^[' . $chars . ']*|[' . $chars . ']*$/sSD';
+        $pattern = '/^[' . $chars . ']+|[' . $chars . ']+$/usSD';
 
         return preg_replace($pattern, '', $value);
     }

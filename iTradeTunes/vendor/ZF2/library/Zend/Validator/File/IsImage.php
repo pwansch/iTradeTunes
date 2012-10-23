@@ -17,7 +17,7 @@ use Zend\Stdlib\ArrayUtils;
  * Validator which checks if the file already exists in the directory
  *
  * @category  Zend
- * @package   Zend_Validate
+ * @package   Zend_Validator
  */
 class IsImage extends MimeType
 {
@@ -127,7 +127,7 @@ class IsImage extends MimeType
     {
         if ($file !== null) {
             if (is_array($file)) {
-                if(array_key_exists('name', $file)) {
+                if (array_key_exists('name', $file)) {
                     $file = $file['name'];
                 }
             }
@@ -137,7 +137,7 @@ class IsImage extends MimeType
             }
         }
 
-        switch($errorType) {
+        switch ($errorType) {
             case MimeType::FALSE_TYPE :
                 $errorType = self::FALSE_TYPE;
                 break;

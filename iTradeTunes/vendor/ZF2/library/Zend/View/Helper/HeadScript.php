@@ -10,6 +10,7 @@
 
 namespace Zend\View\Helper;
 
+use stdClass;
 use Zend\View;
 use Zend\View\Exception;
 
@@ -22,7 +23,7 @@ use Zend\View\Exception;
 class HeadScript extends Placeholder\Container\AbstractStandalone
 {
     /**#@+
-     * Script type contants
+     * Script type constants
      * @const string
      */
     const FILE   = 'FILE';
@@ -77,7 +78,6 @@ class HeadScript extends Placeholder\Container\AbstractStandalone
      *
      * Set separator to PHP_EOL.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -276,7 +276,7 @@ class HeadScript extends Placeholder\Container\AbstractStandalone
      */
     protected function isValid($value)
     {
-        if ((!$value instanceof \stdClass)
+        if ((!$value instanceof stdClass)
             || !isset($value->type)
             || (!isset($value->source) && !isset($value->attributes)))
         {
@@ -486,7 +486,7 @@ class HeadScript extends Placeholder\Container\AbstractStandalone
      */
     public function createData($type, array $attributes, $content = null)
     {
-        $data             = new \stdClass();
+        $data             = new stdClass();
         $data->type       = $type;
         $data->attributes = $attributes;
         $data->source     = $content;

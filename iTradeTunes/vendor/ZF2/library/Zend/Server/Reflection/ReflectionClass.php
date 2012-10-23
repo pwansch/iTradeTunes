@@ -53,10 +53,9 @@ class ReflectionClass
      * Create array of dispatchable methods, each a
      * {@link Zend\Server\Reflection\ReflectionMethod}. Sets reflection object property.
      *
-     * @param ReflectionClass $reflection
+     * @param \ReflectionClass $reflection
      * @param string $namespace
      * @param mixed $argv
-     * @return void
      */
     public function __construct(\ReflectionClass $reflection, $namespace = null, $argv = false)
     {
@@ -81,6 +80,7 @@ class ReflectionClass
      *
      * @param string $method
      * @param array $args
+     * @throws Exception\BadMethodCallException
      * @return mixed
      */
     public function __call($method, $args)
@@ -149,6 +149,7 @@ class ReflectionClass
      * Set namespace for this class
      *
      * @param string $namespace
+     * @throws Exception\InvalidArgumentException
      * @return void
      */
     public function setNamespace($namespace)

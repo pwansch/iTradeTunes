@@ -38,7 +38,6 @@ class Prototype
      * Constructor
      *
      * @param  null|array $options
-     * @return void
      */
     public function __construct($options = null)
     {
@@ -94,7 +93,7 @@ class Prototype
     /**
      * Add parameters
      *
-     * @param  array $parameter
+     * @param  array $parameters
      * @return \Zend\Server\Method\Prototype
      */
     public function addParameters(array $parameters)

@@ -37,21 +37,21 @@ class RouterFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator, $cName = null, $rName = null)
     {
-        $config = $serviceLocator->get('Configuration');
+        $config = $serviceLocator->get('Config');
 
-        if(
+        if (
             $rName === 'ConsoleRouter' ||                   // force console router
             ($cName === 'router' && Console::isConsole())       // auto detect console
-        ){
+        ) {
             // We are in a console, use console router.
-            if(isset($config['console']) && isset($config['console']['router'])){
+            if (isset($config['console']) && isset($config['console']['router'])) {
                 $routerConfig = $config['console']['router'];
-            }else{
+            } else {
                 $routerConfig = array();
             }
 
             $router = ConsoleRouter::factory($routerConfig);
-        }else{
+        } else {
             // This is an HTTP request, so use HTTP router
             $routerConfig = isset($config['router']) ? $config['router'] : array();
             $router = HttpRouter::factory($routerConfig);

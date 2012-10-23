@@ -60,7 +60,7 @@ class BaseInputFilter implements InputFilterInterface
             ));
         }
 
-        if (is_null($name) || $name === '') {
+        if ($input instanceof InputInterface && (empty($name) || is_int($name))) {
             $name = $input->getName();
         }
 
@@ -78,6 +78,7 @@ class BaseInputFilter implements InputFilterInterface
      * Retrieve a named input
      *
      * @param  string $name
+     * @throws Exception\InvalidArgumentException
      * @return InputInterface|InputFilterInterface
      */
     public function get($name)
@@ -119,6 +120,7 @@ class BaseInputFilter implements InputFilterInterface
      * Set data to use when validating and filtering
      *
      * @param  array|Traversable $data
+     * @throws Exception\InvalidArgumentException
      * @return InputFilterInterface
      */
     public function setData($data)
@@ -141,6 +143,7 @@ class BaseInputFilter implements InputFilterInterface
     /**
      * Is the data set valid?
      *
+     * @throws Exception\RuntimeException
      * @return bool
      */
     public function isValid()
@@ -157,11 +160,13 @@ class BaseInputFilter implements InputFilterInterface
         $valid               = true;
 
         $inputs = $this->validationGroup ?: array_keys($this->inputs);
-        //var_dump($inputs);
         foreach ($inputs as $name) {
             $input = $this->inputs[$name];
-            if (!array_key_exists($name, $this->data) || (is_string($this->data[$name]) && strlen($this->data[$name]) === 0)) {
-                if($input instanceof InputInterface) {
+            if (!array_key_exists($name, $this->data)
+                || (null === $this->data[$name])
+                || (is_string($this->data[$name]) && strlen($this->data[$name]) === 0)
+            ) {
+                if ($input instanceof InputInterface) {
                     // - test if input is required
                     if (!$input->isRequired()) {
                         $this->validInputs[$name] = $input;
@@ -284,6 +289,7 @@ class BaseInputFilter implements InputFilterInterface
      * Retrieve a value from a named input
      *
      * @param  string $name
+     * @throws Exception\InvalidArgumentException
      * @return mixed
      */
     public function getValue($name)
@@ -327,6 +333,7 @@ class BaseInputFilter implements InputFilterInterface
      * Retrieve a raw (unfiltered) value from a named input
      *
      * @param  string $name
+     * @throws Exception\InvalidArgumentException
      * @return mixed
      */
     public function getRawValue($name)

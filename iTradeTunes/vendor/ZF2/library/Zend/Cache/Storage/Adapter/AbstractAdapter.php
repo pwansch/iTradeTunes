@@ -22,6 +22,7 @@ use Zend\Cache\Storage\Plugin;
 use Zend\Cache\Storage\PostEvent;
 use Zend\Cache\Storage\StorageInterface;
 use Zend\EventManager\EventManager;
+use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\EventsCapableInterface;
 
 /**
@@ -77,7 +78,6 @@ abstract class AbstractAdapter implements StorageInterface, EventsCapableInterfa
      *
      * @param  null|array|Traversable|AdapterOptions $options
      * @throws Exception\ExceptionInterface
-     * @return void
      */
     public function __construct($options = null)
     {
@@ -538,7 +538,7 @@ abstract class AbstractAdapter implements StorageInterface, EventsCapableInterfa
     /**
      * Internal method to test multiple items.
      *
-     * @param  array $keys
+     * @param  array $normalizedKeys
      * @return array Array of found keys
      * @throws Exception\ExceptionInterface
      */
@@ -750,7 +750,6 @@ abstract class AbstractAdapter implements StorageInterface, EventsCapableInterfa
      * Internal method to store multiple items.
      *
      * @param  array $normalizedKeyValuePairs
-     * @param  array $normalizedOptions
      * @return array Array of not stored keys
      * @throws Exception\ExceptionInterface
      */
@@ -1234,7 +1233,7 @@ abstract class AbstractAdapter implements StorageInterface, EventsCapableInterfa
     /**
      * Internal method to remove multiple items.
      *
-     * @param  array $keys
+     * @param  array $normalizedKeys
      * @return array Array of not removed keys
      * @throws Exception\ExceptionInterface
      */
@@ -1569,7 +1568,7 @@ abstract class AbstractAdapter implements StorageInterface, EventsCapableInterfa
     }
 
     /**
-     * Validates and normalizes an array of key-value paírs
+     * Validates and normalizes an array of key-value pairs
      *
      * @param  array $keyValuePairs
      * @return void

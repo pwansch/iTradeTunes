@@ -26,7 +26,7 @@ interface Server
      *
      * @param  string $function
      * @param  string $namespace
-     * @param  null|array Optional array of arguments to pass to callbacks at
+     * @param  null|array Optional array of arguments to pass to callback at
      *                    dispatch.
      * @return void
      */
@@ -90,7 +90,7 @@ interface Server
      *
      * Used for persistence; loads a construct as returned by {@link getFunctions()}.
      *
-     * @param  array $array
+     * @param  array $definition
      * @return void
      */
     public function loadFunctions($definition);

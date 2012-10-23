@@ -136,7 +136,7 @@ class Container extends ArrayObject
             $manager = self::getDefaultManager();
             if (!$manager instanceof Manager) {
                 throw new Exception\InvalidArgumentException(
-                    'Manager provided is invalid; must implement ManagerInterface interface'
+                    'Manager provided is invalid; must implement ManagerInterface'
                 );
             }
         }
@@ -470,6 +470,7 @@ class Container extends ArrayObject
         }
 
         if (null === $vars) {
+            $this->expireKeys(); // first we need to expire global key, since it can already be expired
             $data = array('EXPIRE' => $ts);
         } elseif (is_array($vars)) {
             // Cannot pass "$this" to a lambda
@@ -506,6 +507,7 @@ class Container extends ArrayObject
      *
      * @param  int $hops
      * @param  null|string|array $vars
+     * @throws Exception\InvalidArgumentException
      * @return Container
      */
     public function setExpirationHops($hops, $vars = null)
@@ -518,6 +520,7 @@ class Container extends ArrayObject
         }
 
         if (null === $vars) {
+            $this->expireKeys(); // first we need to expire global key, since it can already be expired
             $data = array('EXPIRE_HOPS' => array('hops' => $hops, 'ts' => $ts));
         } elseif (is_array($vars)) {
             // Cannot pass "$this" to a lambda

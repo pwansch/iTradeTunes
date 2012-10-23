@@ -117,7 +117,7 @@ class Connection implements ConnectionInterface
      * @param  mysqli $resource
      * @return Connection
      */
-    public function setResource(mysqli $resource)
+    public function setResource(\mysqli $resource)
     {
         $this->resource = $resource;
         return $this;
@@ -137,7 +137,8 @@ class Connection implements ConnectionInterface
     /**
      * Connect
      *
-     * @return null
+     * @throws Exception\RuntimeException
+     * @return void
      */
     public function connect()
     {
@@ -155,7 +156,7 @@ class Connection implements ConnectionInterface
                     return $p[$name];
                 }
             }
-            return null;
+            return;
         };
 
         $hostname = $findParameterValue(array('hostname', 'host'));
@@ -165,7 +166,7 @@ class Connection implements ConnectionInterface
         $port     = (isset($p['port'])) ? (int) $p['port'] : null;
         $socket   = (isset($p['socket'])) ? $p['socket'] : null;
 
-        $this->resource = new \Mysqli($hostname, $username, $password, $database, $port, $socket);
+        $this->resource = new \mysqli($hostname, $username, $password, $database, $port, $socket);
 
         if ($this->resource->connect_error) {
             throw new Exception\RuntimeException(
@@ -184,19 +185,21 @@ class Connection implements ConnectionInterface
     /**
      * Is connected
      *
-     * @return boolean
+     * @return bool
      */
     public function isConnected()
     {
-        return ($this->resource instanceof \Mysqli);
+        return ($this->resource instanceof \mysqli);
     }
 
     /**
      * Disconnect
+     *
+     * @return void
      */
     public function disconnect()
     {
-        if ($this->resource instanceof \PDO) {
+        if ($this->resource instanceof \mysqli) {
             $this->resource->close();
         }
         unset($this->resource);
@@ -204,15 +207,23 @@ class Connection implements ConnectionInterface
 
     /**
      * Begin transaction
+     *
+     * @return void
      */
     public function beginTransaction()
     {
+        if (!$this->isConnected()) {
+            $this->connect();
+        }
+
         $this->resource->autocommit(false);
         $this->inTransaction = true;
     }
 
     /**
      * Commit
+     *
+     * @return void
      */
     public function commit()
     {
@@ -228,6 +239,7 @@ class Connection implements ConnectionInterface
     /**
      * Rollback
      *
+     * @throws Exception\RuntimeException
      * @return Connection
      */
     public function rollback()
@@ -248,6 +260,7 @@ class Connection implements ConnectionInterface
      * Execute
      *
      * @param  string $sql
+     * @throws Exception\InvalidQueryException
      * @return Result
      */
     public function execute($sql)

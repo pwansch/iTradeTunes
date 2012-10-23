@@ -17,9 +17,7 @@ use IteratorAggregate;
 use Traversable;
 use Zend\Cache\Storage\IteratorInterface as CacheIterator;
 use Zend\Cache\Storage\StorageInterface as CacheStorage;
-use Zend\Db\Sql;
-use Zend\Db\Table\AbstractRowset as DbAbstractRowset;
-use Zend\Db\Table\Select as DbTableSelect;
+use Zend\Db\ResultSet\AbstractResultSet;
 use Zend\Filter\FilterInterface;
 use Zend\Json\Json;
 use Zend\Paginator\Adapter\AdapterInterface;
@@ -33,12 +31,6 @@ use Zend\View;
  */
 class Paginator implements Countable, IteratorAggregate
 {
-    /**
-     * Specifies that the factory should try to detect the proper adapter type first
-     *
-     * @var string
-     */
-    const INTERNAL_ADAPTER = 'Zend\Paginator\Adapter\Internal';
 
     /**
      * The cache tag prefix used to namespace Paginator results in the cache
@@ -167,88 +159,12 @@ class Paginator implements Countable, IteratorAggregate
     protected $view = null;
 
     /**
-     * Factory.
-     *
-     * @param  mixed  $data
-     * @param  string $adapter
-     * @throws Exception\InvalidArgumentException
-     * @return Paginator
-     */
-    public static function factory($data, $adapter = self::INTERNAL_ADAPTER)
-    {
-        if ($data instanceof AdapterAggregateInterface) {
-            return new self($data->getPaginatorAdapter());
-        }
-
-        if ($adapter == self::INTERNAL_ADAPTER) {
-            if (is_array($data)) {
-                $adapter = 'array';
-            } elseif ($data instanceof DbTableSelect) {
-                $adapter = 'db_table_select';
-            } elseif ($data instanceof DbSelect) {
-                $adapter = 'db_select';
-            } elseif ($data instanceof Iterator) {
-                $adapter = 'iterator';
-            } elseif (is_integer($data)) {
-                $adapter = 'null';
-            } else {
-                $type = (is_object($data)) ? get_class($data) : gettype($data);
-                throw new Exception\InvalidArgumentException('No adapter for type ' . $type);
-            }
-        }
-
-        $adapters = self::getAdapterPluginManager();
-        $adapter  = $adapters->get($adapter, $data);
-        return new self($adapter);
-    }
-
-    /**
-     * Set the adapter plugin manager
-     *
-     * @param string|AdapterPluginManager $adapters
-     * @throws Exception\InvalidArgumentException
-     */
-    public static function setAdapterPluginManager($adapters)
-    {
-        if (is_string($adapters)) {
-            if (!class_exists($adapters)) {
-                throw new Exception\InvalidArgumentException(sprintf(
-                    'Unable to locate adapter plugin manager with class "%s"; class not found',
-                    $adapters
-                ));
-            }
-            $adapters = new $adapters();
-        }
-        if (!$adapters instanceof AdapterPluginManager) {
-            throw new Exception\InvalidArgumentException(sprintf(
-                'Pagination adapter manager must extend AdapterPluginManager; received "%s"',
-                (is_object($adapters) ? get_class($adapters) : gettype($adapters))
-            ));
-        }
-        self::$adapters = $adapters;
-    }
-
-    /**
-     * Returns the adapter plugin manager.  If it doesn't exist it's created.
-     *
-     * @return AdapterPluginManager
-     */
-    public static function getAdapterPluginManager()
-    {
-        if (self::$adapters === null) {
-            self::setAdapterPluginManager(new AdapterPluginManager());
-        }
-
-        return self::$adapters;
-    }
-
-    /**
      * Set a global config
      *
      * @param array|\Traversable $config
      * @throws Exception\InvalidArgumentException
      */
-    public static function setOptions($config)
+    public static function setGlobalConfig($config)
     {
         if ($config instanceof Traversable) {
             $config = ArrayUtils::iteratorToArray($config);
@@ -258,12 +174,6 @@ class Paginator implements Countable, IteratorAggregate
         }
 
         self::$config = $config;
-
-        if (isset($config['adapter_plugins'])
-            && null !== ($adapters = $config['adapter_plugins'])
-        ) {
-            self::setAdapterPluginManager($adapters);
-        }
 
         if (isset($config['scrolling_style_plugins'])
             && null !== ($adapters = $config['scrolling_style_plugins'])
@@ -424,7 +334,7 @@ class Paginator implements Countable, IteratorAggregate
      */
     public function setCacheEnabled($enable)
     {
-        $this->cacheEnabled = (bool)$enable;
+        $this->cacheEnabled = (bool) $enable;
         return $this;
     }
 
@@ -672,7 +582,7 @@ class Paginator implements Countable, IteratorAggregate
 
         if (is_array($items) || $items instanceof Countable) {
             $itemCount = count($items);
-        } elseif($items instanceof Traversable) { // $items is something like LimitIterator
+        } elseif ($items instanceof Traversable) { // $items is something like LimitIterator
             $itemCount = iterator_count($items);
         }
 
@@ -809,7 +719,7 @@ class Paginator implements Countable, IteratorAggregate
                 $tags = self::$cache->getTags($key);
                 if ($tags && in_array($this->_getCacheInternalId(), $tags)) {
                     if (substr($key, 0, $prefixLength) == self::CACHE_TAG_PREFIX) {
-                        $data[(int)substr($key, $prefixLength)] = $value;
+                        $data[(int) substr($key, $prefixLength)] = $value;
                     }
                 }
             }
@@ -916,11 +826,10 @@ class Paginator implements Countable, IteratorAggregate
     {
         $currentItems = $this->getCurrentItems();
 
-        if ($currentItems instanceof DbAbstractRowset) {
+        if ($currentItems instanceof AbstractResultSet) {
             return Json::encode($currentItems->toArray());
-        } else {
-            return Json::encode($currentItems);
         }
+        return Json::encode($currentItems);
     }
 
     /**
@@ -982,7 +891,7 @@ class Paginator implements Countable, IteratorAggregate
      * Creates the page collection.
      *
      * @param  string $scrollingStyle Scrolling style
-     * @return stdClass
+     * @return \stdClass
      */
     protected function _createPages($scrollingStyle = null)
     {

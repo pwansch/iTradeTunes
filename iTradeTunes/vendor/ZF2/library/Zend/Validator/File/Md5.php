@@ -14,7 +14,7 @@ namespace Zend\Validator\File;
  * Validator for the md5 hash of given files
  *
  * @category  Zend
- * @package   Zend_Validate
+ * @package   Zend_Validator
  */
 class Md5 extends Hash
 {
@@ -102,7 +102,7 @@ class Md5 extends Hash
             return $this->throwError($file, self::NOT_DETECTED);
         }
 
-        foreach($hashes as $hash) {
+        foreach ($hashes as $hash) {
             if ($filehash === $hash) {
                 return true;
             }

@@ -10,6 +10,7 @@
 
 namespace Zend\Json;
 
+use stdClass;
 use Zend\Json\Exception\InvalidArgumentException;
 use Zend\Json\Exception\RuntimeException;
 
@@ -51,7 +52,7 @@ class Decoder
     protected $sourceLength;
 
     /**
-     * The offset within the souce being decoded
+     * The offset within the source being decoded
      *
      * @var int
      *
@@ -85,6 +86,7 @@ class Decoder
      * @param int $decodeType How objects should be decoded -- see
      * {@link Zend_Json::TYPE_ARRAY} and {@link Zend_Json::TYPE_OBJECT} for
      * valid values
+     * @throws InvalidArgumentException
      * @return void
      */
     protected function __construct($source, $decodeType)
@@ -140,7 +142,7 @@ class Decoder
     }
 
     /**
-     * Recursive driving rountine for supported toplevel tops
+     * Recursive driving routine for supported toplevel tops
      *
      * @return mixed
      */
@@ -176,8 +178,8 @@ class Decoder
      * {@link $decodeType}. If invalid $decodeType present, returns as an
      * array.
      *
-     * @return array|StdClass
-     * @throws Zend\Json\Exception\RuntimeException
+     * @return array|stdClass
+     * @throws RuntimeException
      */
     protected function _decodeObject()
     {
@@ -214,7 +216,7 @@ class Decoder
         switch ($this->decodeType) {
             case Json::TYPE_OBJECT:
                 // Create new StdClass and populate with $members
-                $result = new \stdClass();
+                $result = new stdClass();
                 foreach ($members as $key => $value) {
                     if ($key === '') {
                         $key = '_empty_';
@@ -237,7 +239,7 @@ class Decoder
      *    [element, element2,...,elementN]
      *
      * @return array
-     * @throws Zend\Json\Exception\RuntimeException
+     * @throws RuntimeException
      */
     protected function _decodeArray()
     {
@@ -267,7 +269,7 @@ class Decoder
 
 
     /**
-     * Removes whitepsace characters from the source input
+     * Removes whitespace characters from the source input
      */
     protected function _eatWhitespace()
     {
@@ -288,7 +290,7 @@ class Decoder
      * Retrieves the next token from the source stream
      *
      * @return int Token constant value specified in class definition
-     * @throws Zend\Json\Exception\RuntimeException
+     * @throws RuntimeException
      */
     protected function _getNextToken()
     {
@@ -371,7 +373,7 @@ class Decoder
                             default:
                                 throw new RuntimeException("Illegal escape sequence '{$chr}'");
                         }
-                    } elseif($chr == '"') {
+                    } elseif ($chr == '"') {
                         break;
                     } else {
                         $result .= $chr;
@@ -447,7 +449,7 @@ class Decoder
      *
      * @link   http://solarphp.com/
      * @link   http://svn.solarphp.com/core/trunk/Solar/Json.php
-     * @param  string $value
+     * @param  string $chrs
      * @return string
      */
     public static function decodeUnicodeString($chrs)
@@ -457,7 +459,7 @@ class Decoder
         $utf8        = '';
         $strlen_chrs = strlen($chrs);
 
-        for($i = 0; $i < $strlen_chrs; $i++) {
+        for ($i = 0; $i < $strlen_chrs; $i++) {
 
             $substr_chrs_c_2 = substr($chrs, $i, 2);
             $ord_chrs_c = ord($chrs[$i]);
@@ -520,7 +522,7 @@ class Decoder
      *
      * Normally should be handled by mb_convert_encoding, but
      * provides a slower PHP-only method for installations
-     * that lack the multibye string extension.
+     * that lack the multibyte string extension.
      *
      * This method is from the Solar Framework by Paul M. Jones
      *
@@ -531,7 +533,7 @@ class Decoder
     protected static function _utf162utf8($utf16)
     {
         // Check for mb extension otherwise do by hand.
-        if( function_exists('mb_convert_encoding') ) {
+        if (function_exists('mb_convert_encoding')) {
             return mb_convert_encoding($utf16, 'UTF-8', 'UTF-16');
         }
 

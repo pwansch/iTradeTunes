@@ -18,7 +18,7 @@ use Zend\Validator\AbstractValidator;
  * Validator for the file extension of a file
  *
  * @category  Zend
- * @package   Zend_Validate
+ * @package   Zend_Validator
  */
 class Extension extends AbstractValidator
 {
@@ -221,7 +221,7 @@ class Extension extends AbstractValidator
     {
         if ($file !== null) {
             if (is_array($file)) {
-                if(array_key_exists('name', $file)) {
+                if (array_key_exists('name', $file)) {
                     $this->value = $file['name'];
                 }
             } elseif (is_string($file)) {

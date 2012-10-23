@@ -12,7 +12,6 @@ namespace Zend\Mvc\View\Console;
 
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
-use Zend\Console\Response as ConsoleResponse;
 use Zend\Mvc\Application;
 use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\ResponseInterface as Response;
@@ -32,7 +31,7 @@ class ExceptionStrategy implements ListenerAggregateInterface
     protected $displayExceptions = true;
 
     /**
-     * A template for message to show in console when an exception has occured.
+     * A template for message to show in console when an exception has occurred.
      * @var string|callable
      */
     protected $message = <<<EOT
@@ -174,10 +173,10 @@ EOT;
                 // Prepare error message
                 $exception = $e->getParam('exception');
 
-                if(is_callable($this->message)){
+                if (is_callable($this->message)) {
                     $callback = $this->message;
-                    $message = (string)$callback($exception, $this->displayExceptions);
-                }elseif($this->displayExceptions && $exception instanceof \Exception){
+                    $message = (string) $callback($exception, $this->displayExceptions);
+                } elseif ($this->displayExceptions && $exception instanceof \Exception) {
                     /* @var $exception \Exception */
                     $message = str_replace(
                         array(
@@ -197,7 +196,7 @@ EOT;
                         ),
                         $this->message
                     );
-                }else{
+                } else {
                     $message = str_replace(
                         array(
                             ':className',

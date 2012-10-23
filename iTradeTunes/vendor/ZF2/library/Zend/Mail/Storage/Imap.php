@@ -76,7 +76,7 @@ class Imap extends AbstractStorage implements Folder\FolderInterface, Writable\W
         }
 
         $params = array();
-        foreach ((array)$flags as $flag) {
+        foreach ((array) $flags as $flag) {
             if (isset(self::$searchFlags[$flag])) {
                 $params[] = self::$searchFlags[$flag];
             } else {
@@ -181,7 +181,7 @@ class Imap extends AbstractStorage implements Folder\FolderInterface, Writable\W
     public function __construct($params)
     {
         if (is_array($params)) {
-            $params = (object)$params;
+            $params = (object) $params;
         }
 
         $this->has['flags'] = true;
@@ -190,7 +190,7 @@ class Imap extends AbstractStorage implements Folder\FolderInterface, Writable\W
             $this->protocol = $params;
             try {
                 $this->selectFolder('INBOX');
-            } catch(Exception\ExceptionInterface $e) {
+            } catch (Exception\ExceptionInterface $e) {
                 throw new Exception\RuntimeException('cannot select INBOX, is this a valid transport?', 0, $e);
             }
             return;
@@ -307,7 +307,7 @@ class Imap extends AbstractStorage implements Folder\FolderInterface, Writable\W
      */
     public function getFolders($rootFolder = null)
     {
-        $folders = $this->protocol->listMailbox((string)$rootFolder);
+        $folders = $this->protocol->listMailbox((string) $rootFolder);
         if (!$folders) {
             throw new Exception\InvalidArgumentException('folder not found');
         }
@@ -512,4 +512,3 @@ class Imap extends AbstractStorage implements Folder\FolderInterface, Writable\W
         }
     }
 }
-

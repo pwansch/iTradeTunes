@@ -10,7 +10,6 @@
 
 namespace Zend\Cache\Storage\Adapter;
 
-use ArrayObject;
 use Zend\Cache\Exception;
 use Zend\Cache\Storage\AvailableSpaceCapableInterface;
 use Zend\Cache\Storage\ClearByNamespaceInterface;
@@ -41,8 +40,7 @@ class ZendServerDisk extends AbstractZendServer implements
      * Constructor
      *
      * @param  null|array|\Traversable|AdapterOptions $options
-     * @throws Exception\ExceptionInterface
-     * @return void
+     * @throws Exception\ExtensionNotLoadedException
      */
     public function __construct($options = array())
     {
@@ -85,6 +83,7 @@ class ZendServerDisk extends AbstractZendServer implements
     /**
      * Get total space in bytes
      *
+     * @throws Exception\RuntimeException
      * @return int|float
      */
     public function getTotalSpace()
@@ -107,6 +106,7 @@ class ZendServerDisk extends AbstractZendServer implements
     /**
      * Get available space in bytes
      *
+     * @throws Exception\RuntimeException
      * @return int|float
      */
     public function getAvailableSpace()
@@ -153,7 +153,7 @@ class ZendServerDisk extends AbstractZendServer implements
      */
     protected function zdcFetch($internalKey)
     {
-        return zend_disk_cache_fetch((string)$internalKey);
+        return zend_disk_cache_fetch((string) $internalKey);
     }
 
     /**

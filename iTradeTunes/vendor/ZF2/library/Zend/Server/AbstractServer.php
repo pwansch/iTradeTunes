@@ -35,7 +35,6 @@ abstract class AbstractServer implements Server
      *
      * Setup server description
      *
-     * @return void
      */
     public function __construct()
     {
@@ -81,7 +80,7 @@ abstract class AbstractServer implements Server
      * @param  Reflection\AbstractFunction $reflection
      * @param  null|string|object $class
      * @return Method\Definition
-     * @throws Exception on duplicate entry
+     * @throws Exception\RuntimeException on duplicate entry
      */
     protected function _buildSignature(Reflection\AbstractFunction $reflection, $class = null)
     {

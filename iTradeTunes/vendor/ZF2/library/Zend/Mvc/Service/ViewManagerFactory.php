@@ -27,11 +27,11 @@ class ViewManagerFactory implements FactoryInterface
      * Create and return a request instance, according to current environment.
      *
      * @param  ServiceLocatorInterface $serviceLocator
-     * @return \Zend\Stdlib\Message
+     * @return HttpViewManager
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        if(Console::isConsole()){
+        if (Console::isConsole()) {
             return new ConsoleViewManager();
         }
 

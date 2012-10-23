@@ -12,7 +12,6 @@ namespace Zend\Mvc;
 
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface;
-use Zend\ModuleManager\ModuleManagerInterface;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Stdlib\RequestInterface;
 use Zend\Stdlib\ResponseInterface;
@@ -91,11 +90,6 @@ class Application implements
     protected $serviceManager = null;
 
     /**
-     * @var ModuleManagerInterface
-     */
-    protected $moduleManager;
-
-    /**
      * Constructor
      *
      * @param mixed $configuration
@@ -108,7 +102,6 @@ class Application implements
 
         $this->setEventManager($serviceManager->get('EventManager'));
 
-        $this->moduleManager  = $serviceManager->get('ModuleManager');
         $this->request        = $serviceManager->get('Request');
         $this->response       = $serviceManager->get('Response');
     }
@@ -205,7 +198,6 @@ class Application implements
         $eventManager->setIdentifiers(array(
             __CLASS__,
             get_called_class(),
-            'application',
         ));
         $this->events = $eventManager;
         return $this;

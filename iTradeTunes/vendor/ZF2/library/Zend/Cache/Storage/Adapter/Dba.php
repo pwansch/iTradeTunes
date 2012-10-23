@@ -11,6 +11,7 @@
 namespace Zend\Cache\Storage\Adapter;
 
 use stdClass;
+use Traversable;
 use Zend\Cache\Exception;
 use Zend\Cache\Storage\AvailableSpaceCapableInterface;
 use Zend\Cache\Storage\Capabilities;
@@ -50,7 +51,6 @@ class Dba extends AbstractAdapter implements
      *
      * @param  null|array|Traversable|DbaOptions $options
      * @throws Exception\ExceptionInterface
-     * @return void
      */
     public function __construct($options = null)
     {
@@ -117,7 +117,7 @@ class Dba extends AbstractAdapter implements
      */
     public function getTotalSpace()
     {
-        if ($this->totalSpace !== null) {
+        if ($this->totalSpace === null) {
             $pathname = $this->getOptions()->getPathname();
 
             if ($pathname === '') {
@@ -125,11 +125,12 @@ class Dba extends AbstractAdapter implements
             }
 
             ErrorHandler::start();
-            $total = disk_total_space($pathname);
+            $total = disk_total_space(dirname($pathname));
             $error = ErrorHandler::stop();
             if ($total === false) {
                 throw new Exception\RuntimeException("Can't detect total space of '{$pathname}'", 0, $error);
             }
+            $this->totalSpace = $total;
 
             // clean total space buffer on change pathname
             $events     = $this->getEventManager();
@@ -142,7 +143,7 @@ class Dba extends AbstractAdapter implements
                     $events->detach($handle);
                 }
             };
-            $handle = $events->attach($callback);
+            $handle = $events->attach('option', $callback);
         }
 
         return $this->totalSpace;
@@ -164,7 +165,7 @@ class Dba extends AbstractAdapter implements
         }
 
         ErrorHandler::start();
-        $avail = disk_free_space($pathname);
+        $avail = disk_free_space(dirname($pathname));
         $error = ErrorHandler::stop();
         if ($avail === false) {
             throw new Exception\RuntimeException("Can't detect free space of '{$pathname}'", 0, $error);
@@ -210,7 +211,7 @@ class Dba extends AbstractAdapter implements
     /**
      * Remove items by given namespace
      *
-     * @param string $prefix
+     * @param string $namespace
      * @return boolean
      */
     public function clearByNamespace($namespace)
@@ -509,14 +510,14 @@ class Dba extends AbstractAdapter implements
     }
 
     /**
-     * Close database file if opend
+     * Close database file if opened
      *
      * @return void
      */
     protected function _close()
     {
         if ($this->handle) {
-            ErrorHandler::start(E_WARNING);
+            ErrorHandler::start(E_NOTICE);
             dba_close($this->handle);
             ErrorHandler::stop();
             $this->handle = null;

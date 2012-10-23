@@ -17,7 +17,7 @@ use Zend\ServiceManager\ConfigInterface;
 /**
  * Plugin manager implementation for view helpers
  *
- * Enforces that heleprs retrieved are instances of
+ * Enforces that helpers retrieved are instances of
  * Helper\HelperInterface. Additionally, it registers a number of default
  * helpers.
  *
@@ -82,7 +82,6 @@ class HelperPluginManager extends AbstractPluginManager
      * attached renderer and translator, if any, to the currently requested helper.
      *
      * @param  null|ConfigInterface $configuration
-     * @return void
      */
     public function __construct(ConfigInterface $configuration = null)
     {

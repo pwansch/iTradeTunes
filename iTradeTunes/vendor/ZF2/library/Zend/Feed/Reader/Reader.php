@@ -183,13 +183,13 @@ class Reader
     }
 
     /**
-     * Import a feed by providing a URL
+     * Import a feed by providing a URI
      *
-     * @param  string $url The URL to the feed
+     * @param  string $uri The URI to the feed
      * @param  string $etag OPTIONAL Last received ETag for this resource
      * @param  string $lastModified OPTIONAL Last-Modified value for this resource
      * @return Reader
-     * @throws Exception\ExceptionInterface
+     * @throws Exception\RuntimeException
      */
     public static function import($uri, $etag = null, $lastModified = null)
     {
@@ -207,10 +207,10 @@ class Reader
             $data = $cache->getItem($cacheId);
             if ($data) {
                 if ($etag === null) {
-                    $etag = $cache->getItem($cacheId.'_etag');
+                    $etag = $cache->getItem($cacheId . '_etag');
                 }
                 if ($lastModified === null) {
-                    $lastModified = $cache->getItem($cacheId.'_lastmodified');;
+                    $lastModified = $cache->getItem($cacheId . '_lastmodified');
                 }
                 if ($etag) {
                     $headers->addHeaderLine('If-None-Match', $etag);
@@ -242,7 +242,7 @@ class Reader
                 return self::importString($data);
             }
             $response = $client->send();
-            if ((int)$response->getStatusCode() !== 200) {
+            if ((int) $response->getStatusCode() !== 200) {
                 throw new Exception\RuntimeException('Feed failed to load, got response code ' . $response->getStatusCode());
             }
             $responseXml = $response->getBody();
@@ -250,7 +250,7 @@ class Reader
             return self::importString($responseXml);
         } else {
             $response = $client->send();
-            if ((int)$response->getStatusCode() !== 200) {
+            if ((int) $response->getStatusCode() !== 200) {
                 throw new Exception\RuntimeException('Feed failed to load, got response code ' . $response->getStatusCode());
             }
             $reader = self::importString($response->getBody());
@@ -264,21 +264,30 @@ class Reader
      *
      * @param  string $string
      * @return Feed\FeedInterface
+     * @throws Exception\InvalidArgumentException
      * @throws Exception\RuntimeException
      */
     public static function importString($string)
     {
         $libxml_errflag = libxml_use_internal_errors(true);
-        libxml_disable_entity_loader(true);
+        $oldValue = libxml_disable_entity_loader(true);
         $dom = new DOMDocument;
-        $status = $dom->loadXML($string);
-        libxml_disable_entity_loader(false);
+        $status = $dom->loadXML(trim($string));
+        foreach ($dom->childNodes as $child) {
+            if ($child->nodeType === XML_DOCUMENT_TYPE_NODE) {
+                throw new Exception\InvalidArgumentException(
+                    'Invalid XML: Detected use of illegal DOCTYPE'
+                );
+            }
+        }
+        libxml_disable_entity_loader($oldValue);
         libxml_use_internal_errors($libxml_errflag);
 
         if (!$status) {
             // Build error message
             $error = libxml_get_last_error();
             if ($error && $error->message) {
+                $error->message = trim($error->message);
                 $errormsg = "DOMDocument cannot parse XML: {$error->message}";
             } else {
                 $errormsg = "DOMDocument cannot parse XML: Please check the XML document's validity";
@@ -298,7 +307,7 @@ class Reader
             $reader = new Feed\Atom($dom, $type);
         } else {
             throw new Exception\RuntimeException('The URI used does not point to a '
-            . 'valid Atom, RSS or RDF feed that Zend_Feed_Reader can parse.');
+            . 'valid Atom, RSS or RDF feed that Zend\Feed\Reader can parse.');
         }
         return $reader;
     }
@@ -338,15 +347,16 @@ class Reader
         }
         $responseHtml = $response->getBody();
         $libxml_errflag = libxml_use_internal_errors(true);
-        libxml_disable_entity_loader(true);
+        $oldValue = libxml_disable_entity_loader(true);
         $dom = new DOMDocument;
-        $status = $dom->loadHTML($responseHtml);
-        libxml_disable_entity_loader(false);
+        $status = $dom->loadHTML(trim($responseHtml));
+        libxml_disable_entity_loader($oldValue);
         libxml_use_internal_errors($libxml_errflag);
         if (!$status) {
             // Build error message
             $error = libxml_get_last_error();
             if ($error && $error->message) {
+                $error->message = trim($error->message);
                 $errormsg = "DOMDocument cannot parse HTML: {$error->message}";
             } else {
                 $errormsg = "DOMDocument cannot parse HTML: Please check the XML document's validity";
@@ -363,22 +373,31 @@ class Reader
      * Detect the feed type of the provided feed
      *
      * @param  Feed\AbstractFeed|DOMDocument|string $feed
+     * @param  bool $specOnly
      * @return string
-     * @throws Exception\ExceptionInterface
+     * @throws Exception\InvalidArgumentException
+     * @throws Exception\RuntimeException
      */
     public static function detectType($feed, $specOnly = false)
     {
         if ($feed instanceof Feed\AbstractFeed) {
             $dom = $feed->getDomDocument();
-        } elseif($feed instanceof DOMDocument) {
+        } elseif ($feed instanceof DOMDocument) {
             $dom = $feed;
-        } elseif(is_string($feed) && !empty($feed)) {
+        } elseif (is_string($feed) && !empty($feed)) {
             ErrorHandler::start(E_NOTICE|E_WARNING);
             ini_set('track_errors', 1);
-            libxml_disable_entity_loader(true);
+            $oldValue = libxml_disable_entity_loader(true);
             $dom = new DOMDocument;
             $status = $dom->loadXML($feed);
-            libxml_disable_entity_loader(false);
+            foreach ($dom->childNodes as $child) {
+                if ($child->nodeType === XML_DOCUMENT_TYPE_NODE) {
+                    throw new Exception\InvalidArgumentException(
+                        'Invalid XML: Detected use of illegal DOCTYPE'
+                    );
+                }
+            }
+            libxml_disable_entity_loader($oldValue);
             ini_restore('track_errors');
             ErrorHandler::stop();
             if (!$status) {
@@ -402,7 +421,7 @@ class Reader
             $version = $xpath->evaluate('string(/rss/@version)');
 
             if (strlen($version) > 0) {
-                switch($version) {
+                switch ($version) {
                     case '2.0':
                         $type = self::TYPE_RSS_20;
                         break;

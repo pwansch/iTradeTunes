@@ -12,7 +12,7 @@ namespace Zend\Validator\Barcode;
 
 /**
  * @category   Zend
- * @package    Zend_Validate
+ * @package    Zend_Validator
  */
 class Code39 extends AbstractAdapter
 {
@@ -51,7 +51,7 @@ class Code39 extends AbstractAdapter
         $checksum = substr($value, -1, 1);
         $value    = str_split(substr($value, 0, -1));
         $count    = 0;
-        foreach($value as $char) {
+        foreach ($value as $char) {
             $count += $this->check[$char];
         }
 

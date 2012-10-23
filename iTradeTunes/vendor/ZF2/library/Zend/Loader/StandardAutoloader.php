@@ -49,8 +49,7 @@ class StandardAutoloader implements SplAutoloader
     /**
      * Constructor
      *
-     * @param  null|array|Traversable $options
-     * @return void
+     * @param  null|array|\Traversable $options
      */
     public function __construct($options = null)
     {
@@ -78,6 +77,7 @@ class StandardAutoloader implements SplAutoloader
      * </code>
      *
      * @param  array|\Traversable $options
+     * @throws Exception\InvalidArgumentException
      * @return StandardAutoloader
      */
     public function setOptions($options)
@@ -145,7 +145,7 @@ class StandardAutoloader implements SplAutoloader
      */
     public function registerNamespace($namespace, $directory)
     {
-        $namespace = rtrim($namespace, self::NS_SEPARATOR). self::NS_SEPARATOR;
+        $namespace = rtrim($namespace, self::NS_SEPARATOR) . self::NS_SEPARATOR;
         $this->namespaces[$namespace] = $this->normalizeDirectory($directory);
         return $this;
     }
@@ -154,6 +154,7 @@ class StandardAutoloader implements SplAutoloader
      * Register many namespace/directory pairs at once
      *
      * @param  array $namespaces
+     * @throws Exception\InvalidArgumentException
      * @return StandardAutoloader
      */
     public function registerNamespaces($namespaces)
@@ -187,6 +188,7 @@ class StandardAutoloader implements SplAutoloader
      * Register many namespace/directory pairs at once
      *
      * @param  array $prefixes
+     * @throws Exception\InvalidArgumentException
      * @return StandardAutoloader
      */
     public function registerPrefixes($prefixes)
@@ -271,7 +273,8 @@ class StandardAutoloader implements SplAutoloader
      *
      * @param  string $class
      * @param  string $type
-     * @return void
+     * @return bool|string
+     * @throws Exception\InvalidArgumentException
      */
     protected function loadClass($class, $type)
     {

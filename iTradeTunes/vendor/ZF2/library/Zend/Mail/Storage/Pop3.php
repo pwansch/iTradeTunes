@@ -40,7 +40,7 @@ class Pop3 extends AbstractStorage
         $count  = 0; // "Declare" variable before first usage.
         $octets = 0; // "Declare" variable since it's passed by reference
         $this->protocol->status($count, $octets);
-        return (int)$count;
+        return (int) $count;
     }
 
     /**
@@ -132,7 +132,7 @@ class Pop3 extends AbstractStorage
     public function __construct($params)
     {
         if (is_array($params)) {
-            $params = (object)$params;
+            $params = (object) $params;
         }
 
         $this->has['fetchPart'] = false;
@@ -262,7 +262,7 @@ class Pop3 extends AbstractStorage
                 // need to make a real call, because not all server are honest in their capas
                 try {
                     $this->protocol->top(1, 0, false);
-                } catch(MailException\ExceptionInterface $e) {
+                } catch (MailException\ExceptionInterface $e) {
                     // ignoring error
                 }
             }
@@ -274,7 +274,7 @@ class Pop3 extends AbstractStorage
             $id = null;
             try {
                 $id = $this->protocol->uniqueid(1);
-            } catch(MailException\ExceptionInterface $e) {
+            } catch (MailException\ExceptionInterface $e) {
                 // ignoring error
             }
             $this->has['uniqueid'] = $id ? true : false;

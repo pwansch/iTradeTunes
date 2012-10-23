@@ -311,16 +311,16 @@ class Menu extends AbstractHelper
     // Render methods:
 
     /**
-     * Renders the deepest active menu within [$minDepth, $maxDeth], (called
+     * Renders the deepest active menu within [$minDepth, $maxDepth], (called
      * from {@link renderMenu()})
      *
-     * @param  AbstractContainer         $container  container to render
-     * @param  array                     $active     active page and depth
-     * @param  string                    $ulClass    CSS class for first UL
-     * @param  string                    $indent     initial indentation
-     * @param  int|null                  $minDepth   minimum depth
-     * @param  int|null                  $maxDepth   maximum depth
-     * @return string                                rendered menu
+     * @param  AbstractContainer         $container    container to render
+     * @param  string                    $ulClass      CSS class for first UL
+     * @param  string                    $indent       initial indentation
+     * @param  int|null                  $minDepth     minimum depth
+     * @param  int|null                  $maxDepth     maximum depth
+     * @param  bool                      $escapeLabels Whether or not to escape the labels
+     * @return string                                  rendered menu
      */
     protected function renderDeepestMenu(AbstractContainer $container,
                                          $ulClass,
@@ -367,12 +367,13 @@ class Menu extends AbstractHelper
     /**
      * Renders a normal menu (called from {@link renderMenu()})
      *
-     * @param  AbstractContainer                 $container   container to render
-     * @param  string                    $ulClass     CSS class for first UL
-     * @param  string                    $indent      initial indentation
-     * @param  int|null                  $minDepth    minimum depth
-     * @param  int|null                  $maxDepth    maximum depth
-     * @param  bool                      $onlyActive  render only active branch?
+     * @param  AbstractContainer         $container    container to render
+     * @param  string                    $ulClass      CSS class for first UL
+     * @param  string                    $indent       initial indentation
+     * @param  int|null                  $minDepth     minimum depth
+     * @param  int|null                  $maxDepth     maximum depth
+     * @param  bool                      $onlyActive   render only active branch?
+     * @param  bool                      $escapeLabels Whether or not to escape the labels
      * @return string
      */
     protected function renderNormalMenu(AbstractContainer $container,
@@ -407,7 +408,7 @@ class Menu extends AbstractHelper
             $depth = $iterator->getDepth();
             $isActive = $page->isActive(true);
             if ($depth < $minDepth || !$this->accept($page)) {
-                // page is below minDepth or not accepted by acl/visibilty
+                // page is below minDepth or not accepted by acl/visibility
                 continue;
             } elseif ($onlyActive && !$isActive) {
                 // page is not active itself, but might be in the active branch

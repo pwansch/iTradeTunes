@@ -12,11 +12,11 @@ namespace Zend\I18n\Filter;
 
 use Locale;
 use Traversable;
-use Zend\Stdlib\ArrayUtils;
 
 /**
  * @category   Zend
- * @package    Zend_Filter
+ * @package    Zend_I18n
+ * @subpackage Filter
  */
 class Alnum extends AbstractLocale
 {
@@ -37,7 +37,7 @@ class Alnum extends AbstractLocale
     public function __construct($allowWhiteSpaceOrOptions = null, $locale = null)
     {
         if ($allowWhiteSpaceOrOptions !== null) {
-            if (static::isOptions($allowWhiteSpaceOrOptions)){
+            if (static::isOptions($allowWhiteSpaceOrOptions)) {
                 $this->setOptions($allowWhiteSpaceOrOptions);
             } else {
                 $this->setAllowWhiteSpace($allowWhiteSpaceOrOptions);

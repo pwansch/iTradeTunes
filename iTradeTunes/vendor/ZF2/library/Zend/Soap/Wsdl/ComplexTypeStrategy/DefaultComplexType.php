@@ -25,11 +25,12 @@ class DefaultComplexType extends AbstractComplexTypeStrategy
      * Add a complex type by recursivly using all the class properties fetched via Reflection.
      *
      * @param  string $type Name of the class to be specified
+     * @throws Exception\InvalidArgumentException if class does not exist
      * @return string XSD Type for the given PHP type
      */
     public function addComplexType($type)
     {
-        if(!class_exists($type)) {
+        if (!class_exists($type)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 'Cannot add a complex type %s that is not an object or where '
               . 'class could not be found in \'DefaultComplexType\' strategy.', $type
@@ -49,8 +50,6 @@ class DefaultComplexType extends AbstractComplexTypeStrategy
         // Register type here to avoid recursion
         $this->getContext()->addType($type, $soapType);
 
-
-        $defaultProperties = $class->getDefaultProperties();
 
         $defaultProperties = $class->getDefaultProperties();
 

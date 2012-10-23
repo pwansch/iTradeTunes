@@ -12,7 +12,7 @@ namespace Zend\Validator\Barcode;
 
 /**
  * @category   Zend
- * @package    Zend_Validate
+ * @package    Zend_Validator
  */
 class Code93 extends AbstractAdapter
 {
@@ -53,7 +53,7 @@ class Code93 extends AbstractAdapter
         $value    = str_split(substr($value, 0, -2));
         $count    = 0;
         $length   = count($value) % 20;
-        foreach($value as $char) {
+        foreach ($value as $char) {
             if ($length == 0) {
                 $length = 20;
             }
@@ -66,7 +66,7 @@ class Code93 extends AbstractAdapter
         $value[] = $check;
         $count   = 0;
         $length  = count($value) % 15;
-        foreach($value as $char) {
+        foreach ($value as $char) {
             if ($length == 0) {
                 $length = 15;
             }

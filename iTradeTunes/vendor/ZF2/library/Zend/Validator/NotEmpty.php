@@ -15,7 +15,7 @@ use Zend\Stdlib\ArrayUtils;
 
 /**
  * @category   Zend
- * @package    Zend_Validate
+ * @package    Zend_Validator
  */
 class NotEmpty extends AbstractValidator
 {
@@ -131,7 +131,7 @@ class NotEmpty extends AbstractValidator
     {
         if (is_array($type)) {
             $detected = 0;
-            foreach($type as $value) {
+            foreach ($type as $value) {
                 if (is_int($value)) {
                     $detected += $value;
                 } elseif (in_array($value, $this->constants)) {

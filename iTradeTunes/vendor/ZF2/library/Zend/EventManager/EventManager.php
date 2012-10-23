@@ -12,7 +12,6 @@ namespace Zend\EventManager;
 
 use ArrayAccess;
 use ArrayObject;
-use SplPriorityQueue;
 use Traversable;
 use Zend\Stdlib\CallbackHandler;
 use Zend\Stdlib\PriorityQueue;
@@ -79,7 +78,7 @@ class EventManager implements EventManagerInterface
     /**
      * Set shared event manager
      *
-     * @param  SharedEventManagerInterface $connections
+     * @param SharedEventManagerInterface $sharedEventManager
      * @return EventManager
      */
     public function setSharedManager(SharedEventManagerInterface $sharedEventManager)
@@ -177,7 +176,7 @@ class EventManager implements EventManagerInterface
      * @param  string $event
      * @param  string|object $target Object calling emit, or symbol describing target (such as static method name)
      * @param  array|ArrayAccess $argv Array of arguments; typically, should be associative
-     * @param  null|callback $callback
+     * @param  null|callable $callback
      * @return ResponseCollection All listener return values
      * @throws Exception\InvalidCallbackException
      */
@@ -219,9 +218,9 @@ class EventManager implements EventManagerInterface
      * @param  string $event
      * @param  string|object $target Object calling emit, or symbol describing target (such as static method name)
      * @param  array|ArrayAccess $argv Array of arguments; typically, should be associative
-     * @param  Callable $callback
+     * @param  callable $callback
      * @return ResponseCollection
-     * @throws Exception\InvalidCallbackException if invalid callback provided
+     * @throws Exception\InvalidCallbackException if invalid callable provided
      */
     public function triggerUntil($event, $target, $argv = null, $callback = null)
     {
@@ -266,9 +265,9 @@ class EventManager implements EventManagerInterface
      * be triggered for every event.
      *
      * @param  string|array|ListenerAggregateInterface $event An event or array of event names. If a ListenerAggregateInterface, proxies to {@link attachAggregate()}.
-     * @param  callback|int $callback If string $event provided, expects PHP callback; for a ListenerAggregateInterface $event, this will be the priority
-     * @param  int $priority If provided, the priority at which to register the callback
-     * @return CallbackHandler|mixed CallbackHandler if attaching callback (to allow later unsubscribe); mixed if attaching aggregate
+     * @param  callable|int $callback If string $event provided, expects PHP callback; for a ListenerAggregateInterface $event, this will be the priority
+     * @param  int $priority If provided, the priority at which to register the callable
+     * @return CallbackHandler|mixed CallbackHandler if attaching callable (to allow later unsubscribe); mixed if attaching aggregate
      * @throws Exception\InvalidArgumentException
      */
     public function attach($event, $callback = null, $priority = 1)
@@ -433,7 +432,7 @@ class EventManager implements EventManagerInterface
      *
      * @param  string           $event Event name
      * @param  EventInterface $e
-     * @param  null|callback    $callback
+     * @param  null|callable    $callback
      * @return ResponseCollection
      */
     protected function triggerListeners($event, EventInterface $e, $callback = null)
@@ -499,6 +498,10 @@ class EventManager implements EventManagerInterface
         }
 
         $identifiers     = $this->getIdentifiers();
+        //Add wildcard id to the search, if not already added
+        if (!in_array('*', $identifiers)) {
+            $identifiers[] = '*';
+        }
         $sharedListeners = array();
 
         foreach ($identifiers as $id) {

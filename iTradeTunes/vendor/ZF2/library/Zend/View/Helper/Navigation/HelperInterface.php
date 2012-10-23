@@ -10,7 +10,6 @@
 
 namespace Zend\View\Helper\Navigation;
 
-use Zend\I18n\Translator\Translator;
 use Zend\Navigation;
 use Zend\Permissions\Acl;
 use Zend\View\Helper\HelperInterface as BaseHelperInterface;
@@ -64,7 +63,7 @@ interface HelperInterface extends BaseHelperInterface
      * @param  mixed $role [optional] role to set.  Expects a string, an
      *                     instance of type {@link Acl\Role}, or null. Default
      *                     is null.
-     * @throws \Zend\View\Exception if $role is invalid
+     * @throws \Zend\View\Exception\ExceptionInterface if $role is invalid
      * @return HelperInterface fluent interface, returns
      *                                             self
      */
@@ -73,7 +72,7 @@ interface HelperInterface extends BaseHelperInterface
     /**
      * Returns ACL role to use when iterating pages, or null if it isn't set
      *
-     * @return string|Acl\Role|null  role or null
+     * @return string|Acl\Role\RoleInterface|null  role or null
      */
     public function getRole();
 

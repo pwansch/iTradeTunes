@@ -157,7 +157,6 @@ class WindowsAnsicon extends Posix
         echo chr(27) . '[1K';
     }
 
-
     /**
      * Set Console charset to use.
      *
@@ -208,7 +207,7 @@ class WindowsAnsicon extends Posix
             // single character matching a mask, but is limited to lower ASCII
             // range.
             do {
-                system('choice /n /cs /c:' . $mask, $return);
+                exec('choice /n /cs /c:' . $mask, $output, $return);
                 if ($return == 255 || $return < 1 || $return > strlen($mask)) {
                     throw new Exception\RuntimeException('"choice" command failed to run. Are you using Windows XP or newer?');
                 }
@@ -238,7 +237,7 @@ class WindowsAnsicon extends Posix
             // Retrieve char from the result.
             $char = !empty($result) ? implode('', $result) : null;
 
-            if (!empty($char) && !$return){
+            if (!empty($char) && !$return) {
                 // We have obtained an ASCII code, convert back to a char ...
                 $char = chr($char);
 
@@ -265,7 +264,7 @@ class WindowsAnsicon extends Posix
             $result = $return = null;
             exec(
                 'powershell -NonInteractive -NoProfile -NoLogo -OutputFormat Text -Command "'
-                    . '[int[]] $mask = '.join(',',$asciiMask).';'
+                    . '[int[]] $mask = '.join(',', $asciiMask).';'
                     . 'do {'
                         . '$key = $Host.UI.RawUI.ReadKey(\'NoEcho,IncludeKeyDown\').VirtualKeyCode;'
                     . '} while( !($mask -contains $key) );'
@@ -277,7 +276,7 @@ class WindowsAnsicon extends Posix
 
             $char = !empty($result) ? trim(implode('', $result)) : null;
 
-            if (!$return && $char && ($mask === null || in_array($char,$asciiMask))) {
+            if (!$return && $char && ($mask === null || in_array($char, $asciiMask))) {
                 // We have obtained an ASCII code, check if it is a carriage
                 // return and normalize it as needed
                 if ($char == 13) {

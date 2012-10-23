@@ -11,7 +11,6 @@
 namespace Zend\Form\Element;
 
 use Zend\Form\Element;
-use Zend\InputFilter\InputProviderInterface;
 use Zend\Validator\DateStep as DateStepValidator;
 use Zend\Validator\Regex as RegexValidator;
 use Zend\Validator\ValidatorInterface;
@@ -39,7 +38,7 @@ class Week extends DateTime
      */
     protected function getDateValidator()
     {
-        return new RegexValidator('/^#[0-9]{4}\-W[0-9]{2}$/');
+        return new RegexValidator('/^[0-9]{4}\-W[0-9]{2}$/');
     }
 
     /**

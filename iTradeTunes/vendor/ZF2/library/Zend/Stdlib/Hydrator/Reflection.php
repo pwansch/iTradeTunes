@@ -12,8 +12,12 @@ namespace Zend\Stdlib\Hydrator;
 
 use ReflectionClass;
 use Zend\Stdlib\Exception;
-use Zend\Stdlib\Hydrator\HydratorInterface;
 
+/**
+ * @category   Zend
+ * @package    Zend_Stdlib
+ * @subpackage Hydrator
+ */
 class Reflection extends AbstractHydrator
 {
     /**
@@ -31,7 +35,7 @@ class Reflection extends AbstractHydrator
     public function extract($object)
     {
         $result = array();
-        foreach(self::getReflProperties($object) as $property) {
+        foreach (self::getReflProperties($object) as $property) {
             $propertyName = $property->getName();
 
             $value = $property->getValue($object);
@@ -51,7 +55,7 @@ class Reflection extends AbstractHydrator
     public function hydrate(array $data, $object)
     {
         $reflProperties = self::getReflProperties($object);
-        foreach($data as $key => $value) {
+        foreach ($data as $key => $value) {
             if (isset($reflProperties[$key])) {
                 $reflProperties[$key]->setValue($object, $this->hydrateValue($key, $value));
             }
@@ -64,7 +68,8 @@ class Reflection extends AbstractHydrator
      * class has not been loaded.
      *
      * @static
-     * @param string|object $object
+     * @param string|object $input
+     * @throws Exception\InvalidArgumentException
      * @return array
      */
     protected static function getReflProperties($input)
@@ -79,7 +84,7 @@ class Reflection extends AbstractHydrator
             $reflClass      = new ReflectionClass($input);
             $reflProperties = $reflClass->getProperties();
 
-            foreach($reflProperties as $key => $property) {
+            foreach ($reflProperties as $property) {
                 $property->setAccessible(true);
                 self::$reflProperties[$input][$property->getName()] = $property;
             }

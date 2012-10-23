@@ -67,7 +67,9 @@ class Wsdl
      *
      * @param string  $name Name of the Web Service being Described
      * @param string|Uri $uri URI where the WSDL will be available
-     * @param ComplexTypeStrategy $strategy
+     * @param null|ComplexTypeStrategy $strategy Strategy for detection of complex types
+     * @param null|array $classMap Map of PHP Class names to WSDL QNames
+     * @throws Exception\RuntimeException
      */
     public function __construct($name, $uri, ComplexTypeStrategy $strategy = null, array $classMap = array())
     {
@@ -94,6 +96,13 @@ class Wsdl
         if (!$this->dom->loadXML($wsdl)) {
             throw new Exception\RuntimeException('Unable to create DomDocument');
         } else {
+            foreach ($this->dom->childNodes as $child) {
+                if ($child->nodeType === XML_DOCUMENT_TYPE_NODE) {
+                    throw new Exception\RuntimeException(
+                        'Invalid XML: Detected use of illegal DOCTYPE'
+                    );
+                }
+            }
             $this->wsdl = $this->dom->documentElement;
         }
         libxml_disable_entity_loader(false);
@@ -122,7 +131,7 @@ class Wsdl
      * Set a new uri for this WSDL
      *
      * @param  string|Uri $uri
-     * @return \Zend\Server\Wsdl
+     * @return \Zend\Soap\Wsdl
      */
     public function setUri($uri)
     {
@@ -132,7 +141,7 @@ class Wsdl
         $oldUri = $this->uri;
         $this->uri = $uri;
 
-        if($this->dom !== null) {
+        if ($this->dom !== null) {
             // @todo: This is the worst hack ever, but its needed due to design and non BC issues of WSDL generation
             $xml = $this->dom->saveXML();
             $xml = str_replace($oldUri, $uri, $xml);
@@ -258,7 +267,7 @@ class Wsdl
      * Add a {@link http://www.w3.org/TR/wsdl#_bindings binding} element to WSDL
      *
      * @param string $name Name of the Binding
-     * @param string $type name of the portType to bind
+     * @param string $portType name of the portType to bind
      * @return object The new binding's XML_Tree_Node for use with {@link function addBindingOperation} and {@link function addDocumentation}
      */
     public function addBinding($name, $portType)
@@ -418,7 +427,7 @@ class Wsdl
         $doc_cdata = $this->dom->createTextNode(str_replace(array("\r\n", "\r"), "\n", $documentation));
         $doc->appendChild($doc_cdata);
 
-        if($node->hasChildNodes()) {
+        if ($node->hasChildNodes()) {
             $node->insertBefore($doc, $node->firstChild);
         } else {
             $node->appendChild($doc);
@@ -452,7 +461,7 @@ class Wsdl
      */
     public function addType($type, $wsdlType)
     {
-        if(!isset($this->includedTypes[$type])) {
+        if (!isset($this->includedTypes[$type])) {
             $this->includedTypes[$type] = $wsdlType;
         }
         return $this;
@@ -475,7 +484,7 @@ class Wsdl
      */
     public function getSchema()
     {
-        if($this->schema == null) {
+        if ($this->schema == null) {
             $this->addSchemaTypeSection();
         }
 
@@ -512,9 +521,8 @@ class Wsdl
         if (!$filename) {
             echo $this->toXML();
             return true;
-        } else {
-            return file_put_contents($filename, $this->toXML());
         }
+        return file_put_contents($filename, $this->toXML());
     }
 
     /**
@@ -619,6 +627,7 @@ class Wsdl
      * Parse an xsd:element represented as an array into a DOMElement.
      *
      * @param array $element an xsd:element represented as an array
+     * @throws Exception\RuntimeException if $element is not an array
      * @return DOMElement parsed element
      */
     private function _parseElement($element)

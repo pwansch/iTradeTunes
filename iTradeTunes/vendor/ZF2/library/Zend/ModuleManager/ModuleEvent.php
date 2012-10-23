@@ -58,6 +58,7 @@ class ModuleEvent extends Event
      * Set the name of a given module
      *
      * @param  string $moduleName
+     * @throws Exception\InvalidArgumentException
      * @return ModuleEvent
      */
     public function setModuleName($moduleName)
@@ -68,7 +69,7 @@ class ModuleEvent extends Event
                 ,__METHOD__, gettype($moduleName)
             ));
         }
-        // Performance tweak, dont add it as param.
+        // Performance tweak, don't add it as param.
         $this->moduleName = $moduleName;
 
         return $this;
@@ -88,6 +89,7 @@ class ModuleEvent extends Event
      * Set module object to compose in this event
      *
      * @param  object $module
+     * @throws Exception\InvalidArgumentException
      * @return ModuleEvent
      */
     public function setModule($module)
@@ -98,14 +100,14 @@ class ModuleEvent extends Event
                 ,__METHOD__, gettype($module)
             ));
         }
-        // Performance tweak, dont add it as param.
+        // Performance tweak, don't add it as param.
         $this->module = $module;
 
         return $this;
     }
 
     /**
-     * Get the config listner
+     * Get the config listener
      *
      * @return null|Listener\ConfigMergerInterface
      */

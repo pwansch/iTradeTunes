@@ -22,7 +22,7 @@ class FilesystemIterator implements IteratorInterface
 {
 
     /**
-     * The apc storage intance
+     * The apc storage instance
      *
      * @var Apc
      */
@@ -62,7 +62,6 @@ class FilesystemIterator implements IteratorInterface
      * @param Filesystem  $storage
      * @param string      $path
      * @param string      $prefix
-     * @return void
      */
     public function __construct(Filesystem $storage, $path, $prefix)
     {
@@ -75,7 +74,7 @@ class FilesystemIterator implements IteratorInterface
     /**
      * Get storage instance
      *
-     * @return StorageInterface
+     * @return Filesystem
      */
     public function getStorage()
     {
