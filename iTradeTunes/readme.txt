@@ -24,7 +24,11 @@ In order to run iTradeTunes:
      LoadModule php5_module /Applications/MAMP/bin/php/php5.4.4/modules/libphp5.so
      LoadModule rewrite_module modules/mod_rewrite.so
  
- - Rename config/autoload local.php.[development|test|production] to local.php and edit it to match your environment. 
+ - Rename config/autoload local.php.[development|test|production] to local.php and edit it to match your environment.
+   For instance: 
+     'dsn' => 'mysql:dbname=itradetunes_dev;host=localhost',
+     'username' => 'root',
+     'password' => 'root',
 
  - Change the default isolation level in your MySQL cnf file:
      [mysqld]

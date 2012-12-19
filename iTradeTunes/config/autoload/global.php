@@ -14,11 +14,13 @@
 return array(
     'db' => array(
         'driver'         => 'Pdo',
-        'dsn'            => 'mysql:dbname=itradetunes_dev;host=localhost',
         'driver_options' => array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         ),
     ),
+	'session' => array(
+		'name' => 'iTradeTunes',
+	),		
     'service_manager' => array(
         'factories' => array(
             'Zend\Db\Adapter\Adapter'

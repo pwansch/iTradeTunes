@@ -10,13 +10,14 @@
 namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
+use Application\View\Helper\AbsoluteUrl;
 
 class Module
 {
     public function onBootstrap($e)
     {
         $e->getApplication()->getServiceManager()->get('translator');
-        $eventManager        = $e->getApplication()->getEventManager();
+        $eventManager = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
     }
@@ -36,4 +37,17 @@ class Module
             ),
         );
     }
+    
+    public function getViewHelperConfig()
+    {
+    	return array(
+    			'factories' => array(
+    					// The array key here is the name you will call the view helper by in your view scripts
+    					'absoluteUrl' => function($sm) {
+    						$locator = $sm->getServiceLocator(); // $sm is the view helper manager, so we need to fetch the main service manager
+    						return new AbsoluteUrl($locator->get('Request'));
+    					},
+    			),
+    	);
+    }    
 }

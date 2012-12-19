@@ -45,6 +45,12 @@ echo $this->doctype(); ?>
               <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
             </ul>
           </div><!--/.nav-collapse -->
+          <?php $url = $this->url('member', array('action' => 'login')); ?>
+          <form class="navbar-form pull-right" action="<?php echo $url; ?>" method="post">
+            <input type="text" name="email" class="span2" placeholder=<?php echo $this->translate('Email') ?>>
+            <input type="password" name="password" class="span2" placeholder=<?php echo $this->translate('Password') ?>>
+            <button type="submit" name="submit" class="btn"><?php echo $this->translate('Sign in') ?></button>
+          </form>
         </div>
       </div>
     </div>

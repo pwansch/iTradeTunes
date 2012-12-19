@@ -23,15 +23,15 @@ Message
 	response/view
 
 Application
-	index/about
-	index/contact
-	index/guidelines
-	index/help
-	index/index
-	index/news
-	index/privacy
-	index/terms
-	index/watch
+	application/index/about
+	application/index/contact
+	application/index/guidelines
+	application/index/help
+	application/index/index
+	application/index/news
+	application/index/privacy
+	application/index/terms
+	application/index/watch
 	error/404
 	error/index
 	

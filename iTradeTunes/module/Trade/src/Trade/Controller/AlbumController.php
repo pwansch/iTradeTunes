@@ -1,11 +1,11 @@
 <?php
 // module/Album/src/Album/Controller/AlbumController.php:
-namespace Album\Controller;
+namespace Trade\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Album\Model\Album;          // <-- Add this import
-use Album\Form\AlbumForm;       // <-- Add this import
+use Trade\Model\Album;          // <-- Add this import
+use Trade\Form\AlbumForm;       // <-- Add this import
 
 class AlbumController extends AbstractActionController
 {
