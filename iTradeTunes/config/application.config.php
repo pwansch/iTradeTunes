@@ -2,7 +2,7 @@
 return array(
     'modules' => array(
         'Application',
-    	'Album',
+    	'Trade',
     	'AkrabatSession',
     ),
     'module_listener_options' => array(
