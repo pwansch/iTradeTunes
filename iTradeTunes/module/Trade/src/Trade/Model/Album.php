@@ -1,6 +1,6 @@
 <?php
-// module/Album/src/Album/Model/Album.php:
-namespace Album\Model;
+// module/Trade/src/Trade/Model/Album.php:
+namespace Trade\Model;
 
 use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilter;

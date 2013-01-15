@@ -1,3 +1,3 @@
 <?php
-// module/Album/autoload_classmap.php:
+// module/Trade/autoload_classmap.php:
 return array();

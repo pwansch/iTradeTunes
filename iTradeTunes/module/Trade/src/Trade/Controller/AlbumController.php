@@ -1,5 +1,5 @@
 <?php
-// module/Album/src/Album/Controller/AlbumController.php:
+// module/Trade/src/Trade/Controller/AlbumController.php:
 namespace Trade\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;

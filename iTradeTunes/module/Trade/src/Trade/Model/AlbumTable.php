@@ -1,5 +1,5 @@
 <?php
-namespace Album\Model;
+namespace Trade\Model;
 
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;

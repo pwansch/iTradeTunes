@@ -1,5 +1,5 @@
 <?php
-// module/Album/conﬁg/module.conﬁg.php:
+// module/Trade/conﬁg/module.conﬁg.php:
 return array(
 		'controllers' => array(
 				'invokables' => array(
@@ -9,7 +9,7 @@ return array(
 				),
 		),
 
-		// Routes for the album module
+		// Routes for the trade module
 		'router' => array(
 				'routes' => array(
 						'album' => array(
@@ -42,7 +42,7 @@ return array(
 				),
 		),
 		
-		// Console routes for the album module
+		// Console routes for the trade module
 		'console' => array(
 				'router' => array(
 						'routes' => array(

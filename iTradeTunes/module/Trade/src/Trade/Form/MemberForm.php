@@ -1,6 +1,6 @@
 <?php
 
-namespace Album\Form;
+namespace Trade\Form;
 
 use Zend\Form\Element;
 use Zend\Form\Form;
