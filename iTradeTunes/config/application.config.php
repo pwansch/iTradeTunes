@@ -2,7 +2,7 @@
 return array(
     'modules' => array(
         'Application',
-    	'Trade',
+    	'Trade', // iTradeTunes specific module
     	'AkrabatSession',
     ),
     'module_listener_options' => array(
