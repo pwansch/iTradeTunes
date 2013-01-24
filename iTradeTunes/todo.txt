@@ -40,4 +40,4 @@ Application
 - Style the views
 - Create batch code
 - Create code for the REST web services
-- Learn German
+Learn English
