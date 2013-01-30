@@ -103,7 +103,7 @@ public function deleteAction()
 	{
 		if (!$this->albumTable) {
 			$sm = $this->getServiceLocator();
-			$this->albumTable = $sm->get('Album\Model\AlbumTable');
+			$this->albumTable = $sm->get('Trade\Model\AlbumTable');
 		}
 		return $this->albumTable;
 	}	
