@@ -1,6 +1,11 @@
 <?php
 // module/Trade/conﬁg/module.conﬁg.php:
 return array(
+		'controller_plugins' => array(
+				'invokables' => array(
+						'AuthorizationPlugin' => 'Trade\Controller\Plugin\AuthorizationPlugin',
+				)
+		),
 		'controllers' => array(
 				'invokables' => array(
 						'Trade\Controller\Album' => 'Trade\Controller\AlbumController',
