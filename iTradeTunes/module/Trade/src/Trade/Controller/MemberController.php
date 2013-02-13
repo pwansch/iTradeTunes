@@ -11,18 +11,20 @@ class MemberController extends AbstractActionController
 	protected $auth;
 	protected $authAdapter;
 	protected $translator;
+	protected $session;	
 		
     public function loginAction()
     {
     	// Try to authenticate the member
-    	
+
     	// Clear the identity first
     	$this->getAuth()->clearIdentity();
 
     	// Attempt authentication and check result
     	$this->getAuthAdapter()->setIdentity('sfenwick@itradetunes.com')
-                               ->setCredential('password1');    	
+                               ->setCredential('password1');   
     	$result = $this->getAuth()->authenticate($this->getAuthAdapter());
+    	
     	if (!$result->isValid())
     	{
     		// Check the result to provide a useful message
@@ -41,9 +43,10 @@ class MemberController extends AbstractActionController
     		return $this->redirect()->toRoute('application');
     	}
 
-    	// Get the result row and redirect to list of albums
+    	// Get the result row, set the role and redirect to list of albums
     	$columnsToOmit = array('password_encrypted');
     	$resultRow = $this->getAuthAdapter()->getResultRowObject(null, $columnsToOmit);
+    	$this->getSession()->role = 'member';
     	return $this->redirect()->toRoute('album');
     }
 
@@ -99,4 +102,13 @@ class MemberController extends AbstractActionController
     	}
     	return $this->translator;
     }    
+    
+    public function getSession()
+    {
+    	if (!$this->session) {
+    		$sm = $this->getServiceLocator();
+    		$this->session = $sm->get('session');
+    	}
+    	return $this->session;
+    }
 }
