@@ -25,8 +25,11 @@ class AuthorizationPlugin extends AbstractPlugin
 		$acl->addResource(new Resource('Trade\Controller\Prune'));
 		
 		// Allow or deny access to views
-		$acl->allow('anonymous', 'Application\Controller\Index', 'index');
-		
+		$acl->allow('anonymous', 'Application\Controller\Index', array('index'));
+		$acl->allow('anonymous', 'Trade\Controller\Member', array('login', 'join'));
+		$acl->allow('member', 'Trade\Controller\Album', array('add', 'delete', 'edit', 'index'));
+		$acl->allow('member', 'Trade\Controller\Member', array('view'));
+
 		return $acl->isAllowed($role, $controller, $action);
 	}
 }
