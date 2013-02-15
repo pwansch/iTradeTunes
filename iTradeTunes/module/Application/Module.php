@@ -48,6 +48,10 @@ class Module
     						return new AbsoluteUrl($locator->get('Request'));
     					},
     			),
+    			'invokables' => array(
+    					// View helpers
+    					'flashMessages' => 'Application\View\Helper\FlashMessages',
+    			),    			
     	);
     }    
 }
