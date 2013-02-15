@@ -15,39 +15,47 @@ class MemberController extends AbstractActionController
 		
     public function loginAction()
     {
-    	// Try to authenticate the member
+    	$request = $this->getRequest(); 
+    	if ($request->isPost()) {
+    		// Get the login form parameters which are directly coded into the layout
+    		$email = $request->getPost('email', '');
+    		$password = $request->getPost('password', '');
 
-    	// Clear the identity first
-    	$this->getAuth()->clearIdentity();
-
-    	// Attempt authentication and check result
-    	$this->getAuthAdapter()->setIdentity('sfenwick@itradetunes.com')
-                               ->setCredential('password1');   
-    	$result = $this->getAuth()->authenticate($this->getAuthAdapter());
-    	
-    	if (!$result->isValid())
-    	{
-    		// Check the result to provide a useful message
-    		switch ($result->getCode())
+    		// Clear the identity first
+    		$this->getAuth()->clearIdentity();
+    		
+    		// Attempt authentication and check result
+    		$this->getAuthAdapter()->setIdentity($email)
+    							   ->setCredential($password);
+    		$result = $this->getAuth()->authenticate($this->getAuthAdapter());
+    		 
+    		if (!$result->isValid())
     		{
-    			case Result::FAILURE_IDENTITY_NOT_FOUND:
-    				$this->flashMessenger()->addMessage($this->getTranslator()->translate('Invalid email address or password.'));
-    				break;
-    	
-    			case Result::FAILURE_CREDENTIAL_INVALID:
-    			default:
-					$this->flashMessenger()->addMessage($this->getTranslator()->translate('Invalid email address or password.'));
-    				break;
+    			// Check the result to provide a useful message
+    			switch ($result->getCode())
+    			{
+    				case Result::FAILURE_IDENTITY_NOT_FOUND:
+    					$this->flashMessenger()->addMessage($this->getTranslator()->translate('Invalid email address or password.'));
+    					break;
+    					 
+    				case Result::FAILURE_CREDENTIAL_INVALID:
+    				default:
+    					$this->flashMessenger()->addMessage($this->getTranslator()->translate('Invalid email address or password.'));
+    					break;
+    			}
+
+    			return $this->redirect()->toRoute('home');
     		}
-
-    		return $this->redirect()->toRoute('application');
+    		
+    		// Get the result row, set the role and redirect to list of albums
+    		$columnsToOmit = array('password_encrypted');
+    		$resultRow = $this->getAuthAdapter()->getResultRowObject(null, $columnsToOmit);
+    		$this->getSession()->role = 'member';
+    		return $this->redirect()->toRoute('album');
     	}
-
-    	// Get the result row, set the role and redirect to list of albums
-    	$columnsToOmit = array('password_encrypted');
-    	$resultRow = $this->getAuthAdapter()->getResultRowObject(null, $columnsToOmit);
-    	$this->getSession()->role = 'member';
-    	return $this->redirect()->toRoute('album');
+    	
+    	// For a GET request, redirect to the home page
+    	return $this->redirect()->toRoute('home');
     }
 
     public function joinAction()
