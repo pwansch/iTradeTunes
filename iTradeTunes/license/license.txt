@@ -1,2 +1,2 @@
 Bootstrap v2.3.0
-Zend Framework 2.0.6
+Zend Framework 2.1.1
