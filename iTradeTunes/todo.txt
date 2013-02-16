@@ -1,3 +1,7 @@
+- Investigate the following:
+  - Authentication and session information handling
+  - FlashMessenger usage
+
 - Create the views using default forms and create the controllers to render the views:
 User
 	user/register
