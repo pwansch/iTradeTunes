@@ -1,7 +1,7 @@
 <?php 
 
 /**
- * Main layout.
+ * Trade layout.
  *
  * @copyright  2012 iTradeTunes Inc.
  * @version    $Id$
@@ -43,14 +43,23 @@ echo $this->doctype(); ?>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-            </ul>
+              </ul>
           </div><!--/.nav-collapse -->
-          <?php $url = $this->url('member', array('action' => 'login')); ?>
-          <form class="navbar-form pull-right" action="<?php echo $url; ?>" method="post">
-            <input type="text" name="email" class="span2" placeholder=<?php echo $this->translate('Email') ?>>
-            <input type="password" name="password" class="span2" placeholder=<?php echo $this->translate('Password') ?>>
-            <button type="submit" name="submit" class="btn"><?php echo $this->translate('Log In') ?></button>
-          </form>
+
+          <!-- Member dropdown -->
+          <?php $sm = $this->getHelperPluginManager()->getServiceLocator(); 
+                $auth = $sm->get('auth');
+                if ($auth->hasIdentity()) : ?>
+            <ul class="nav pull-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $auth->getIdentity(); ?><b class="caret"></b></a>
+                <ul class="dropdown-menu pull-right">
+                  <li><a tabindex="-1" href="#"><?php echo $this->translate('Log Out') ?></a></li>
+                </ul>
+              </li>
+            </ul>
+          <?php endif; ?>
+                  
         </div>
       </div>
     </div>

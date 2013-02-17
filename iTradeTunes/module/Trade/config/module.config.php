@@ -1,6 +1,9 @@
 <?php
 // module/Trade/conﬁg/module.conﬁg.php:
 return array(
+		'module_layouts' => array(
+			'Trade' => 'trade/layout',
+		),
 		'controller_plugins' => array(
 				'invokables' => array(
 						'AuthorizationPlugin' => 'Trade\Controller\Plugin\AuthorizationPlugin',
@@ -65,6 +68,9 @@ return array(
 		),		
 
 		'view_manager' => array(
+			'template_map' => array(
+				'trade/layout'           => __DIR__ . '/../view/layout/layout.phtml',
+				),
 				'template_path_stack' => array(
 						'trade' => __DIR__ . '/../view',
 				),
