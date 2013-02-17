@@ -1,9 +1,6 @@
 <?php
 // module/Trade/conﬁg/module.conﬁg.php:
 return array(
-		'module_layouts' => array(
-			'Trade' => 'trade/layout',
-		),
 		'controller_plugins' => array(
 				'invokables' => array(
 						'AuthorizationPlugin' => 'Trade\Controller\Plugin\AuthorizationPlugin',

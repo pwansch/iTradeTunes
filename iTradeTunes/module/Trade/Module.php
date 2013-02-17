@@ -19,15 +19,14 @@ class Module implements ConsoleUsageProviderInterface
 	public function onBootstrap(MvcEvent $e)
 	{
 		$eventManager = $e->getApplication()->getEventManager();
-		$eventManager->attach(MvcEvent::EVENT_DISPATCH, array($this, 'checkAcl'), 100);
+		$eventManager->attach(MvcEvent::EVENT_DISPATCH, array($this, 'checkAcl'), 200);
 		$eventManager->getSharedManager()->attach('Zend\Mvc\Controller\AbstractActionController', 'dispatch', function($e) {
-			$controller = $e->getTarget();
-			$controllerClass = get_class($controller);
-			$moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
-			$config = $e->getApplication()->getServiceManager()->get('config');
-			if (isset($config['module_layouts'][$moduleNamespace])) {
-				$controller->layout($config['module_layouts'][$moduleNamespace]);
-			}
+			// If a member has been authenticated, set the layout for this module
+			$auth = $e->getApplication()->getServiceManager()->get('auth');
+			if ($auth->hasIdentity()) {
+				$controller = $e->getTarget();
+				$controller->layout('trade/layout');
+			}			
 		}, 100);		
 	}
 	

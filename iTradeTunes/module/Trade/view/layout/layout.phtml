@@ -48,18 +48,15 @@ echo $this->doctype(); ?>
 
           <!-- Member dropdown -->
           <?php $sm = $this->getHelperPluginManager()->getServiceLocator(); 
-                $auth = $sm->get('auth');
-                if ($auth->hasIdentity()) : ?>
-            <ul class="nav pull-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $auth->getIdentity(); ?><b class="caret"></b></a>
-                <ul class="dropdown-menu pull-right">
-                  <li><a tabindex="-1" href="#"><?php echo $this->translate('Log Out') ?></a></li>
-                </ul>
-              </li>
-            </ul>
-          <?php endif; ?>
-                  
+                $auth = $sm->get('auth'); ?>
+          <ul class="nav pull-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $auth->getIdentity(); ?><b class="caret"></b></a>
+              <ul class="dropdown-menu pull-right">
+                <li><a tabindex="-1" href="#"><?php echo $this->translate('Log Out') ?></a></li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
