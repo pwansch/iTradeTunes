@@ -63,7 +63,6 @@ class MemberController extends AbstractActionController
     	// Clear the identity, destroy the session and redirect
     	$this->getAuth()->clearIdentity();
     	$this->getSession()->getManager()->destroy();
-    	$this->flashMessenger()->addMessage($this->getTranslator()->translate('You have been successfully logged out.'));
     	return $this->redirect()->toRoute('home');
     }
 
