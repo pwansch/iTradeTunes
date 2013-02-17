@@ -1,6 +1,18 @@
 - Investigate the following:
-  - Authentication and session information handling
-  - FlashMessenger usage
+  - session expiration handling
+  - navigation menus coupled with ACL
+  - database commit handling
+  - pagination of albums
+  - batch error handling
+  - join page with Captcha
+  - access with JSON-based web service
+  - log into database
+  - catch uncaught exceptions and send email
+  - generate sitemaps
+  - check framework version
+  - set locale and timezone
+  - cache database results
+  - use crypt functions for password handling
 
 - Create the views using default forms and create the controllers to render the views:
 User
@@ -38,9 +50,3 @@ Application
 	application/index/watch
 	error/404
 	error/index
-	
-- Create the data model
-- Add the controller code
-- Style the views
-- Create batch code
-- Create code for the REST web services
