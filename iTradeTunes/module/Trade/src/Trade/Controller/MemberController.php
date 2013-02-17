@@ -57,6 +57,15 @@ class MemberController extends AbstractActionController
     	// For a GET request, redirect to the home page
     	return $this->redirect()->toRoute('home');
     }
+    
+    public function logoutAction()
+    {
+    	// Clear the identity, destroy the session and redirect
+    	$this->getAuth()->clearIdentity();
+    	$this->getSession()->getManager()->destroy();
+    	$this->flashMessenger()->addMessage($this->getTranslator()->translate('You have been successfully logged out.'));
+    	return $this->redirect()->toRoute('home');
+    }
 
     public function joinAction()
     {

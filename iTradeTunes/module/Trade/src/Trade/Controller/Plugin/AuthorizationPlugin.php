@@ -28,7 +28,7 @@ class AuthorizationPlugin extends AbstractPlugin
 		$acl->allow('anonymous', 'Application\Controller\Index', array('index'));
 		$acl->allow('anonymous', 'Trade\Controller\Member', array('login', 'join'));
 		$acl->allow('member', 'Trade\Controller\Album', array('add', 'delete', 'edit', 'index'));
-		$acl->allow('member', 'Trade\Controller\Member', array('view'));
+		$acl->allow('member', 'Trade\Controller\Member', array('view', 'logout'));
 
 		return $acl->isAllowed($role, $controller, $action);
 	}

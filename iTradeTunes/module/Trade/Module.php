@@ -49,6 +49,11 @@ class Module implements ConsoleUsageProviderInterface
 
 		// If the request is not authorized, redirect to the login view
 		if (!$sm->get('ControllerPluginManager')->get('AuthorizationPlugin')->isAuthorized($role, $controller, $action)) {
+			// Set a warning message
+			$flashMessenger = $sm->get('ControllerPluginManager')->get('flashmessenger');
+			$translator = $sm->get('translator');
+			$flashMessenger->addMessage($translator->translate('You are not authorized to access that page. Log in.'));				
+			
 			// Assemble the url
 			$router = $e->getRouter();
 			$url = $router->assemble(array(), array('name' => 'home'));
