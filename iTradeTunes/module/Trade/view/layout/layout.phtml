@@ -42,8 +42,15 @@ echo $this->doctype(); ?>
           <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('iTradeTunes') ?></a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-              </ul>
+              <li><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $this->translate('Album') ?><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="<?php echo $this->url('album', array('action' => 'index')) ?>"><?php echo $this->translate('List') ?></a></li>
+                  <li><a tabindex="-1" href="<?php echo $this->url('album', array('action' => 'add')) ?>"><?php echo $this->translate('Add') ?></a></li>
+                  </ul>
+              </li>
+            </ul>
           </div><!--/.nav-collapse -->
 
           <!-- Member dropdown -->
