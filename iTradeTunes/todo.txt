@@ -1,8 +1,8 @@
 - Investigate the following:
-  - session expiration handling
   - navigation menus coupled with ACL
   - database commit handling
   - pagination of albums
+  - implement error, warning, info flash messages
   - batch error handling
   - join page with Captcha
   - access with JSON-based web service
@@ -10,7 +10,7 @@
   - catch uncaught exceptions and send email
   - generate sitemaps
   - check framework version
-  - set locale and timezone
+  - implement remember me for log in
   - cache database results
   - use crypt functions for password handling
 

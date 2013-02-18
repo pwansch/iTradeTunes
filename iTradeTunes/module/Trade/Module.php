@@ -90,10 +90,28 @@ class Module implements ConsoleUsageProviderInterface
 	{
 		return array(				
 				'services' => array(
-						 'auth' => new AuthenticationService(),
 						 'session' => new Container(),
 						),				
 				'factories' => array(
+						'auth' => function($sm) {
+							$auth = new AuthenticationService();
+                            $config = $sm->get('config');
+                            if (isset($config['session_config']['container_name'])) {
+                            	$sessionContainer = new Container($config['session_config']['container_name']);
+                            } else {
+                            	// Use a default session container name
+                            	$sessionContainer = new Container('System_Auth');
+                            }
+                            
+                            if (isset($config['session_config']['expire_seconds'])) {
+                            	$sessionContainer->setExpirationSeconds($config['session_config']['expire_seconds']);
+                            } else {
+                            	// Use a default timeout of 10 minutes
+                            	$sessionContainer->setExpirationSeconds(600);
+                            }                            
+                            $auth->setStorage(new \Zend\Authentication\Storage\Session());
+							return $auth;
+						},
 						'authAdapter' => function($sm) {
 							$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 							$authAdapter = new AuthAdapter($dbAdapter);
@@ -114,8 +132,6 @@ class Module implements ConsoleUsageProviderInterface
 							$resultSetPrototype->setArrayObjectPrototype(new Album());
 							return new TableGateway('album', $dbAdapter, null, $resultSetPrototype);
 						},						
-						
-						
 				),
 		); 
 	}

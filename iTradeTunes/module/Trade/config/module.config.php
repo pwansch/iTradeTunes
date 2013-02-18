@@ -1,6 +1,10 @@
 <?php
 // module/Trade/conﬁg/module.conﬁg.php:
 return array(
+        'session_config' => array(
+        		'expire_seconds' => 86400,
+                'container_name' => 'System_Auth',
+        ),
 		'controller_plugins' => array(
 				'invokables' => array(
 						'AuthorizationPlugin' => 'Trade\Controller\Plugin\AuthorizationPlugin',

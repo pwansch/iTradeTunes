@@ -55,7 +55,7 @@ class Module
                 'use_cookies' => true,
                 'use_only_cookies' => true,
                 'cookie_httponly' => true,
-                'name' => 'ZF2_SESSION',
+                'name' => 'ITRADETUNES_SESSION',
                 ),
         );
     }
