@@ -17,15 +17,11 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-    	//$session->offsetExists('email')
-    	
-    	//$email = $session->offsetGet('email');
-    	
-    	//$session->offsetSet('email', 'pwansch@me.com');
-
-    	
-    	
-    	//var_dump($session->offsetGet('email'));
+        return new ViewModel();
+    }
+    
+    public function privacyAction()
+    {
         return new ViewModel();
     }
 }

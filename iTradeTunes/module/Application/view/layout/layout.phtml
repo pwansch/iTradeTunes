@@ -41,9 +41,9 @@ echo $this->doctype(); ?>
           </a>
           <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('iTradeTunes') ?></a>
           <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-            </ul>
+		    <?php $partial = array('application/partial/menu.phtml', 'default') ?>
+		    <?php $this->navigation('navigation')->menu()->setPartial($partial) ?>
+		    <?php echo $this->navigation('navigation')->menu()->render() ?>
           </div><!--/.nav-collapse -->
           <?php $url = $this->url('member', array('action' => 'login')); ?>
           <form class="navbar-form pull-right" action="<?php echo $url; ?>" method="post">
