@@ -8,28 +8,38 @@ use Zend\Permissions\Acl\Resource\GenericResource as Resource;
 
 class AuthorizationPlugin extends AbstractPlugin
 {
-	public function isAuthorized($role, $controller, $action)
+	protected $acl;
+	
+	public function __construct()
 	{
 		// Set up ACL
-		$acl = new Acl();
+		$this->acl = new Acl();
 
 		// Add roles
-		$acl->addRole(new Role('anonymous'));
-		$acl->addRole(new Role('member'), 'anonymous');
-		$acl->addRole(new Role('admin'), 'member');
+		$this->acl->addRole(new Role('anonymous'));
+		$this->acl->addRole(new Role('member'), 'anonymous');
+		$this->acl->addRole(new Role('admin'), 'member');
 
 		// Add controller resources
-		$acl->addResource(new Resource('Application\Controller\Index'));
-		$acl->addResource(new Resource('Trade\Controller\Album'));
-		$acl->addResource(new Resource('Trade\Controller\Member'));
-		$acl->addResource(new Resource('Trade\Controller\Prune'));
+		$this->acl->addResource(new Resource('Application\Controller\Index'));
+		$this->acl->addResource(new Resource('Trade\Controller\Album'));
+		$this->acl->addResource(new Resource('Trade\Controller\Member'));
+		$this->acl->addResource(new Resource('Trade\Controller\Prune'));
 		
 		// Allow or deny access to views
-		$acl->allow('anonymous', 'Application\Controller\Index', array('index', 'privacy'));
-		$acl->allow('anonymous', 'Trade\Controller\Member', array('login', 'join'));
-		$acl->allow('member', 'Trade\Controller\Album', array('add', 'delete', 'edit', 'index'));
-		$acl->allow('member', 'Trade\Controller\Member', array('view', 'logout'));
+		$this->acl->allow('anonymous', 'Application\Controller\Index', array('index', 'privacy'));
+		$this->acl->allow('anonymous', 'Trade\Controller\Member', array('login', 'join'));
+		$this->acl->allow('member', 'Trade\Controller\Album', array('add', 'delete', 'edit', 'index'));
+		$this->acl->allow('member', 'Trade\Controller\Member', array('view', 'logout'));
+	}
 
-		return $acl->isAllowed($role, $controller, $action);
+	public function getAcl()
+	{
+		return $this->acl;
+	}
+	
+	public function isAuthorized($role, $controller, $action)
+	{
+		return $this->getAcl()->isAllowed($role, $controller, $action);
 	}
 }

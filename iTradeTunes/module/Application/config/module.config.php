@@ -46,6 +46,8 @@ return array(
     										'label' => 'Privacy',
     										'controller' => 'index',
     										'action' => 'privacy',
+    										'resource' => 'Application\Controller\Index',
+    										'privilege' => 'privacy',
     								),
     						),
     				),

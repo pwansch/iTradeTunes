@@ -19,7 +19,7 @@ class Module implements ConsoleUsageProviderInterface
 	public function onBootstrap(MvcEvent $e)
 	{
 		$eventManager = $e->getApplication()->getEventManager();
-		$eventManager->attach(MvcEvent::EVENT_DISPATCH, array($this, 'checkAcl'), 200);
+		$eventManager->attach(MvcEvent::EVENT_DISPATCH, array($this, 'checkAndSetAcl'), 200);
 		$eventManager->getSharedManager()->attach('Zend\Mvc\Controller\AbstractActionController', 'dispatch', function($e) {
 			// If a member has been authenticated, set the layout for this module
 			$auth = $e->getApplication()->getServiceManager()->get('auth');
@@ -30,7 +30,7 @@ class Module implements ConsoleUsageProviderInterface
 		}, 100);		
 	}
 	
-	public function checkAcl(MvcEvent $e)
+	public function checkAndSetAcl(MvcEvent $e)
 	{
 		$application = $e->getApplication();
 		$sm = $application->getServiceManager();
@@ -48,7 +48,8 @@ class Module implements ConsoleUsageProviderInterface
 		}
 
 		// If the request is not authorized, redirect to the login view
-		if (!$sm->get('ControllerPluginManager')->get('AuthorizationPlugin')->isAuthorized($role, $controller, $action)) {
+		$authorization = $sm->get('ControllerPluginManager')->get('AuthorizationPlugin');
+		if (!$authorization->isAuthorized($role, $controller, $action)) {
 			// Set a warning message
 			$flashMessenger = $sm->get('ControllerPluginManager')->get('flashmessenger');
 			$translator = $sm->get('translator');
@@ -65,6 +66,11 @@ class Module implements ConsoleUsageProviderInterface
 			$e->stopPropagation();
 			return $response;
 		} 
+		
+		// If the request is authorized, set the acl in naviation
+		$acl = $authorization->getAcl();
+		\Zend\View\Helper\Navigation::setDefaultAcl($acl);
+		\Zend\View\Helper\Navigation::setDefaultRole($role);
 	}	
 	
 	public function getAutoloaderConfig()

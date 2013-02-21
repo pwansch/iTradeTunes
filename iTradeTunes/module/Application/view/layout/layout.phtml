@@ -41,7 +41,7 @@ echo $this->doctype(); ?>
           </a>
           <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('iTradeTunes') ?></a>
           <div class="nav-collapse">
-		    <?php $partial = array('application/partial/menu.phtml', 'default') ?>
+		    <?php $partial = array('partial/menu.phtml', 'default') ?>
 		    <?php $this->navigation('navigation')->menu()->setPartial($partial) ?>
 		    <?php echo $this->navigation('navigation')->menu()->render() ?>
           </div><!--/.nav-collapse -->
