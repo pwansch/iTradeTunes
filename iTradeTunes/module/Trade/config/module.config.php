@@ -51,6 +51,28 @@ return array(
 				),
 		),
 		
+		'navigation' => array(
+				// the DefaultNavigationFactory uses 'default' as the sitemap key
+				'default' => array(
+						'album' => array(
+								'label' => 'Album',
+								'controller' => 'album',
+								'action' => 'index',
+								'resource' => 'Trade\Controller\Album',
+								'privilege' => 'index',
+								'pages' => array(
+										'Add' => array(
+												'label' => 'Add',
+												'controller' => 'album',
+												'action' => 'add',
+												'resource' => 'Trade\Controller\Album',
+												'privilege' => 'add',
+										),
+								),
+						),
+				),
+		),		
+		
 		// Console routes for the trade module
 		'console' => array(
 				'router' => array(
