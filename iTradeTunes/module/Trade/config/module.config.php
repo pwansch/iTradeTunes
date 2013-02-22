@@ -56,17 +56,29 @@ return array(
 				'default' => array(
 						'album' => array(
 								'label' => 'Album',
-								'controller' => 'album',
-								'action' => 'index',
+								'uri' => '/album/index',
 								'resource' => 'Trade\Controller\Album',
 								'privilege' => 'index',
 								'pages' => array(
-										'Add' => array(
+										'add' => array(
 												'label' => 'Add',
-												'controller' => 'album',
-												'action' => 'add',
+												'uri' => '/album/add',
 												'resource' => 'Trade\Controller\Album',
 												'privilege' => 'add',
+										),
+								),
+						),
+						'member' => array(
+								'label' => '<identity>',
+								'uri' => '/member/view',
+								'resource' => 'Trade\Controller\Member',
+								'privilege' => 'view',
+								'pages' => array(
+										'logout' => array(
+												'label' => 'Log Out',
+												'uri' => '/member/logout',
+												'resource' => 'Trade\Controller\Member',
+												'privilege' => 'logout',
 										),
 								),
 						),

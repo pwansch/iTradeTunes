@@ -1,5 +1,5 @@
 - Investigate the following:
-  - navigation menus coupled with ACL
+  - navigation menus coupled with ACL and styled correctly
   - database commit handling
   - pagination of albums
   - implement error, warning, info flash messages

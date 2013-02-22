@@ -41,21 +41,15 @@ echo $this->doctype(); ?>
           </a>
           <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('iTradeTunes') ?></a>
           <div class="nav-collapse">
-		    <?php $partial = array('partial/menu.phtml', 'default') ?>
-		    <?php $this->navigation('navigation')->menu()->setPartial($partial) ?>
-		    <?php echo $this->navigation('navigation')->menu()->render() ?>
+            <?php $sm = $this->getHelperPluginManager()->getServiceLocator(); 
+                  $auth = $sm->get('auth');
+                  $partial = array('partial/menu.phtml', 'default');
+		          $this->navigation('navigation')->menu()->setPartial($partial);
+		          // Replace navigation labels
+		          $this->navigation('navigation')->findOneByLabel('<identity>')->setLabel($auth->getIdentity());
+		          $this->navigation('navigation')->menu()->setPartial($partial);
+		          echo $this->navigation('navigation')->menu()->render() ?>
           </div><!--/.nav-collapse -->
-          <!-- Member dropdown -->
-          <?php $sm = $this->getHelperPluginManager()->getServiceLocator(); 
-                $auth = $sm->get('auth'); ?>
-          <ul class="nav pull-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $auth->getIdentity(); ?><b class="caret"></b></a>
-              <ul class="dropdown-menu pull-right">
-                <li><a tabindex="-1" href="<?php echo $this->url('member', array('action' => 'logout')) ?>"><?php echo $this->translate('Log Out') ?></a></li>
-              </ul>
-            </li>
-          </ul>
         </div>
       </div>
     </div>

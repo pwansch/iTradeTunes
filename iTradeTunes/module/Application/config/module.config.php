@@ -40,14 +40,11 @@ return array(
     		'default' => array(
     				'application' => array(
     						'label' => 'Home',
-    						'route' => 'home',
+    						'uri' => '/',
     						'pages' => array(
     								'privacy' => array(
     										'label' => 'Privacy',
-    										'controller' => 'index',
-    										'action' => 'privacy',
-    										'resource' => 'Application\Controller\Index',
-    										'privilege' => 'privacy',
+    										'uri' => '/index/privacy',
     								),
     						),
     				),
