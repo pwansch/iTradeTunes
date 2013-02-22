@@ -1,5 +1,4 @@
 - Investigate the following:
-  - navigation menus coupled with ACL and styled correctly
   - database commit handling
   - pagination of albums
   - implement error, warning, info flash messages
@@ -13,6 +12,7 @@
   - implement remember me for log in
   - cache database results
   - use crypt functions for password handling
+  - upload member images
 
 - Create the views using default forms and create the controllers to render the views:
 User

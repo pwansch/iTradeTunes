@@ -73,6 +73,7 @@ return array(
 								'uri' => '/member/view',
 								'resource' => 'Trade\Controller\Member',
 								'privilege' => 'view',
+								'class' => 'pull-right',
 								'pages' => array(
 										'logout' => array(
 												'label' => 'Log Out',
