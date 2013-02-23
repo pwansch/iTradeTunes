@@ -2,6 +2,9 @@
 namespace Trade\Model;
 
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\Sql\Select;
+use Zend\Paginator\Adapter\DbSelect;
+use Zend\Paginator\Paginator;
 
 class AlbumTable
 {
@@ -12,6 +15,25 @@ class AlbumTable
 		$this->tableGateway = $tableGateway;
 	}
 
+	public function getPaginator($currentPageNumber = 1, $itemCountPerPage = 10, $pageRange = 1)
+	{
+		// Prepare where clause for paginator
+        $albumListWhereClause = 'id > 0';
+        $orderByClause = 'id desc';
+        
+        // Build album select statement
+	    $select = new Select();
+	    $select->from(array('a' => 'album'), array('id' => 'id', 'artist' => 'artist', 'title' => 'title'))->where($albumListWhereClause)->order($orderByClause);
+
+	    // Create paginator
+	    $adapter = new DbSelect($select, $this->tableGateway->getAdapter());
+	    $paginator = new Paginator($adapter);
+        $paginator->setItemCountPerPage($itemCountPerPage);
+	    $paginator->setPageRange($pageRange);
+        $paginator->setCurrentPageNumber($currentPageNumber);
+        return $paginator;
+    }
+   	
 	public function fetchAll()
 	{
 		$resultSet = $this->tableGateway->select();

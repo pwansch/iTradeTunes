@@ -13,6 +13,9 @@ class AlbumController extends AbstractApplicationController
 	
     public function indexAction()
     {
+    	$this->getAlbumTable()->getPaginator(1, 2, 1);
+    	
+    	
         return new ViewModel(array(
             'albums' => $this->getAlbumTable()->fetchAll(),
         ));
@@ -34,7 +37,7 @@ class AlbumController extends AbstractApplicationController
                 $album->exchangeArray($form->getData());
                 $this->beginTransaction();
                 $this->getAlbumTable()->saveAlbum($album);
-                $this->rollbackTransaction();
+                $this->commitTransaction();
 
                 // Redirect to list of albums
                 return $this->redirect()->toRoute('album');

@@ -34,7 +34,23 @@ return array(
 												'action'     => 'index',
 										),
 								),
+								'may_terminate' => true,
+								'child_routes' => array(
+										'default' => array(
+												'type'    => 'segment',
+												'options' => array(
+														'route'    => '/[page/:page]',
+														'constraints' => array(
+																'page' => '[0-9]+',
+														),
+														'defaults' => array(
+														'page' => 1,														
+														),
+												),
+										),
+								),
 						),
+						
 						'member' => array(
 								'type'    => 'segment',
 								'options' => array(

@@ -1,18 +1,19 @@
 - Investigate the following:
-  - database commit handling
   - pagination of albums
   - implement error, warning, info flash messages
   - batch error handling
   - join page with Captcha
   - access with JSON-based web service
   - log into database
-  - catch uncaught exceptions and send email
+  - catch uncaught exceptions into database
   - generate sitemaps
   - check framework version
   - implement remember me for log in
   - cache database results
   - use crypt functions for password handling
   - upload member images
+  - improve error handling
+  - send email for uncaught exceptions
 
 - Create the views using default forms and create the controllers to render the views:
 User
