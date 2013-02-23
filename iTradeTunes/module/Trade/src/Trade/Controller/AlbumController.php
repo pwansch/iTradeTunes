@@ -2,12 +2,12 @@
 // module/Trade/src/Trade/Controller/AlbumController.php:
 namespace Trade\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Application\Controller\AbstractApplicationController;
 use Zend\View\Model\ViewModel;
 use Trade\Model\Album;          // <-- Add this import
 use Trade\Form\AlbumForm;       // <-- Add this import
 
-class AlbumController extends AbstractActionController
+class AlbumController extends AbstractApplicationController
 {
 	protected $albumTable;
 	
@@ -32,7 +32,9 @@ class AlbumController extends AbstractActionController
 
             if ($form->isValid()) {
                 $album->exchangeArray($form->getData());
+                $this->beginTransaction();
                 $this->getAlbumTable()->saveAlbum($album);
+                $this->rollbackTransaction();
 
                 // Redirect to list of albums
                 return $this->redirect()->toRoute('album');

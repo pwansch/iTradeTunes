@@ -9,10 +9,10 @@
 
 namespace Trade\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Application\Controller\AbstractApplicationController;
 use Zend\Console\Request as ConsoleRequest;
 
-class PruneController extends AbstractActionController
+class PruneController extends AbstractApplicationController
 {
 	public function pruneLogAction()
 	{

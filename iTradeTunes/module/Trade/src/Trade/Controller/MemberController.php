@@ -2,11 +2,11 @@
 
 namespace Trade\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Application\Controller\AbstractApplicationController;
 use Zend\Authentication\Result;
 use Trade\Form\MemberForm;
 
-class MemberController extends AbstractActionController
+class MemberController extends AbstractApplicationController
 {
 	protected $auth;
 	protected $authAdapter;
