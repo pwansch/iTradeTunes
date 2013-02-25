@@ -24,14 +24,14 @@ return array(
 						'album' => array(
 								'type'    => 'segment',
 								'options' => array(
-										'route'    => '/album[/:action][/:id]',
+										'route'    => '/album[/page/:page]',
 										'constraints' => array(
-												'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-												'id'     => '[0-9]+',
+												'page'   => '[0-9]+',
 										),
 										'defaults' => array(
-												'controller' => 'Trade\Controller\Album',
+												'controller' => 'Trade\Controller\Album',												
 												'action'     => 'index',
+												'page'       => 1,
 										),
 								),
 								'may_terminate' => true,
@@ -39,18 +39,15 @@ return array(
 										'default' => array(
 												'type'    => 'segment',
 												'options' => array(
-														'route'    => '/[page/:page]',
+														'route'    => '[/:action][/:id]',
 														'constraints' => array(
-																'page' => '[0-9]+',
-														),
-														'defaults' => array(
-														'page' => 1,														
+															'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+															'id'     => '[0-9]+',
 														),
 												),
 										),
 								),
 						),
-						
 						'member' => array(
 								'type'    => 'segment',
 								'options' => array(

@@ -13,11 +13,14 @@ class AlbumController extends AbstractApplicationController
 	
     public function indexAction()
     {
-    	$this->getAlbumTable()->getPaginator(1, 2, 1);
+    	// Get the page number from the request
+    	$page = $this->params()->fromRoute('page');
     	
+    	// Get the paginator from the table object
+    	$paginator = $this->getAlbumTable()->getPaginator($page, 2, 1);
     	
         return new ViewModel(array(
-            'albums' => $this->getAlbumTable()->fetchAll(),
+        	'paginator' => $paginator,
         ));
     }
 

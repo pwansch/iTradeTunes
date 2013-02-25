@@ -6,16 +6,17 @@ $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 
-<p><a href="<?php echo $this->url('album', array(
-        'action'=>'add'));?>">Add new album</a></p>
 
+
+
+<?php if (count($this->paginator)): ?>
 <table class="table">
 <tr>
     <th>Title</th>
     <th>Artist</th>
     <th>&nbsp;</th>
 </tr>
-<?php foreach($albums as $album) : ?>
+<?php foreach($this->paginator as $album) : ?>
 <tr>
     <td><?php echo $this->escapeHtml($album->title);?></td>
     <td><?php echo $this->escapeHtml($album->artist);?></td>    <td>
@@ -27,3 +28,8 @@ $this->headTitle($title);
 </tr>
 <?php endforeach; ?>
 </table>
+<?php endif; ?>
+<?php echo $this->paginationControl($this->paginator,
+                                    'Sliding',
+                                    'partial/pagination.phtml', array('route' => 'album')); ?>
+
