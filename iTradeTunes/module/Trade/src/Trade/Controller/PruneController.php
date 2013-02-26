@@ -17,7 +17,7 @@ class PruneController extends AbstractApplicationController
 	public function pruneLogAction()
 	{
 		$request = $this->getRequest();
-	
+
 		// Make sure that we are running in a console and the user has not tricked our
 		// application into running this action from a public web server
 		if (!$request instanceof ConsoleRequest){
@@ -25,7 +25,7 @@ class PruneController extends AbstractApplicationController
 		}
 		
 		// Get flags from console
-		$verbose = $request->getParam('verbose');		
+		$verbose = $request->getParam('v') | $request->getParam('verbose');		
 	
 		if ($verbose)
 		{
