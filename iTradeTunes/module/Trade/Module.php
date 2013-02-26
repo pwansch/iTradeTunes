@@ -53,7 +53,7 @@ class Module implements ConsoleUsageProviderInterface
 			// Set a warning message
 			$flashMessenger = $sm->get('ControllerPluginManager')->get('flashmessenger');
 			$translator = $sm->get('translator');
-			$flashMessenger->addMessage($translator->translate('You are not authorized to access that page. Log in.'));				
+			$flashMessenger->addErrorMessage($translator->translate('You are not authorized to access that page. Log in.'));				
 			
 			// Assemble the url
 			$router = $e->getRouter();

@@ -57,16 +57,30 @@ echo $this->doctype(); ?>
 
     <div class="container">
 
+      <!-- Display error flash messages -->
+      <?php $messages = $this->flashMessages()->errorMessages();
+            if(count($messages) > 0) :
+              echo $this->partial('partial/message.phtml', array('messages' => $messages, 'class' => 'alert-error'));
+            endif; ?>
+
       <!-- Display flash messages -->
-      <?php if(count($this->flashMessages()) > 0) : ?>
-        <div class="alert">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <?php foreach ($this->flashMessages() as $message) : ?>
-            <?php echo $this->escapeHTML($message); ?><br>
-          <?php endforeach; ?>
-        </div>
-      <?php endif; ?>
+      <?php $messages = $this->flashMessages()->messages();
+            if(count($messages) > 0) :
+              echo $this->partial('partial/message.phtml', array('messages' => $messages, 'class' => 'alert-block'));
+            endif; ?>
+                  
+      <!-- Display info flash messages -->
+      <?php $messages = $this->flashMessages()->infoMessages();
+            if(count($messages) > 0) :
+              echo $this->partial('partial/message.phtml', array('messages' => $messages, 'class' => 'alert-info'));
+            endif; ?>
       
+      <!-- Display success flash messages -->
+      <?php $messages = $this->flashMessages()->successMessages();
+            if(count($messages) > 0) :
+              echo $this->partial('partial/message.phtml', array('messages' => $messages, 'class' => 'alert-success'));
+            endif; ?>
+                  
       <?php echo $this->content; ?>
       <hr>
       <footer>

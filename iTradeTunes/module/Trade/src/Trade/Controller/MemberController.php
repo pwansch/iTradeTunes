@@ -35,12 +35,12 @@ class MemberController extends AbstractApplicationController
     			switch ($result->getCode())
     			{
     				case Result::FAILURE_IDENTITY_NOT_FOUND:
-    					$this->flashMessenger()->addMessage($this->getTranslator()->translate('Invalid email address or password.'));
+    					$this->flashMessenger()->addErrorMessage($this->getTranslator()->translate('Invalid email address or password.'));
     					break;
     					 
     				case Result::FAILURE_CREDENTIAL_INVALID:
     				default:
-    					$this->flashMessenger()->addMessage($this->getTranslator()->translate('Invalid email address or password.'));
+    					$this->flashMessenger()->addErrorMessage($this->getTranslator()->translate('Invalid email address or password.'));
     					break;
     			}
 
