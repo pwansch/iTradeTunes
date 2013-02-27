@@ -68,9 +68,9 @@ return array(
 										'page' => array(
 												'type' => 'segment',
 												'options' => array(
-														'route' => '/page[/:id]',
+														'route' => '/page[/:page]',
 														'constraints' => array(
-																'id' => '[0-9]+',
+																'page' => '[0-9]+',
 														),
 														'defaults' => array(
 																'action' => 'index',
