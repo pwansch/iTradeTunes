@@ -11,6 +11,7 @@ namespace Trade\Controller;
 
 use Application\Controller\AbstractApplicationController;
 use Zend\Console\Request as ConsoleRequest;
+use Zend\Console\Adapter\AdapterInterface as Console;
 
 class PruneController extends AbstractApplicationController
 {
@@ -21,15 +22,24 @@ class PruneController extends AbstractApplicationController
 		// Make sure that we are running in a console and the user has not tricked our
 		// application into running this action from a public web server
 		if (!$request instanceof ConsoleRequest){
-			throw new \RuntimeException('You can only use this action from a console.');
+			throw new RuntimeException('You can only use this action from a console.');
 		}
-		
+
 		// Get flags from console
 		$verbose = $request->getParam('v') | $request->getParam('verbose');		
 	
+		// Get console adapter
+		$console = $this->getServiceLocator()->get('console');
+		if (!$console instanceof Console) {
+			throw new RuntimeException('Cannot obtain console adapter.');
+		}
+		
 		if ($verbose)
 		{
-			return "Logs have been pruned successfully.\n";
-		} 
+			$console->write("Logs have been pruned successfully.\n");
+		}
+
+        // Exit with a return code
+		exit(0);
 	}	
 }

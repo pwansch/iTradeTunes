@@ -22,27 +22,58 @@ return array(
 		'router' => array(
 				'routes' => array(
 						'album' => array(
-								'type'    => 'segment',
+								'type'    => 'literal',
 								'options' => array(
-										'route'    => '/album[/page/:page]',
-										'constraints' => array(
-												'page'   => '[0-9]+',
-										),
+										'route'    => '/album',
 										'defaults' => array(
-												'controller' => 'Trade\Controller\Album',												
-												'action'     => 'index',
-												'page'       => 1,
+												'controller' => 'Trade\Controller\Album',
+												'action' => 'index',
 										),
 								),
 								'may_terminate' => true,
 								'child_routes' => array(
-										'default' => array(
-												'type'    => 'segment',
+										'add' => array(
+												'type' => 'literal',
 												'options' => array(
-														'route'    => '[/:action][/:id]',
+														'route' => '/add',
+														'defaults' => array(
+																'action' => 'add',
+														),
+												),
+										),
+										'delete' => array(
+												'type' => 'segment',
+												'options' => array(
+														'route' => '/delete[/:id]',
 														'constraints' => array(
-															'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-															'id'     => '[0-9]+',
+																'id' => '[0-9]+',
+														),
+														'defaults' => array(
+																'action' => 'delete',
+														),
+												),
+										),
+										'edit' => array(
+												'type' => 'segment',
+												'options' => array(
+														'route' => '/edit[/:id]',
+														'constraints' => array(
+																'id' => '[0-9]+',
+														),
+														'defaults' => array(
+																'action' => 'edit',
+														),
+												),
+										),
+										'page' => array(
+												'type' => 'segment',
+												'options' => array(
+														'route' => '/page[/:id]',
+														'constraints' => array(
+																'id' => '[0-9]+',
+														),
+														'defaults' => array(
+																'action' => 'index',
 														),
 												),
 										),
