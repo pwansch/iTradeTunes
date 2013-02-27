@@ -1,5 +1,4 @@
 - Investigate the following:
-  - batch error handling
   - join page with Captcha
   - access with JSON-based web service
   - log into database
