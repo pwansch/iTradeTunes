@@ -31,7 +31,6 @@ CREATE TABLE member (
   thumbnail_image varchar(64) DEFAULT NULL, -- member provided
   about varchar(255) DEFAULT NULL,
   interests varchar(255) DEFAULT NULL,
-  goto varchar(255) DEFAULT NULL,
   status int(1) DEFAULT 1 NOT NULL, -- 1 active, 0 locked
   date_of_last_logon datetime DEFAULT NULL,
   number_of_logons int(5) DEFAULT 0,
@@ -51,6 +50,20 @@ CREATE TABLE album (
   artist varchar(100) NOT NULL,
   title varchar(100) NOT NULL,
   PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Log table
+--
+CREATE TABLE log (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  timestamp datetime NOT NULL,
+  level varchar(6) NOT NULL,
+  message varchar(8192) DEFAULT NULL,
+  code int(1) NOT NULL, -- 0 default, 1 account locked, 2 mail
+  ip_address varchar(39) DEFAULT NULL,
+  PRIMARY KEY (id),
+  KEY idx_log_1 (level, timestamp)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- End of createdb.sql

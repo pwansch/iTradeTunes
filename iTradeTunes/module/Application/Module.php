@@ -51,6 +51,7 @@ class Module
     			'invokables' => array(
     					// View helpers
     					'flashMessages' => 'Application\View\Helper\FlashMessages',
+    					'logger' => 'Application\Utilities\Logger',
     			),    			
     	);
     }    
