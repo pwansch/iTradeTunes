@@ -20,14 +20,17 @@ class Module implements ConsoleUsageProviderInterface
 	{
 		$eventManager = $e->getApplication()->getEventManager();
 		$eventManager->attach(MvcEvent::EVENT_DISPATCH, array($this, 'checkAndSetAcl'), 200);
-		$eventManager->getSharedManager()->attach('Zend\Mvc\Controller\AbstractActionController', 'dispatch', function($e) {
-			// If a member has been authenticated, set the layout for this module
-			$auth = $e->getApplication()->getServiceManager()->get('auth');
-			if ($auth->hasIdentity()) {
-				$controller = $e->getTarget();
-				$controller->layout('trade/layout');
-			}			
-		}, 100);		
+		$eventManager->attach(array(MvcEvent::EVENT_DISPATCH, MvcEvent::EVENT_DISPATCH_ERROR), array($this, 'setLayout'), 100);
+	}
+
+	function setLayout(MvcEvent $e)
+	{
+		// If a member has been authenticated, set the layout for this module
+		$auth = $e->getApplication()->getServiceManager()->get('auth');
+		if ($auth->hasIdentity()) {
+			$vm = $e->getViewModel();
+			$vm->setTemplate('trade/layout');
+		}
 	}
 	
 	public function checkAndSetAcl(MvcEvent $e)
