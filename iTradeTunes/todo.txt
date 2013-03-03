@@ -1,7 +1,7 @@
 - Investigate the following:
+  - log into database
   - join page with Captcha
   - access with JSON-based web service
-  - log into database
   - catch uncaught exceptions into database
   - generate sitemaps
   - check framework version
