@@ -1,5 +1,5 @@
 - Investigate the following:
-  - log into database
+  - log uncaught exceptions into database
   - join page with Captcha
   - access with JSON-based web service
   - catch uncaught exceptions into database
