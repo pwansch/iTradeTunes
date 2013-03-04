@@ -10,45 +10,88 @@
 
 namespace Application\Utilities;
 
-final class Logger implements ServiceLocatorAwareInterface
-{
-	protected $serviceLocator;
-    private static $config = null; 
-    
-    public function setServiceLocator(ServiceLocatorInterface $serviceLocator) {
-    	$this->serviceLocator = $serviceLocator;
-    }
-    
-    public function getServiceLocator() {
-    	return $this->serviceLocator;
-    }
-    
-    public static function log($message, $priority = Zend_Log::DEBUG, $code = Log::LOG_CODE_DEFAULT) 
-    {
-        // Get the priority
-        $logLevel = intval(Zend_Registry::get('config')->log->level);    	     	    	    	
-    	
-        // DB Logger
-        if (Zend_Registry::isRegistered('dbLogger'))
-        {
-            $dbLogger = Zend_Registry::get('dbLogger');
-        }
-        else
-        {        
-    	    $dbWriter = self::getDBLogWriter($logLevel);
-    	    $dbLogger = new Zend_Log($dbWriter);
-            Zend_Registry::set('dbLogger', $dbLogger);
-        }
+use Zend\Log\Filter\Priority;
+use Zend\Log\Logger as ZendLogger;
+use Zend\Log\Writer\Db as DbWriter;
+use DateTime;
+use DateTimeZone;
 
-        // Set a differently formatted timestamp
-        $dbLogger->setEventItem('timestamp', GgvModel::getMySQLDateNowUTC());
+final class Logger
+{
+	const CODE_DEFAULT = 0;
+	const CODE_ACCOUNT_LOCKED = 1;
+	const CODE_MAIL = 2;
+	protected $logger;
+	protected $auth;
+    
+	public function __construct($sm)
+	{
+		// Get logging configuration
+		$config = $sm->get('config');
+		if (isset($config['logger_config']['level'])) {
+			$level = $config['logger_config']['level'];
+		} else {
+			$level = ZendLogger::ERR;
+		}
+		if (isset($config['logger_config']['details'])) {
+			$details = $config['logger_config']['details'];
+		} else {
+			$details = false;
+		}
+		
+		// Get authentication adapter
+		$this->auth = $sm->get('auth');
+
+		// Configurate database logging adapter
+		$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+		$columnMapping = array(
+				'timestamp' => 'timestamp',
+				'priorityName' => 'level',
+				'message' => 'message',
+				'extra' => array (
+					'code' => 'code',
+					'emailAddress' => 'email_address',
+					'ipAddress' => 'ip_address',
+				),
+		);
+		$writer = new DbWriter($dbAdapter, 'log', $columnMapping);
+		$writer->addFilter(new Priority($level));
+		$this->logger = new ZendLogger();
+		$this->logger->addWriter($writer);
+	}
+	    
+    protected function getLogger()
+    {
+    	return $this->logger;
+    }
+    
+    public function log($priority = ZendLogger::DEBUG, $message, $code = Logger::CODE_DEFAULT) 
+    {
+    	$extra = array();
 
         // Remove newline characters from log message
         $newLineChars = array('\n', '\r');      
-        $message = str_replace($newLineChars, "", $message );      
+        $message = str_replace($newLineChars, '', $message);      
               
         // Log the event
-        $dbLogger->setEventItem('code', $code);
+        if (!is_null($code))
+        {
+        	$extra['code'] = $code;
+        }
+        else
+        {
+        	$extra['code'] = Logger::CODE_DEFAULT;
+        }
+        
+        if ($this->auth->hasIdentity()) {
+        	$emailAddress = $this->auth->getIdentity();
+        }
+        else
+        {
+        	$emailAddress = '';
+        }
+        $extra['emailAddress'] = $emailAddress;
+
         if (array_key_exists('REMOTE_ADDR', $_SERVER)) 
         {
             $ipAddress = $_SERVER['REMOTE_ADDR'];
@@ -57,81 +100,15 @@ final class Logger implements ServiceLocatorAwareInterface
         {
             $ipAddress = null;
         }
-        $dbLogger->setEventItem('ipAddress', $ipAddress);
+        $extra['ipAddress'] = $ipAddress;
         
-        $memberEmailAddress = null;
-        try 
-        {
-        	$session = Zend_Registry::get('session');
-        	if ($session->authEmailAddress)
-        	{
-        		$memberEmailAddress = $session->authEmailAddress;
-        	}
-        }
-        catch (Zend_Exception $e)
-        {
-        	// The member email address will be set to null
-        }
-        $dbLogger->setEventItem('memberEmailAddress', $memberEmailAddress);
-        
-        // Log the event
-        $dbLogger->log($message, $priority);
-                
-        // FireBug Logger       
-        if(Zend_Registry::get('config')->log->firebug)
-        {
-            if(Zend_Registry::isRegistered('fbLogger'))
-            {
-                $fbLogger = Zend_Registry::get('fbLogger');
-            }
-            else
-            {
-                $fbWriter = new Zend_Log_Writer_Firebug();
-                $fbWriter->addFilter(new Zend_Log_Filter_Priority($logLevel));
-	            $fbLogger = new Zend_Log($fbWriter);
-                Zend_Registry::set('fblogger', $fbLogger);   
-            }        	            
-            // Log the message 
-	        $fbLogger->log($message, $priority);		                     	  
-        }        
+        // Log the message
+        $this->getLogger()->log($priority, $message, $extra);
     }
     
-    public static function formatException($exception)
+    public function formatException($exception)
     {
     	$message = 'Message: ' . $exception->getMessage() . ' Stack trace: ' . $exception->getTraceAsString();
     	return $message;
-    }
-    
-    public static function getDBLogWriter($logLevel)
-    {       
-        $db = Zend_Registry::get('db') ;
-        $columnMapping = array(
-            'log_timestamp' => 'timestamp', 
-            'log_level' => 'priorityName', 
-            'log_message' => 'message', 
-            'log_code' => 'code',
-            'log_ip_address' => 'ipAddress',
-            'log_member_email_address' => 'memberEmailAddress'
-        );
-
-        $writer = new Zend_Log_Writer_Db($db, 'log', $columnMapping);
-        $writer->addFilter(new Zend_Log_Filter_Priority($logLevel));
-        return $writer;
-    }  
-    
-    public static function debug($variable, $location)
-    {
-        // Load the config from the registry
-        if (is_null(self::$config))
-        {
-            self::$config = Zend_Registry::get('config');            
-        }
-        
-        // Add a debug entry
-        if (self::$config->log->level == Zend_Log::DEBUG)
-        {
-            $dump = Zend_Debug::dump($variable, null, false);
-            GgvLogger::log($location . ':' . $dump, Zend_Log::DEBUG);    
-        }
     }
 }

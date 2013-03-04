@@ -61,6 +61,7 @@ CREATE TABLE log (
   level varchar(6) NOT NULL,
   message varchar(8192) DEFAULT NULL,
   code int(1) NOT NULL, -- 0 default, 1 account locked, 2 mail
+  email_address varchar(96) NOT NULL,
   ip_address varchar(39) DEFAULT NULL,
   PRIMARY KEY (id),
   KEY idx_log_1 (level, timestamp)

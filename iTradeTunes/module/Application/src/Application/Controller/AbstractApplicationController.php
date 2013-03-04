@@ -14,6 +14,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 abstract class AbstractApplicationController extends AbstractActionController
 {
 	protected $dbAdapter;
+	protected $logger;
 	
 	public function getDbAdapter()
 	{
@@ -24,6 +25,15 @@ abstract class AbstractApplicationController extends AbstractActionController
 		return $this->dbAdapter;
 	}
 
+	public function getLogger()
+	{
+		if (!$this->logger) {
+			$sm = $this->getServiceLocator();
+			$this->logger = $sm->get('logger');
+		}
+		return $this->logger;
+	}
+	
 	public function beginTransaction()
 	{
 		$this->getDbAdapter()->getDriver()->getConnection()->beginTransaction();

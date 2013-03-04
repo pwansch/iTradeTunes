@@ -9,6 +9,7 @@
 
 namespace Application;
 
+use Application\Utilities\Logger;
 use Zend\Mvc\ModuleRouteListener;
 use Application\View\Helper\AbsoluteUrl;
 
@@ -51,8 +52,19 @@ class Module
     			'invokables' => array(
     					// View helpers
     					'flashMessages' => 'Application\View\Helper\FlashMessages',
-    					'logger' => 'Application\Utilities\Logger',
     			),    			
     	);
-    }    
+    } 
+    
+    public function getServiceConfig()
+    {
+    	return array(
+    			'factories' => array(
+    					'logger' => function($sm) {
+    						$logger = new Logger($sm);
+    						return $logger;
+    					},
+    			),
+    	);
+    }
 }
