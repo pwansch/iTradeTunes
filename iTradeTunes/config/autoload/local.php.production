@@ -18,6 +18,10 @@ return array(
         'password' => '<password>',
     ),
 	'logger_config' => array(
-		'level' => Zend\Log\Logger::DEBUG,
+		'level' => Zend\Log\Logger::ERROR,
 	),
+	'view_manager' => array(
+		'display_not_found_reason' => false,
+		'display_exceptions'       => false,
+	),	
 );

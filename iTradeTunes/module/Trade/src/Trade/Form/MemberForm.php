@@ -37,9 +37,6 @@ class MemberForm extends Form
 		$interests = new Element\Text('interests');
 		$interests->setLabel('Interests')
 		          ->setAttributes(array('size'  => '255'));
-		$goto = new Element\Text('goto');
-		$goto->setLabel('Go To')
-		     ->setAttributes(array('size'  => '255'));
 		$submit = new Element\Submit('submit');
 		$submit->setValue('Join');
 		
@@ -52,8 +49,6 @@ class MemberForm extends Form
 		     ->add($password)
 		     ->add($about)
 		     ->add($interests)
-		     ->add($goto)
 		     ->add($submit);	
-
 	}
 }

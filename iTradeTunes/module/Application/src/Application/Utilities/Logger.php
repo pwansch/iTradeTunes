@@ -13,8 +13,7 @@ namespace Application\Utilities;
 use Zend\Log\Filter\Priority;
 use Zend\Log\Logger as ZendLogger;
 use Zend\Log\Writer\Db as DbWriter;
-use DateTime;
-use DateTimeZone;
+use Zend\Debug\Debug;
 
 final class Logger
 {
@@ -23,20 +22,16 @@ final class Logger
 	const CODE_MAIL = 2;
 	protected $logger;
 	protected $auth;
+	protected $level;
     
 	public function __construct($sm)
 	{
 		// Get logging configuration
 		$config = $sm->get('config');
 		if (isset($config['logger_config']['level'])) {
-			$level = $config['logger_config']['level'];
+			$this->level = $config['logger_config']['level'];
 		} else {
-			$level = ZendLogger::ERR;
-		}
-		if (isset($config['logger_config']['details'])) {
-			$details = $config['logger_config']['details'];
-		} else {
-			$details = false;
+			$this->level = ZendLogger::ERR;
 		}
 		
 		// Get authentication adapter
@@ -55,7 +50,7 @@ final class Logger
 				),
 		);
 		$writer = new DbWriter($dbAdapter, 'log', $columnMapping);
-		$writer->addFilter(new Priority($level));
+		$writer->addFilter(new Priority($this->level));
 		$this->logger = new ZendLogger();
 		$this->logger->addWriter($writer);
 	}
@@ -111,4 +106,13 @@ final class Logger
     	$message = 'Message: ' . $exception->getMessage() . ' Stack trace: ' . $exception->getTraceAsString();
     	return $message;
     }
+    
+    public static function debug($variable, $location)
+    {
+    	if ($this->level == ZendLogger::DEBUG)
+    	{
+    		$dump = Debug::dump($variable, null, false);
+    		$this->log(ZendLogger::DEBUG, $location . ':' . $dump);
+    	}
+    }    
 }

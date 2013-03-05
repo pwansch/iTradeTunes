@@ -1,16 +1,14 @@
 - Investigate the following:
-  - log uncaught exceptions into database
   - join page with Captcha
-  - access with JSON-based web service
-  - catch uncaught exceptions into database
-  - generate sitemaps
   - check framework version
+  - access with JSON-based web service  
   - implement remember me for log in
   - cache database results
   - use crypt functions for password handling
   - upload member images
   - improve error handling
   - send email for uncaught exceptions
+  - generate sitemaps  
 
 - Create the views using default forms and create the controllers to render the views:
 User

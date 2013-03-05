@@ -73,18 +73,20 @@ class MemberController extends AbstractApplicationController
     	
     	$request = $this->getRequest();
     	if ($request->isPost()) {
-    		//$album = new Album();
+    		//$member = new Album();
     		//$form->setInputFilter($album->getInputFilter());
     		//$form->setData($request->getPost());
     	
     		//if ($form->isValid()) {
     		//	$album->exchangeArray($form->getData());
+    		// $this->beginTransaction();
     		//	$this->getAlbumTable()->saveAlbum($album);
-    	
+    		//$this->commitTransaction();
     			// Redirect to list of albums
     		//	return $this->redirect()->toRoute('album');
     		//}
     	}
+    	
     	return array('form' => $form);    	
     }
     
