@@ -2,6 +2,7 @@
 
 namespace Trade\Form;
 
+use Zend\Captcha;
 use Zend\Form\Element;
 use Zend\Form\Form;
 
@@ -37,6 +38,9 @@ class MemberForm extends Form
 		$interests = new Element\Text('interests');
 		$interests->setLabel('Interests')
 		          ->setAttributes(array('size'  => '255'));
+		$captcha = new Element\Captcha('captcha');
+		$captcha->setCaptcha(new Captcha\Image());
+		$captcha->setLabel('Type text from the image above:');
 		$submit = new Element\Submit('submit');
 		$submit->setValue('Join');
 		
@@ -49,6 +53,7 @@ class MemberForm extends Form
 		     ->add($password)
 		     ->add($about)
 		     ->add($interests)
+		     ->add($captcha)
 		     ->add($submit);	
 	}
 }
