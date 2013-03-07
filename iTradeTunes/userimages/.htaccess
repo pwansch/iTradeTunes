@@ -1,0 +1,9 @@
+# htaccess protection for the userimages folder
+# should be done in the apache config for security reasons.
+
+Options -Indexes
+Options -ExecCGI
+
+# Show the "right" error document
+ErrorDocument 403 /error/clear_1x1.gif
+ErrorDocument 404 /error/clear_1x1.gif
