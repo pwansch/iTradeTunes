@@ -7,7 +7,7 @@ In order to run iTradeTunes:
      - In your httpd.conf file, ensure that the following line is not commented out:
        # Virtual hosts
        Include /Applications/MAMP/conf/apache/extra/httpd-vhosts.conf
-     - In your httpd-vhosts.conf file add an entry for your iTradeTunes virtual host:
+     - In your httpd-vhosts.conf file add an entry for your iTradeTunes virtual host and an alias for your userimages directory:
        <VirtualHost *:80>
            ServerName itradetunes.localhost
            DocumentRoot "/Users/pwansch/git/iTradeTunes/iTradeTunes/public"
@@ -17,13 +17,14 @@ In order to run iTradeTunes:
                Order allow,deny
                Allow from all
            </Directory>
+           Alias /userimages "/Users/pwansch/git/iTradeTunes/iTradeTunes/userimages"
        </VirtualHost>
  
  - Ensure that your Apache Web server loads the PHP and rewrite modules by verifying
    that the following lines are not commented out in httpd.conf:
      LoadModule php5_module /Applications/MAMP/bin/php/php5.4.4/modules/libphp5.so
      LoadModule rewrite_module modules/mod_rewrite.so
- 
+
  - Rename config/autoload local.php.[development|test|production] to local.php and edit it to match your environment.
    For instance: 
      'dsn' => 'mysql:dbname=itradetunes_dev;host=localhost',

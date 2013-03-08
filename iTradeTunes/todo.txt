@@ -1,13 +1,13 @@
 - Investigate the following:
   - join page with Captcha
-  - check framework version
+  - send emails
   - access with JSON-based web service  
+  - check framework version
   - implement remember me for log in
   - cache database results
   - use crypt functions for password handling
   - upload member images
   - improve error handling
-  - send email for uncaught exceptions
   - generate sitemaps  
 
 - Create the views using default forms and create the controllers to render the views:

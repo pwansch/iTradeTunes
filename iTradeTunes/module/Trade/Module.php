@@ -140,7 +140,7 @@ class Module implements ConsoleUsageProviderInterface
 							$resultSetPrototype = new ResultSet();
 							$resultSetPrototype->setArrayObjectPrototype(new Album());
 							return new TableGateway('album', $dbAdapter, null, $resultSetPrototype);
-						},						
+						},	
 				),
 		); 
 	}

@@ -3,15 +3,28 @@
 namespace Trade\Form;
 
 use Zend\Captcha;
+use Zend\Captcha\Image;
 use Zend\Form\Element;
 use Zend\Form\Form;
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
-class MemberForm extends Form
+class MemberForm extends Form implements ServiceLocatorAwareInterface
 {
-	public function __construct($name = null)
+	protected $serviceLocator;
+	
+	public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
 	{
-		// We ignore the name passed
-		parent::__construct('member');
+		$this->serviceLocator = $serviceLocator;
+	}
+	
+	public function getServiceLocator()
+	{
+		return $this->serviceLocator;
+	}		
+	
+	public function init()
+	{
 		$this->setAttribute('method', 'post');
 		
 		$id = new Element\Hidden('id');
@@ -38,9 +51,29 @@ class MemberForm extends Form
 		$interests = new Element\Text('interests');
 		$interests->setLabel('Interests')
 		          ->setAttributes(array('size'  => '255'));
+		$captchaImage = new Image(  array(
+				'font' => './fonts/arial.ttf',
+				'fontSize' => 32,
+				'wordLen' => 6,
+				'width' => 250,
+				'height' => 100,
+				'timeout' => 300,
+				'expiration' => 500,
+				'gcFreq' => 100,
+				'dotNoiseLevel' => 40,
+				'lineNoiseLevel' => 3)
+		);
+		
+		$captchaImage->setImgDir('./userimages/captcha');
+		$captchaImage->setImgUrl('/userimages/captcha');
+		$captchaImage->setName('member_captcha');
+		//$captcha->setSession($this->_session);
+		
+		
 		$captcha = new Element\Captcha('captcha');
-		$captcha->setCaptcha(new Captcha\Image());
+		$captcha->setCaptcha($captchaImage);
 		$captcha->setLabel('Type text from the image above:');
+
 		$submit = new Element\Submit('submit');
 		$submit->setValue('Join');
 		

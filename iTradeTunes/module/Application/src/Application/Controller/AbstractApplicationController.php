@@ -35,17 +35,6 @@ abstract class AbstractApplicationController extends AbstractActionController
 		return $this->logger;
 	}
 	
-	protected function generateCaptcha($name)
-	{
-		$captcha = new Image();
-		$captcha->setFont(GOGOVERDE_PATH_ROOT . '/fonts/arial.ttf');
-		$captcha->setImgDir(GOGOVERDE_PATH_ROOT . $this->_config->userimages->path . '/captcha');
-		$captcha->setImgUrl($this->view->userImagesUrl()  . '/captcha');
-		$captcha->setName($paramName);
-		$captcha->setSession($this->_session);
-		$captcha->generate();
-	}
-	
 	public function beginTransaction()
 	{
 		$this->getDbAdapter()->getDriver()->getConnection()->beginTransaction();

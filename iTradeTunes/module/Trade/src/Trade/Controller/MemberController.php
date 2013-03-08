@@ -69,6 +69,7 @@ class MemberController extends AbstractApplicationController
     public function joinAction()
     {
     	$form = new MemberForm();
+    	$form->init();
     	$form->get('submit')->setValue('Join');
     	
     	$request = $this->getRequest();
