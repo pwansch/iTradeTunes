@@ -18,6 +18,12 @@ In order to run iTradeTunes:
                Allow from all
            </Directory>
            Alias /userimages "/Users/pwansch/git/iTradeTunes/iTradeTunes/userimages"
+           <Directory "/Users/pwansch/git/iTradeTunes/iTradeTunes/userimages">
+               DirectoryIndex index.php
+               AllowOverride All
+               Order allow,deny
+               Allow from all
+           </Directory>
        </VirtualHost>
  
  - Ensure that your Apache Web server loads the PHP and rewrite modules by verifying
