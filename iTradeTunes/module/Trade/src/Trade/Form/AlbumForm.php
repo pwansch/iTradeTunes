@@ -2,9 +2,9 @@
 // module/Trade/src/Trade/Form/AlbumForm.php:
 namespace Trade\Form;
 
-use Zend\Form\Form;
+use Application\Form\AbstractApplicationForm;
 
-class AlbumForm extends Form
+class AlbumForm extends AbstractApplicationForm
 {
 	public function __construct($name = null)
 	{

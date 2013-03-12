@@ -56,7 +56,6 @@ class Member implements InputFilterAwareInterface
                 'name'     => 'artist',
                 'required' => true,
                 'filters'  => array(
-                    array('name' => 'StripTags'),
                     array('name' => 'StringTrim'),
                 ),
                 'validators' => array(
@@ -71,6 +70,7 @@ class Member implements InputFilterAwareInterface
                 ),
             )));
 
+            
             $inputFilter->add($factory->createInput(array(
                 'name'     => 'title',
                 'required' => true,

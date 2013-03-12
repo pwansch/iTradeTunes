@@ -16,6 +16,8 @@ abstract class AbstractApplicationController extends AbstractActionController
 {
 	protected $dbAdapter;
 	protected $logger;
+	protected $translator;
+	protected $session;
 	
 	public function getDbAdapter()
 	{
@@ -58,5 +60,23 @@ abstract class AbstractApplicationController extends AbstractActionController
 	public function enableForeignKeysCheck()
 	{
 		$this->getDbAdapter()->getDriver()->getConnection()->exec('SET foreign_key_checks = 1');
-	}	
+	}
+
+	public function getTranslator()
+	{
+		if (!$this->translator) {
+			$sm = $this->getServiceLocator();
+			$this->translator = $sm->get('translator');
+		}
+		return $this->translator;
+	}
+	
+	public function getSession()
+	{
+		if (!$this->session) {
+			$sm = $this->getServiceLocator();
+			$this->session = $sm->get('session');
+		}
+		return $this->session;
+	}
 }

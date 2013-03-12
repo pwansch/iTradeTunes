@@ -3,7 +3,7 @@ namespace Application\Form;
 
 use Zend\Form\Form;
 
-class LoginForm extends Form
+class LoginForm extends AbstractApplicationForm
 {
 	public function __construct($name = null)
 	{

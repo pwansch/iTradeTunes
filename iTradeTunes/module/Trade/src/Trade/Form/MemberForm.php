@@ -5,51 +5,38 @@ namespace Trade\Form;
 use Zend\Captcha;
 use Zend\Captcha\Image;
 use Zend\Form\Element;
-use Zend\Form\Form;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Application\Form\AbstractApplicationForm;
 
-class MemberForm extends Form implements ServiceLocatorAwareInterface
+class MemberForm extends AbstractApplicationForm
 {
-	protected $serviceLocator;
-	
-	public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-	{
-		$this->serviceLocator = $serviceLocator;
-	}
-	
-	public function getServiceLocator()
-	{
-		return $this->serviceLocator;
-	}		
-	
 	public function init()
 	{
 		$this->setAttribute('method', 'post');
-		
+
+		// Add the elements to the form
 		$id = new Element\Hidden('id');
 		$first_name = new Element\Text('first_name');
-		$first_name->setLabel('First Name')
+		$first_name->setLabel($this->getTranslator('First Name'))
 		           ->setAttributes(array('size'  => '32'));
 		$last_name = new Element\Text('last_name');		
-		$last_name->setLabel('Last Name')
+		$last_name->setLabel($this->getTranslator('Last Name'))
 		          ->setAttributes(array('size'  => '32'));
 		$email_address = new Element\Email('email_address');
-		$email_address->setLabel('Email Address')
+		$email_address->setLabel($this->getTranslator('Email Address'))
 		      ->setAttributes(array('size'  => '96'));
 		$email_address_private = new Element\Checkbox('email_address_private');
-		$email_address_private->setLabel('Email address private');
+		$email_address_private->setLabel($this->getTranslator('Email address private'));
 		$email_address_private->setUseHiddenElement(true);
 		$email_address_private->setCheckedValue("1");
 		$email_address_private->setUncheckedValue("0");
 		$password = new Element\Password('password');
-		$password->setLabel('Password')
+		$password->setLabel($this->getTranslator('Password'))
 		         ->setAttributes(array('size'  => '30'));
 		$about = new Element\Text('about');
-		$about->setLabel('About')
+		$about->setLabel($this->getTranslator('About'))
 	           ->setAttributes(array('size'  => '255'));
 		$interests = new Element\Text('interests');
-		$interests->setLabel('Interests')
+		$interests->setLabel($this->getTranslator('Interests'))
 		          ->setAttributes(array('size'  => '255'));
 		$captchaImage = new Image(  array(
 				'font' => './fonts/arial.ttf',
@@ -72,10 +59,10 @@ class MemberForm extends Form implements ServiceLocatorAwareInterface
 		
 		$captcha = new Element\Captcha('captcha');
 		$captcha->setCaptcha($captchaImage);
-		$captcha->setLabel('Type text from the image above:');
+		$captcha->setLabel($this->getTranslator('Type text from the image above:'));
 
 		$submit = new Element\Submit('submit');
-		$submit->setValue('Join');
+		$submit->setValue($this->getTranslator('Join'));
 		
 		// Add elements to form
 		$this->add($id)

@@ -10,8 +10,6 @@ class MemberController extends AbstractApplicationController
 {
 	protected $auth;
 	protected $authAdapter;
-	protected $translator;
-	protected $session;	
 		
     public function loginAction()
     {
@@ -68,26 +66,33 @@ class MemberController extends AbstractApplicationController
 
     public function joinAction()
     {
-    	$form = new MemberForm();
-    	$form->init();
-    	$form->get('submit')->setValue('Join');
+    	// Create and initialize the member form for join
+    	$formManager = $this->serviceLocator->get('FormElementManager');
+    	$form            = $formManager->get('Trade\Form\MemberForm');
+    	
+    	//$form = new MemberForm();
+    	//$form->init();
+    	$form->get('submit')->setValue($this->getTranslator()->translate('Join'));
     	
     	$request = $this->getRequest();
     	if ($request->isPost()) {
-    		//$member = new Album();
-    		//$form->setInputFilter($album->getInputFilter());
-    		//$form->setData($request->getPost());
+    		$member = new Member();
+    		$form->setInputFilter($member->getInputFilter());
+    		$form->setData($request->getPost());
     	
-    		//if ($form->isValid()) {
-    		//	$album->exchangeArray($form->getData());
-    		// $this->beginTransaction();
-    		//	$this->getAlbumTable()->saveAlbum($album);
-    		//$this->commitTransaction();
-    			// Redirect to list of albums
-    		//	return $this->redirect()->toRoute('album');
-    		//}
+    		if ($form->isValid()) {
+    			// Create the new member in the database
+    		    $member->exchangeArray($form->getData());
+    		    $this->beginTransaction();
+    			// $this->getAlbumTable()->saveAlbum($album);
+    		    $this->commitTransaction();
+    			
+    		    // Redirect to to the home page
+    		    return $this->redirect()->toRoute('home');
+    		}
     	}
     	
+    	// Return the form to the view
     	return array('form' => $form);    	
     }
     
@@ -111,23 +116,5 @@ class MemberController extends AbstractApplicationController
     		$this->authAdapter = $sm->get('authAdapter');
     	}
     	return $this->authAdapter;
-    }
-    
-    public function getTranslator()
-    {
-    	if (!$this->translator) {
-    		$sm = $this->getServiceLocator();
-    		$this->translator = $sm->get('translator');
-    	}
-    	return $this->translator;
-    }    
-    
-    public function getSession()
-    {
-    	if (!$this->session) {
-    		$sm = $this->getServiceLocator();
-    		$this->session = $sm->get('session');
-    	}
-    	return $this->session;
     }
 }
