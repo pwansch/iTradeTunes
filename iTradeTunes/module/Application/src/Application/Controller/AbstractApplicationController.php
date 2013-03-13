@@ -18,6 +18,7 @@ abstract class AbstractApplicationController extends AbstractActionController
 	protected $logger;
 	protected $translator;
 	protected $session;
+	protected $formManager;
 	
 	public function getDbAdapter()
 	{
@@ -78,5 +79,13 @@ abstract class AbstractApplicationController extends AbstractActionController
 			$this->session = $sm->get('session');
 		}
 		return $this->session;
+	}
+	
+	public function getFormManager()
+	{
+		if (!$this->formManager) {
+			$this->formManager = $this->getServiceLocator()->get('FormElementManager');
+		}
+		return $this->formManager;
 	}
 }

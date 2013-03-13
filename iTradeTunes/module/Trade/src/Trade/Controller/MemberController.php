@@ -67,13 +67,10 @@ class MemberController extends AbstractApplicationController
     public function joinAction()
     {
     	// Create and initialize the member form for join
-    	$formManager = $this->serviceLocator->get('FormElementManager');
-    	$form            = $formManager->get('Trade\Form\MemberForm');
-    	
-    	//$form = new MemberForm();
-    	//$form->init();
+    	$form = $this->getFormManager()->get('Trade\Form\MemberForm');
     	$form->get('submit')->setValue($this->getTranslator()->translate('Join'));
-    	
+
+    	// Process the request
     	$request = $this->getRequest();
     	if ($request->isPost()) {
     		$member = new Member();

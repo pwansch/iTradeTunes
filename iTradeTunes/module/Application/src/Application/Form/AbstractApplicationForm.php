@@ -7,24 +7,25 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 abstract class AbstractApplicationForm extends Form implements ServiceLocatorAwareInterface
 {
-	protected $serviceLocator;
+	protected $sm;
 	protected $translator;
 	
 	public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
 	{
-		$this->serviceLocator = $serviceLocator;
+		$this->sm = $serviceLocator;
 	}
 	
 	public function getServiceLocator()
 	{
-		return $this->serviceLocator;
+		return $this->sm;
 	}		
 	
-	public function getTranslator()
+	public function translate($message)
 	{
 		if (!$this->translator) {
-			$this->translator = $this->getServiceLocator()->get('translator');
+			// Retrieve the translator from the main service manager
+			$this->translator = $this->getServiceLocator()->getServiceLocator()->get('translator');
 		}
-		return $this->translator;
+		return $this->translator->translate($message);
 	}
 }

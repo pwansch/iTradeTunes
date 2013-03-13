@@ -16,27 +16,27 @@ class MemberForm extends AbstractApplicationForm
 		// Add the elements to the form
 		$id = new Element\Hidden('id');
 		$first_name = new Element\Text('first_name');
-		$first_name->setLabel($this->getTranslator('First Name'))
+		$first_name->setLabel($this->translate('First Name'))
 		           ->setAttributes(array('size'  => '32'));
 		$last_name = new Element\Text('last_name');		
-		$last_name->setLabel($this->getTranslator('Last Name'))
+		$last_name->setLabel($this->translate('Last Name'))
 		          ->setAttributes(array('size'  => '32'));
 		$email_address = new Element\Email('email_address');
-		$email_address->setLabel($this->getTranslator('Email Address'))
+		$email_address->setLabel($this->translate('Email Address'))
 		      ->setAttributes(array('size'  => '96'));
 		$email_address_private = new Element\Checkbox('email_address_private');
-		$email_address_private->setLabel($this->getTranslator('Email address private'));
+		$email_address_private->setLabel($this->translate('Email address private'));
 		$email_address_private->setUseHiddenElement(true);
 		$email_address_private->setCheckedValue("1");
 		$email_address_private->setUncheckedValue("0");
 		$password = new Element\Password('password');
-		$password->setLabel($this->getTranslator('Password'))
+		$password->setLabel($this->translate('Password'))
 		         ->setAttributes(array('size'  => '30'));
 		$about = new Element\Text('about');
-		$about->setLabel($this->getTranslator('About'))
+		$about->setLabel($this->translate('About'))
 	           ->setAttributes(array('size'  => '255'));
 		$interests = new Element\Text('interests');
-		$interests->setLabel($this->getTranslator('Interests'))
+		$interests->setLabel($this->translate('Interests'))
 		          ->setAttributes(array('size'  => '255'));
 		$captchaImage = new Image(  array(
 				'font' => './fonts/arial.ttf',
@@ -59,10 +59,10 @@ class MemberForm extends AbstractApplicationForm
 		
 		$captcha = new Element\Captcha('captcha');
 		$captcha->setCaptcha($captchaImage);
-		$captcha->setLabel($this->getTranslator('Type text from the image above:'));
+		$captcha->setLabel($this->translate('Type text from the image above:'));
 
 		$submit = new Element\Submit('submit');
-		$submit->setValue($this->getTranslator('Join'));
+		$submit->setValue($this->translate('Join'));
 		
 		// Add elements to form
 		$this->add($id)
