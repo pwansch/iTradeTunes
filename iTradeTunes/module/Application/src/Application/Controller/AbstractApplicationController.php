@@ -10,7 +10,6 @@
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Captcha\Image;
 
 abstract class AbstractApplicationController extends AbstractActionController
 {

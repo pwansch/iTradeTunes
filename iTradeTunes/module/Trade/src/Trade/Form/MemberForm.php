@@ -12,11 +12,13 @@ class MemberForm extends AbstractApplicationForm
 	public function init()
 	{
 		$this->setAttribute('method', 'post');
+		$this->setAttribute('class', 'form-horizontal');
 
 		// Add the elements to the form
 		$id = new Element\Hidden('id');
 		$first_name = new Element\Text('first_name');
 		$first_name->setLabel($this->translate('First Name'))
+				   ->setLabelAttributes(array('class'  => 'control-label'))
 		           ->setAttributes(array('size'  => '32'));
 		$last_name = new Element\Text('last_name');		
 		$last_name->setLabel($this->translate('Last Name'))
@@ -50,13 +52,10 @@ class MemberForm extends AbstractApplicationForm
 				'dotNoiseLevel' => 40,
 				'lineNoiseLevel' => 3)
 		);
-		
 		$captchaImage->setImgDir('./userimages/captcha');
 		$captchaImage->setImgUrl('/userimages/captcha');
 		$captchaImage->setName('member_captcha');
-		//$captcha->setSession($this->_session);
-		
-		
+		$captchaImage->setSession($this->getSession());
 		$captcha = new Element\Captcha('captcha');
 		$captcha->setCaptcha($captchaImage);
 		$captcha->setLabel($this->translate('Type text from the image above:'));

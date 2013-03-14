@@ -9,6 +9,7 @@ abstract class AbstractApplicationForm extends Form implements ServiceLocatorAwa
 {
 	protected $sm;
 	protected $translator;
+	protected $session;
 	
 	public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
 	{
@@ -28,4 +29,13 @@ abstract class AbstractApplicationForm extends Form implements ServiceLocatorAwa
 		}
 		return $this->translator->translate($message);
 	}
+	
+	public function getSession()
+	{
+		if (!$this->session) {
+			$sm = $this->getServiceLocator();
+			$this->session = $this->getServiceLocator()->getServiceLocator()->get('session');
+		}
+		return $this->session;
+	}	
 }
