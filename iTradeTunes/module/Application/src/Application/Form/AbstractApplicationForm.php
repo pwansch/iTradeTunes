@@ -8,7 +8,6 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 abstract class AbstractApplicationForm extends Form implements ServiceLocatorAwareInterface
 {
 	protected $sm;
-	protected $translator;
 	protected $session;
 	
 	public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
@@ -20,15 +19,6 @@ abstract class AbstractApplicationForm extends Form implements ServiceLocatorAwa
 	{
 		return $this->sm;
 	}		
-	
-	public function translate($message)
-	{
-		if (!$this->translator) {
-			// Retrieve the translator from the main service manager
-			$this->translator = $this->getServiceLocator()->getServiceLocator()->get('translator');
-		}
-		return $this->translator->translate($message);
-	}
 	
 	public function getSession()
 	{
