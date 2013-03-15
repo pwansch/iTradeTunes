@@ -15,6 +15,7 @@ return array(
 						'Trade\Controller\Album' => 'Trade\Controller\AlbumController',
 						'Trade\Controller\Prune' => 'Trade\Controller\PruneController',
 						'Trade\Controller\Member' => 'Trade\Controller\MemberController',
+						'Trade\Controller\AlbumRest' => 'Trade\Controller\AlbumRestController',
 				),
 		),
 
@@ -79,6 +80,18 @@ return array(
 										),
 								),
 						),
+						'album-rest' => array(
+								'type'    => 'segment',
+								'options' => array(
+										'route'    => '/album-rest[/:id]',
+										'constraints' => array(
+												'id'     => '[0-9]+',
+										),
+										'defaults' => array(
+												'controller' => 'Trade\Controller\AlbumRest',
+										),
+								),
+						),												
 						'member' => array(
 								'type'    => 'segment',
 								'options' => array(

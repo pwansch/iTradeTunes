@@ -19,6 +19,7 @@ class Module implements ConsoleUsageProviderInterface
 	public function onBootstrap(MvcEvent $e)
 	{
 		$eventManager = $e->getApplication()->getEventManager();
+		$eventManager->attach(MvcEvent::EVENT_RENDER, array($this, 'registerJsonStrategy'), 300);
 		$eventManager->attach(MvcEvent::EVENT_DISPATCH, array($this, 'checkAndSetAcl'), 200);
 		$eventManager->attach(array(MvcEvent::EVENT_DISPATCH, MvcEvent::EVENT_DISPATCH_ERROR), array($this, 'setLayout'), 100);
 	}
@@ -75,6 +76,30 @@ class Module implements ConsoleUsageProviderInterface
 		\Zend\View\Helper\Navigation::setDefaultAcl($acl);
 		\Zend\View\Helper\Navigation::setDefaultRole($role);
 	}	
+	
+	
+	public function registerJsonStrategy(MvcEvent $e)
+	{
+		// List all REST routes here explicitely
+		$REST_ROUTES = array('album-rest');
+		
+		// Get the route
+		$matches = $e->getRouteMatch();
+		$routeName = $matches->getMatchedRouteName();
+		
+		if(in_array($routeName, $REST_ROUTES))
+		{
+			// Get the service locator
+			$sm = $e->getApplication()->getServiceManager();
+				
+		    // Set the JSON strategy
+		    $view = $sm->get('Zend\View\View');
+		    $jsonStrategy = $sm->get('ViewJsonStrategy');
+					
+		    // Attach strategy, which is a listener aggregate, at high priority
+		    $view->getEventManager()->attach($jsonStrategy, 100);
+		}
+	}
 	
 	public function getAutoloaderConfig()
 	{

@@ -23,10 +23,12 @@ class AuthorizationPlugin extends AbstractPlugin
 		// Add controller resources
 		$this->acl->addResource(new Resource('Application\Controller\Index'));
 		$this->acl->addResource(new Resource('Trade\Controller\Album'));
+		$this->acl->addResource(new Resource('Trade\Controller\AlbumRest'));
 		$this->acl->addResource(new Resource('Trade\Controller\Member'));
 		$this->acl->addResource(new Resource('Trade\Controller\Prune'));
 		
 		// Allow or deny access to views
+		$this->acl->allow('anonymous', 'Trade\Controller\AlbumRest', array(''));
 		$this->acl->allow('anonymous', 'Application\Controller\Index', array('index', 'privacy'));
 		$this->acl->allow('anonymous', 'Trade\Controller\Member', array('login', 'join'));
 		$this->acl->allow('anonymous', 'Trade\Controller\Prune', array('pruneLog'));
@@ -41,6 +43,9 @@ class AuthorizationPlugin extends AbstractPlugin
 	
 	public function isAuthorized($role, $controller, $action)
 	{
+		print $action; return true;
+		//return true;
+		// TODO: Catch an invalid argument exception here
 		return $this->getAcl()->isAllowed($role, $controller, $action);
 	}
 }
