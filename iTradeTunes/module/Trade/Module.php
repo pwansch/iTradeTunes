@@ -16,10 +16,13 @@ use Zend\Http\Response;
 
 class Module implements ConsoleUsageProviderInterface
 {
+	// List all REST routes here explicitely
+	protected $REST_ROUTES = array('album-rest');
+	
 	public function onBootstrap(MvcEvent $e)
 	{
 		$eventManager = $e->getApplication()->getEventManager();
-		$eventManager->attach(MvcEvent::EVENT_RENDER, array($this, 'registerJsonStrategy'), 300);
+		$eventManager->attach(MvcEvent::EVENT_RENDER, array($this, 'registerJsonStrategy'), 100);
 		$eventManager->attach(MvcEvent::EVENT_DISPATCH, array($this, 'checkAndSetAcl'), 200);
 		$eventManager->attach(array(MvcEvent::EVENT_DISPATCH, MvcEvent::EVENT_DISPATCH_ERROR), array($this, 'setLayout'), 100);
 	}
@@ -39,8 +42,14 @@ class Module implements ConsoleUsageProviderInterface
 		$application = $e->getApplication();
 		$sm = $application->getServiceManager();
 
-		// Get the user, controller and action for the request
+		// Check if we have a rest route
 		$matches = $e->getRouteMatch();
+		if(in_array($matches->getMatchedRouteName(), $this->REST_ROUTES))
+		{
+			return;
+		}
+		
+		// Get the user, controller and action for the request
 		$controller = $matches->getParam('controller');
 		$action = $matches->getParam('action');
 		$auth = $sm->get('auth');
@@ -77,17 +86,14 @@ class Module implements ConsoleUsageProviderInterface
 		\Zend\View\Helper\Navigation::setDefaultRole($role);
 	}	
 	
-	
 	public function registerJsonStrategy(MvcEvent $e)
 	{
-		// List all REST routes here explicitely
-		$REST_ROUTES = array('album-rest');
 		
 		// Get the route
 		$matches = $e->getRouteMatch();
 		$routeName = $matches->getMatchedRouteName();
 		
-		if(in_array($routeName, $REST_ROUTES))
+		if(in_array($routeName, $this->REST_ROUTES))
 		{
 			// Get the service locator
 			$sm = $e->getApplication()->getServiceManager();
