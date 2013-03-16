@@ -107,7 +107,7 @@ final class Logger
     	return $message;
     }
     
-    public static function debug($variable, $location)
+    public function debug($variable, $location)
     {
     	if ($this->level == ZendLogger::DEBUG)
     	{
