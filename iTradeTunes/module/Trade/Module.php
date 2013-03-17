@@ -88,7 +88,6 @@ class Module implements ConsoleUsageProviderInterface
 	
 	public function registerJsonStrategy(MvcEvent $e)
 	{
-		
 		// Get the route
 		$matches = $e->getRouteMatch();
 		$routeName = $matches->getMatchedRouteName();
