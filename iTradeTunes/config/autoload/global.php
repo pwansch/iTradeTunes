@@ -27,4 +27,12 @@ return array(
                     => 'Zend\Db\Adapter\AdapterServiceFactory',
         ),
     ),
+	'mail_config' => array(
+		'sender' => array(
+			'name' => 'iTradeTunes',
+			'email' => 'noreply@itradetunes.com'
+		),
+		'retries' => 5,
+		'prune' => 30,
+	),
 );

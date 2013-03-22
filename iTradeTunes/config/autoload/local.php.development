@@ -20,4 +20,18 @@ return array(
 	'logger_config' => array(
 		'level' => Zend\Log\Logger::DEBUG,
 	),
+	'smtp_config' => array(
+		'name' => '<SMTP server name>',
+    	'host' => '<SMTP hostname or IP address>',
+		'port' => <port number such as 25, 465, 587>,
+    	'connection_class'  => '<'smtp', 'plain', 'login' or 'crammd5'>',
+    	'connection_config' => array(
+        	'username' => '<username>',
+        	'password' => '<password>',
+			'ssl'=>	'<'ssl' or 'tls'>'
+		),
+	),	
+	'mail_config' => array(
+		'sendmail' => false,
+	),	
 );
