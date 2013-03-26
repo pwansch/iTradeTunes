@@ -41,12 +41,10 @@
 
 namespace Application\Utilities;
 
-require_once 'library/ggv/GgvMailException.php';
-require_once 'application/models/MailTemplate.php';
-require_once 'application/models/Notification.php';
-require_once 'application/models/Log.php';
-require_once 'library/ggv/GgvUtil.php';
-require_once 'library/ggv/GgvLogger.php';
+use Zend\Mail\Message;
+use Zend\Mail\Transport\Smtp;
+use Zend\Mail\Transport\SmtpOptions;
+use Zend\Mail\Transport\Sendmail;
 
 final class Mail
 {
@@ -61,33 +59,36 @@ final class Mail
     private $_variables;
     private $_variablesHTML;
     private $_mailTemplate;
+    private $_transport;
+    private $_config;
 
-    public static function setDefaultMailParameters($sendmail = true, $smtpConfig = array())
-    {
-        if ($sendmail)
-        {
-            $transport = new Zend_Mail_Transport_Sendmail();
-        } 
-        else 
-        {
-            if ($smtpConfig instanceof Zend_Config) 
-            {
-                $smtpConfig = $smtpConfig->toArray();
-            }
-            $transport = new Zend_Mail_Transport_Smtp($smtpConfig['server'], $smtpConfig);
-        }
-        
-        Zend_Mail::setDefaultTransport($transport);
-    }
-    
     public function __construct($sm)
     {
+    	// Get configuration
+    	$this->_config = $sm->get('config');
     	
-    	
-    	
-    	
-    }    
-    
+    	if ($this->_config['mail_config']['sendmail'])
+    	{
+    		$this->_transport = new Sendmail();
+    	}
+    	else
+    	{
+    		$smtpConfig = new SmtpOptions($this->_config['smtp_config']);
+    		$this->_transport = new Smtp($smtpConfig);
+    	}
+    }  
+
+    public function sendSupportEmail($subject, $bodyText)
+    {
+   		$message = new Message();
+   		$message->setEncoding(('UTF-8'));
+   		$message->addTo($this->_config['mail_config']['support_email'], self::checkName($this->_config['mail_config']['support_name']));
+   		$message->setFrom($this->_config['mail_config']['reply_email'], self::checkName($this->_config['mail_config']['reply_name']));
+   		$message->setBody($bodyText);
+   		$message->setSubject($subject);
+   		$this->_transport->send($message);
+    }
+        
     public function setTemplate($template)
     {   
         $this->_mailTemplate = new MailTemplate();
@@ -316,25 +317,6 @@ final class Mail
                 }                     
             }
             
-            $mail->send();
-        }
-        catch (Exception $e)
-        {             
-            $translatedMessage = GgvUtil::translate('Unable to send email.');
-            throw new GgvMailException($translatedMessage, 0, $e);
-        }
-    }
-    
-    public static function sendSupportEmail($subject, $bodyText)
-    {
-        try
-        {
-            $mail = new Zend_Mail('UTF-8');
-            $config = Zend_Registry::get('config');
-            $mail->addTo($config->support->email, self::checkName($config->support->from));
-            $mail->setFrom('noreply@gogoverde.com', self::checkName('GoGoVerde'));
-            $mail->setBodyText($bodyText);
-            $mail->setSubject($subject);
             $mail->send();
         }
         catch (Exception $e)

@@ -26,5 +26,9 @@ return array(
 	),	
 	'mail_config' => array(
 		'sendmail' => true,
+		'reply_email' => 'noreply@itradetunes.com',
+		'reply_name' => 'iTradeTunes',
+		'support_email' => 'support@itradetunes.com',
+		'support_name' => 'iTradeTunes Support',		
 	),		
 );

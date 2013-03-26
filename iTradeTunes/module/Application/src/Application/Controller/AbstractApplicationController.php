@@ -15,6 +15,7 @@ abstract class AbstractApplicationController extends AbstractActionController
 {
 	protected $dbAdapter;
 	protected $logger;
+	protected $mail;
 	protected $translator;
 	protected $session;
 	protected $formManager;
@@ -35,6 +36,15 @@ abstract class AbstractApplicationController extends AbstractActionController
 			$this->logger = $sm->get('logger');
 		}
 		return $this->logger;
+	}
+	
+	public function getMail()
+	{
+		if (!$this->mail) {
+			$sm = $this->getServiceLocator();
+			$this->mail = $sm->get('mail');
+		}
+		return $this->mail;
 	}
 	
 	public function beginTransaction()

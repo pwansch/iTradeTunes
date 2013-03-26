@@ -10,6 +10,7 @@
 namespace Application;
 
 use Application\Utilities\Logger;
+use Application\Utilities\Mail;
 use Zend\Mvc\ModuleRouteListener;
 use Application\View\Helper\AbsoluteUrl;
 
@@ -63,6 +64,10 @@ class Module
     					'logger' => function($sm) {
     						$logger = new Logger($sm);
     						return $logger;
+    					},
+    					'mail' => function($sm) {
+    						$mail = new Mail($sm);
+    						return $mail;
     					},
     			),
     	);
