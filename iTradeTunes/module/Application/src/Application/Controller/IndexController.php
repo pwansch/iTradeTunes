@@ -10,7 +10,6 @@
 namespace Application\Controller;
 
 use Zend\View\Model\ViewModel;
-use Zend\Session\Container;
 
 class IndexController extends AbstractApplicationController
 {

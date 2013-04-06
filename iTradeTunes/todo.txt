@@ -1,9 +1,9 @@
 - Investigate the following:
+  - implement remember me for log in
   - access with JSON-based web service  
   - join page with Captcha
   - send emails
   - check framework version
-  - implement remember me for log in
   - Facebook login
   - cache database results
   - use crypt functions for password handling

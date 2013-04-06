@@ -1,9 +1,9 @@
 <?php
 return array(
     'modules' => array(
+    	'AkrabatSession',
         'Application',
     	'Trade', // Application specific module
-    	'AkrabatSession',
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(

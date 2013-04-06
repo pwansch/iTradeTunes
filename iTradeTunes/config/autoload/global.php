@@ -19,7 +19,8 @@ return array(
         ),
     ),
 	'session' => array(
-		'name' => 'iTradeTunes',
+		'name' => 'ITRADETUNES_SESSION',
+	    'remember_me_seconds' => 1209600,
 	),		
     'service_manager' => array(
         'factories' => array(
