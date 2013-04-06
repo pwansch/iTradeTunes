@@ -26,8 +26,6 @@ class Module
         
         $sessionManager = new SessionManager($config, $storage, $saveHandler);
         Container::setDefaultManager($sessionManager);
-        error_log('setdef');
-        $sessionManager->getConfig()->setCookieHttpOnly(true)->setName('ac-session');
         //$sessionManager->start();
     }
 
