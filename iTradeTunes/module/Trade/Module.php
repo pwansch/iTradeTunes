@@ -136,20 +136,9 @@ class Module implements ConsoleUsageProviderInterface
 						'auth' => function($sm) {
 							$auth = new AuthenticationService();
                             $config = $sm->get('config');
-                            if (isset($config['session_config']['container_name'])) {
-                            	$sessionContainer = new Container($config['session_config']['container_name']);
-                            } else {
-                            	// Use a default session container name
-                            	$sessionContainer = new Container('System_Auth');
-                            }
-                            
-                            if (isset($config['session_config']['expire_seconds'])) {
-                            	$sessionContainer->setExpirationSeconds($config['session_config']['expire_seconds']);
-                            } else {
-                            	// Use a default timeout of 10 minutes
-                            	$sessionContainer->setExpirationSeconds(600);
-                            }                            
-                            $auth->setStorage(new \Zend\Authentication\Storage\Session());
+                           	$sessionContainer = new Container($config['session_config']['container_name']);
+                           	$sessionContainer->setExpirationSeconds($config['session_config']['expire_seconds']);
+                            $auth->setStorage(new \Zend\Authentication\Storage\Session($config['session_config']['container_name']));
 							return $auth;
 						},
 						'authAdapter' => function($sm) {
