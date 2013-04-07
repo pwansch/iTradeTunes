@@ -126,12 +126,13 @@ class Module implements ConsoleUsageProviderInterface
 	}
 	
 	public function getServiceConfig()
-	{
+	{ 
 		return array(				
-				'services' => array(
-						 'session' => new Container(),
-						),				
 				'factories' => array(
+						'session' => function($sm) {
+							$sessionContainer = new Container();
+							return $sessionContainer;
+						},
 						'auth' => function($sm) {
 							$auth = new AuthenticationService();
                             $config = $sm->get('config');
