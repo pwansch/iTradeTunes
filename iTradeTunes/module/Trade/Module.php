@@ -25,6 +25,11 @@ class Module implements ConsoleUsageProviderInterface
 		$eventManager->attach(MvcEvent::EVENT_RENDER, array($this, 'registerJsonStrategy'), 100);
 		$eventManager->attach(MvcEvent::EVENT_DISPATCH, array($this, 'checkAndSetAcl'), 200);
 		$eventManager->attach(array(MvcEvent::EVENT_DISPATCH, MvcEvent::EVENT_DISPATCH_ERROR), array($this, 'setLayout'), 100);
+		
+		// Start the session and regenerate the session id to protect from replays
+		$sessionManager = Container::getDefaultManager();
+		$sessionManager->start();
+		$sessionManager->regenerateId(true);
 	}
 
 	function setLayout(MvcEvent $e)

@@ -27,9 +27,7 @@ class Module
         $sessionManager = new SessionManager($config, $storage, $saveHandler);
         Container::setDefaultManager($sessionManager);
         
-        // Start the session and regenerate the session id to protect from replays
-        $sessionManager->start();
-        $sessionManager->regenerateId(true);
+        //$sessionManager->start();
     }
 
     public function getServiceConfig()
