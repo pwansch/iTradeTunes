@@ -46,9 +46,13 @@ echo $this->doctype(); ?>
 		    <?php echo $this->navigation('navigation')->menu()->render() ?>
           </div><!--/.nav-collapse -->
           <?php $url = $this->url('member', array('action' => 'login')); ?>
-          <form class="navbar-form pull-right" action="<?php echo $url; ?>" method="post">
+          <form class="navbar-form pull-right form-inline" action="<?php echo $url; ?>" method="post">
             <input type="text" name="email" class="span2" placeholder=<?php echo $this->translate('Email') ?>>
             <input type="password" name="password" class="span2" placeholder=<?php echo $this->translate('Password') ?>>
+            <label class="checkbox">
+              <input type="hidden" name="rememberMe" value="0">
+              <input type="checkbox" name="rememberMe" value="1"> <?php echo $this->translate('Remember Me') ?>
+            </label>            
             <button type="submit" name="submit" class="btn"><?php echo $this->translate('Log In') ?></button>
           </form>
         </div>

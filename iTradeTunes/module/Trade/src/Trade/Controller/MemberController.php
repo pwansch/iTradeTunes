@@ -18,6 +18,7 @@ class MemberController extends AbstractApplicationController
     		// Get the login form parameters which are directly coded into the layout
     		$email = $request->getPost('email', '');
     		$password = $request->getPost('password', '');
+    		$rememberMe = (int) $request->getPost('rememberMe', 0);
 
     		// Clear the identity first
     		$this->getAuth()->clearIdentity();
@@ -49,6 +50,10 @@ class MemberController extends AbstractApplicationController
     		$columnsToOmit = array('password_encrypted');
     		$resultRow = $this->getAuthAdapter()->getResultRowObject(null, $columnsToOmit);
     		$this->getSession()->role = 'member';
+    		if ($rememberMe == 1)
+    		{
+    		    $this->getSession()->rememberMe = true;
+    		}
     		return $this->redirect()->toRoute('album');
     	}
     	

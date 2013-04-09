@@ -1,7 +1,6 @@
 - Investigate the following:
-  - implement remember me for log in
+  - join page with Captcha and proper forms
   - access with JSON-based web service  
-  - join page with Captcha
   - send emails
   - check framework version
   - Facebook login
