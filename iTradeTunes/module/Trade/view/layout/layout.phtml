@@ -87,6 +87,10 @@ echo $this->doctype(); ?>
       </footer>
     </div> <!-- /container -->
 
+  <?php $this->inlineScript()->captureStart() ?>
+    $('.with-tooltip').tooltip()
+  <?php $this->inlineScript()->captureEnd() ?> 
+    
   <?php echo $this->inlineScript() ?>
   </body>
 </html>

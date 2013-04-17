@@ -49,7 +49,7 @@ echo $this->doctype(); ?>
           <form class="navbar-form pull-right form-inline" action="<?php echo $url; ?>" method="post">
             <input type="text" name="email" class="span2" placeholder=<?php echo $this->translate('Email') ?>>
             <input type="password" name="password" class="span2" placeholder=<?php echo $this->translate('Password') ?>>
-            <label class="checkbox">
+            <label class="checkbox with-tooltip" data-placement="bottom" title="<?php echo $this->translate('Do not select on a public computer.') ?>" >
               <input type="hidden" name="rememberMe" value="0">
               <input type="checkbox" name="rememberMe" value="1"> <?php echo $this->translate('Remember Me') ?>
             </label>            
@@ -92,6 +92,10 @@ echo $this->doctype(); ?>
       </footer>
     </div> <!-- /container -->
 
+  <?php $this->inlineScript()->captureStart() ?>
+    $('.with-tooltip').tooltip()
+  <?php $this->inlineScript()->captureEnd() ?> 
+     
   <?php echo $this->inlineScript() ?>
   </body>
 </html>
