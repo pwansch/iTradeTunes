@@ -56,6 +56,9 @@ echo $this->formRow($form->get('interests'));
 <?php
 echo $this->formRow($form->get('captcha'));
 ?></div>
+<?php 
+echo $this->formElement($form->get('security')) 
+?>
 <?php
   echo $this->formSubmit($form->get('submit'));
   echo $this->form()->closeTag();

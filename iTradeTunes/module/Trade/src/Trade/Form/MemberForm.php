@@ -59,7 +59,7 @@ class MemberForm extends AbstractApplicationForm
 		$captcha = new Element\Captcha('captcha');
 		$captcha->setCaptcha($captchaImage);
 		$captcha->setLabel('Type text from the image above:');
-
+		$csrf = new Element\Csrf('security');		
 		$submit = new Element\Submit('submit');
 		$submit->setValue('Join');
 		
@@ -73,6 +73,7 @@ class MemberForm extends AbstractApplicationForm
 		     ->add($about)
 		     ->add($interests)
 		     ->add($captcha)
+		     ->add($csrf)
 		     ->add($submit);	
 	}
 }
