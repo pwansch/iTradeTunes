@@ -1,5 +1,5 @@
 <?php
-  $title = $this->translate('Member Join');
+  $title = $this->translate('Register User');
   $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
@@ -18,44 +18,49 @@ echo $this->formHidden($form->get('id'));
 ?>
 
 <div class="control-group">
-<?php $first_name = $form->get('first_name'); ?>
-<?php echo $this->formLabel($first_name); ?>
+  <?php $first_name = $form->get('first_name'); ?>
+  <?php echo $this->formLabel($first_name); ?>
+  <div class="controls">
+    <?php echo $this->formInput($first_name); ?>
+    <?php echo $this->formElementErrors($first_name); ?>
+  </div>
+</div>
+
+<div class="control-group">
 <div class="controls">
-<?php echo $this->formInput($first_name); ?>
-<?php echo $this->formElementErrors($first_name); ?>
-</div>
-</div>
-
-   
-
-<div class="form_element">
 <?php
 echo $this->formRow($form->get('last_name'));
-?></div>
-<div class="form_element">
+?></div></div>
+<div class="control-group">
+<div class="controls">
 <?php
 echo $this->formRow($form->get('email_address'));
-?></div>
-<div class="form_element">
+?></div></div>
+<div class="control-group">
+<div class="controls">
 <?php
 echo $this->formRow($form->get('email_address_private'));
-?></div>
-<div class="form_element">
+?></div></div>
+<div class="control-group">
+<div class="controls">
 <?php
 echo $this->formRow($form->get('password'));
-?></div>
-<div class="form_element">
+?></div></div>
+<div class="control-group">
+<div class="controls">
 <?php
 echo $this->formRow($form->get('about'));
-?></div>
-<div class="form_element">
+?></div></div>
+<div class="control-group">
+<div class="controls">
 <?php
 echo $this->formRow($form->get('interests'));
-?></div>
-<div class="form_element">
+?></div></div>
+<div class="control-group">
+<div class="controls">
 <?php
 echo $this->formRow($form->get('captcha'));
-?></div>
+?></div></div>
 <?php 
 echo $this->formElement($form->get('security')) 
 ?>

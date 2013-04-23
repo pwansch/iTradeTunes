@@ -18,28 +18,40 @@ class MemberForm extends AbstractApplicationForm
 		$id = new Element\Hidden('id');
 		$first_name = new Element\Text('first_name');
 		$first_name->setLabel('First Name')
-				   ->setLabelAttributes(array('class'  => 'control-label'))
 		           ->setAttributes(array('size'  => '32'));
+		
 		$last_name = new Element\Text('last_name');		
 		$last_name->setLabel('Last Name')
+				  ->setLabelAttributes(array('class'  => 'control-label'))
 		          ->setAttributes(array('size'  => '32'));
+		
 		$email_address = new Element\Email('email_address');
 		$email_address->setLabel('Email Address')
-		      ->setAttributes(array('size'  => '96'));
+		              ->setLabelAttributes(array('class'  => 'control-label'))
+		              ->setAttributes(array('size'  => '96'));
+		
 		$email_address_private = new Element\Checkbox('email_address_private');
-		$email_address_private->setLabel('Email address private');
+		$email_address_private->setLabel('Email address private')
+		                      ->setLabelAttributes(array('class'  => 'control-label'));
 		$email_address_private->setUseHiddenElement(true);
 		$email_address_private->setCheckedValue("1");
 		$email_address_private->setUncheckedValue("0");
+
 		$password = new Element\Password('password');
 		$password->setLabel('Password')
+		         ->setLabelAttributes(array('class'  => 'control-label'))
 		         ->setAttributes(array('size'  => '30'));
+
 		$about = new Element\Text('about');
 		$about->setLabel('About')
+		       ->setLabelAttributes(array('class'  => 'control-label'))
 	           ->setAttributes(array('size'  => '255'));
+
 		$interests = new Element\Text('interests');
 		$interests->setLabel('Interests')
+		          ->setLabelAttributes(array('class'  => 'control-label'))
 		          ->setAttributes(array('size'  => '255'));
+
 		$captchaImage = new Image(  array(
 				'font' => './fonts/arial.ttf',
 				'fontSize' => 32,
@@ -58,8 +70,11 @@ class MemberForm extends AbstractApplicationForm
 		$captchaImage->setSession($this->getSession());
 		$captcha = new Element\Captcha('captcha');
 		$captcha->setCaptcha($captchaImage);
-		$captcha->setLabel('Type text from the image above:');
+		$captcha->setLabel('Type text from the image above:')
+		        ->setLabelAttributes(array('class'  => 'control-label'));
+
 		$csrf = new Element\Csrf('security');		
+
 		$submit = new Element\Submit('submit');
 		$submit->setValue('Join');
 		
