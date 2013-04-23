@@ -14,7 +14,7 @@ class MemberForm extends AbstractApplicationForm
 		$this->setAttribute('method', 'post');
 		$this->setAttribute('class', 'form-horizontal');
 
-		// Add the elements to the form
+		// Add the elements to the form, labels will automatically get translated
 		$id = new Element\Hidden('id');
 		$first_name = new Element\Text('first_name');
 		$first_name->setLabel('First Name')
