@@ -18,6 +18,7 @@ class MemberForm extends AbstractApplicationForm
 		$id = new Element\Hidden('id');
 		$first_name = new Element\Text('first_name');
 		$first_name->setLabel('First Name')
+				   ->setLabelAttributes(array('class'  => 'control-label'))
 		           ->setAttributes(array('size'  => '32'));
 		
 		$last_name = new Element\Text('last_name');		
