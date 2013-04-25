@@ -2,3 +2,4 @@ Bootstrap v2.3.0
 Zend Framework 2.1.5
 jQuery 1.9.1
 HTML5 Shiv
+jQuery Validation Plugin 1.11.1
