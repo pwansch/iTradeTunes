@@ -5,6 +5,7 @@ namespace Trade\Controller;
 use Application\Controller\AbstractApplicationController;
 use Zend\Authentication\Result;
 use Trade\Form\MemberForm;
+use Trade\Model\Member;
 
 class MemberController extends AbstractApplicationController
 {

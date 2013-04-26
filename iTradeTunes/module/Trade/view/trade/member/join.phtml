@@ -68,3 +68,9 @@ echo $this->formElement($form->get('security'))
   echo $this->formSubmit($form->get('submit'));
   echo $this->form()->closeTag();
 ?>
+
+<?php $this->headScript()->captureStart() ?>
+  $(document).ready(function(){
+    $("#memberForm").validate();
+  });
+<?php $this->headScript()->captureEnd() ?> 

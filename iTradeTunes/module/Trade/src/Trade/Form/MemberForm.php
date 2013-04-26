@@ -13,13 +13,14 @@ class MemberForm extends AbstractApplicationForm
 	{
 		$this->setAttribute('method', 'post');
 		$this->setAttribute('class', 'form-horizontal');
+		$this->setAttribute('id', 'memberForm');
 
 		// Add the elements to the form, labels will automatically get translated
 		$id = new Element\Hidden('id');
 		$first_name = new Element\Text('first_name');
 		$first_name->setLabel('First Name')
-				   ->setLabelAttributes(array('class'  => 'control-label'))
-		           ->setAttributes(array('id' => 'first_name', 'size'  => '32'));
+				   ->setLabelAttributes(array('class'  => 'required control-label'))
+		           ->setAttributes(array('id' => 'first_name', 'size'  => '32', 'minlength'  => '1'));
 
 		$last_name = new Element\Text('last_name');		
 		$last_name->setLabel('Last Name')
