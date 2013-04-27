@@ -20,17 +20,15 @@ class MemberForm extends AbstractApplicationForm
 		$first_name = new Element\Text('first_name');
 		$first_name->setLabel('First Name')
 				   ->setLabelAttributes(array('class'  => 'required control-label'))
-		           ->setAttributes(array('id' => 'first_name', 'size'  => '32', 'minlength'  => '1'));
+		           ->setAttributes(array('id' => 'first_name'));
 
 		$last_name = new Element\Text('last_name');		
 		$last_name->setLabel('Last Name')
-				  ->setLabelAttributes(array('class'  => 'control-label'))
-		          ->setAttributes(array('size'  => '32'));
+				  ->setLabelAttributes(array('class'  => 'control-label'));
 		
 		$email_address = new Element\Email('email_address');
 		$email_address->setLabel('Email Address')
-		              ->setLabelAttributes(array('class'  => 'control-label'))
-		              ->setAttributes(array('size'  => '96'));
+		              ->setLabelAttributes(array('class'  => 'control-label'));
 		
 		$email_address_private = new Element\Checkbox('email_address_private');
 		$email_address_private->setLabel('Email address private')
@@ -41,18 +39,15 @@ class MemberForm extends AbstractApplicationForm
 
 		$password = new Element\Password('password');
 		$password->setLabel('Password')
-		         ->setLabelAttributes(array('class'  => 'control-label'))
-		         ->setAttributes(array('size'  => '30'));
+		         ->setLabelAttributes(array('class'  => 'control-label'));
 
 		$about = new Element\Text('about');
 		$about->setLabel('About')
-		       ->setLabelAttributes(array('class'  => 'control-label'))
-	           ->setAttributes(array('size'  => '255'));
+		       ->setLabelAttributes(array('class'  => 'control-label'));
 
 		$interests = new Element\Text('interests');
 		$interests->setLabel('Interests')
-		          ->setLabelAttributes(array('class'  => 'control-label'))
-		          ->setAttributes(array('size'  => '255'));
+		          ->setLabelAttributes(array('class'  => 'control-label'));
 
 		$captchaImage = new Image(  array(
 				'font' => './fonts/arial.ttf',

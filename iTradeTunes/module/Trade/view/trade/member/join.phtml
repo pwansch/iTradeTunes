@@ -70,7 +70,32 @@ echo $this->formElement($form->get('security'))
 ?>
 
 <?php $this->headScript()->captureStart() ?>
-  $(document).ready(function(){
-    $("#memberForm").validate();
-  });
+(function($,W,D)
+{
+    var setupFormValidation = function()
+    {
+        // Validation rules
+        $("#memberForm").validate({
+            rules: {
+                first_name: "required",
+                last_name: "required",
+            },
+            messages: {
+                first_name: "<?php echo $this->translate('Enter your first name.') ?>",
+                last_name: "<?php echo $this->translate('Enter your last name.') ?>",
+                },
+            errorClass: "help-inline",
+            errorElement: "span",
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+    }
+
+    // Setup form validation rules
+    $(D).ready(function($) {
+        setupFormValidation();
+    });
+
+})(jQuery, window, document);
 <?php $this->headScript()->captureEnd() ?> 
