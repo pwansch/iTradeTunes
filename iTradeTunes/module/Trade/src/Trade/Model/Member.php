@@ -23,8 +23,13 @@ class Member implements InputFilterAwareInterface
     public function exchangeArray($data)
     {
         $this->id     = (isset($data['id']))     ? $data['id']     : null;
-        $this->artist = (isset($data['artist'])) ? $data['artist'] : null;
-        $this->title  = (isset($data['title']))  ? $data['title']  : null;
+        $this->first_name = (isset($data['first_name'])) ? $data['first_name'] : null;
+        $this->last_name = (isset($data['last_name'])) ? $data['last_name'] : null;
+        $this->email_address = (isset($data['email_address'])) ? $data['email_address'] : null;
+        $this->email_address_private = (isset($data['email_address_private'])) ? $data['email_address_private'] : null;
+        $this->password = (isset($data['password'])) ? $data['password'] : null;
+        $this->about = (isset($data['about'])) ? $data['about'] : null;
+        $this->interests = (isset($data['interests'])) ? $data['interests'] : null;
     }
     
     // Add the following method:
@@ -53,7 +58,7 @@ class Member implements InputFilterAwareInterface
             )));
 
             $inputFilter->add($factory->createInput(array(
-                'name'     => 'artist',
+                'name'     => 'first_name',
                 'required' => true,
                 'filters'  => array(
                     array('name' => 'StringTrim'),
@@ -63,28 +68,8 @@ class Member implements InputFilterAwareInterface
                         'name'    => 'StringLength',
                         'options' => array(
                             'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 100,
-                        ),
-                    ),
-                ),
-            )));
-
-            
-            $inputFilter->add($factory->createInput(array(
-                'name'     => 'title',
-                'required' => true,
-                'filters'  => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
-                        'name'    => 'StringLength',
-                        'options' => array(
-                            'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 100,
+                            'min'      => 2,
+                            'max'      => 30,
                         ),
                     ),
                 ),

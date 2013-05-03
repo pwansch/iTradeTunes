@@ -98,9 +98,10 @@ echo $this->formElement($form->get('security'))
         });
     }
 
-    // Setup form validation rules
+    // Setup form validation rules and set focus
     $(D).ready(function($) {
         setupFormValidation();
+        $("#first_name").focus();
     });
 
 })(jQuery, window, document);

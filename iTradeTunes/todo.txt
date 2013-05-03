@@ -10,3 +10,4 @@
   - improve error handling
   - generate sitemaps
   - globalization and translation
+  - why is session cookie set twice in response
