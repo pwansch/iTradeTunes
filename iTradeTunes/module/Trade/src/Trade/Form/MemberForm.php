@@ -11,6 +11,7 @@ class MemberForm extends AbstractApplicationForm
 {
 	public function init()
 	{
+		// Set form attributes
 		$this->setAttribute('method', 'post');
 		$this->setAttribute('class', 'form-horizontal');
 		$this->setAttribute('id', 'memberForm');
@@ -19,37 +20,48 @@ class MemberForm extends AbstractApplicationForm
 		$id = new Element\Hidden('id');
 		$first_name = new Element\Text('first_name');
 		$first_name->setLabel('First Name')
-				   ->setLabelAttributes(array('class'  => 'required control-label'))
+				   ->setLabelAttributes(array('class'  => 'control-label'))
 		           ->setAttributes(array('id' => 'first_name'));
 
 		$last_name = new Element\Text('last_name');		
 		$last_name->setLabel('Last Name')
-				  ->setLabelAttributes(array('class'  => 'control-label'));
+				  ->setLabelAttributes(array('class'  => 'control-label'))
+				  ->setAttributes(array('id' => 'last_name'));
 		
 		$email_address = new Element\Email('email_address');
 		$email_address->setLabel('Email Address')
-		              ->setLabelAttributes(array('class'  => 'control-label'));
+		              ->setLabelAttributes(array('class'  => 'control-label'))
+		              ->setAttributes(array('id' => 'email_address'));
 		
 		$email_address_private = new Element\Checkbox('email_address_private');
-		$email_address_private->setLabel('Email address private')
-		                      ->setLabelAttributes(array('class'  => 'control-label'));
-		$email_address_private->setUseHiddenElement(true);
-		$email_address_private->setCheckedValue("1");
-		$email_address_private->setUncheckedValue("0");
-
+		$email_address_private->setLabel('Private')
+		                      ->setLabelAttributes(array('class'  => 'control-label'))
+							  ->setAttributes(array('id' => 'email_address_private'))
+		                      ->setUseHiddenElement(true)
+		                      ->setCheckedValue("1")
+		                      ->setUncheckedValue("0");
+		
 		$password = new Element\Password('password');
 		$password->setLabel('Password')
-		         ->setLabelAttributes(array('class'  => 'control-label'));
+		         ->setLabelAttributes(array('class'  => 'control-label'))
+		         ->setAttributes(array('id' => 'password'));
 
+		$password_repeat = new Element\Password('password_repeat');
+		$password_repeat->setLabel('Repeat Password')
+		                ->setLabelAttributes(array('class'  => 'control-label'))
+		                ->setAttributes(array('id' => 'password_repeat'));
+		
 		$about = new Element\Text('about');
-		$about->setLabel('About')
-		       ->setLabelAttributes(array('class'  => 'control-label'));
+		$about->setLabel('About Me')
+		       ->setLabelAttributes(array('class'  => 'control-label'))
+		       ->setAttributes(array('id' => 'about'));
 
 		$interests = new Element\Text('interests');
 		$interests->setLabel('Interests')
-		          ->setLabelAttributes(array('class'  => 'control-label'));
+		          ->setLabelAttributes(array('class'  => 'control-label'))
+		          ->setAttributes(array('id' => 'interests'));
 
-		$captchaImage = new Image(  array(
+		$captchaImage = new Image(array(
 				'font' => './fonts/arial.ttf',
 				'fontSize' => 32,
 				'wordLen' => 6,
@@ -67,13 +79,15 @@ class MemberForm extends AbstractApplicationForm
 		$captchaImage->setSession($this->getSession());
 		$captcha = new Element\Captcha('captcha');
 		$captcha->setCaptcha($captchaImage);
-		$captcha->setLabel('Type text from the image above:')
-		        ->setLabelAttributes(array('class'  => 'control-label'));
+		$captcha->setLabel('Type Text From Above')
+		        ->setLabelAttributes(array('class'  => 'control-label'))
+		        ->setAttributes(array('id' => 'captcha'));
 
 		$csrf = new Element\Csrf('security');		
 
 		$submit = new Element\Submit('submit');
-		$submit->setValue('Join');
+		$submit->setAttributes(array('class' => 'btn'));
+		
 		
 		// Add elements to form
 		$this->add($id)
@@ -82,6 +96,7 @@ class MemberForm extends AbstractApplicationForm
 		     ->add($email_address)
 		     ->add($email_address_private)
 		     ->add($password)
+		     ->add($password_repeat)
 		     ->add($about)
 		     ->add($interests)
 		     ->add($captcha)

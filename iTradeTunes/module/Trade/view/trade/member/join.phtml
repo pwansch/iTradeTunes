@@ -22,50 +22,98 @@ echo $this->formHidden($form->get('id'));
   <?php echo $this->formLabel($first_name); ?>
   <div class="controls">
     <?php echo $this->formInput($first_name); ?>
-    <?php echo $this->formElementErrors($first_name); ?>
+    <?php echo $this->formElementErrors() 
+                    ->setMessageOpenFormat('<span class="help-inline">')
+                    ->setMessageSeparatorString('</span><span class="help-inline">')
+                    ->setMessageCloseString('</span>')
+    				->render($first_name); ?>
   </div>
 </div>
 
 <div class="control-group">
-<div class="controls">
-<?php
-echo $this->formRow($form->get('last_name'));
-?></div></div>
+  <?php $last_name = $form->get('last_name'); ?>
+  <?php echo $this->formLabel($last_name); ?>
+  <div class="controls">
+    <?php echo $this->formInput($last_name); ?>
+    <?php echo $this->formElementErrors() 
+                    ->setMessageOpenFormat('<span class="help-inline">')
+                    ->setMessageSeparatorString('</span><span class="help-inline">')
+                    ->setMessageCloseString('</span>')
+    				->render($last_name); ?>
+  </div>
+</div>
+
 <div class="control-group">
-<div class="controls">
-<?php
-echo $this->formRow($form->get('email_address'));
-?></div></div>
+  <?php $email_address = $form->get('email_address'); ?>
+  <?php echo $this->formLabel($email_address); ?>
+  <div class="controls">
+    <?php echo $this->formEmail($email_address); ?>
+    <?php echo $this->formElementErrors() 
+                    ->setMessageOpenFormat('<span class="help-inline">')
+                    ->setMessageSeparatorString('</span><span class="help-inline">')
+                    ->setMessageCloseString('</span>')
+    				->render($email_address); ?>
+  </div>
+</div>
+
 <div class="control-group">
-<div class="controls">
-<?php
-echo $this->formRow($form->get('email_address_private'));
-?></div></div>
+  <?php $email_address_private = $form->get('email_address_private'); ?>
+  <?php echo $this->formLabel($email_address_private); ?>
+  <div class="controls">
+    <?php echo $this->formCheckbox($email_address_private); ?>
+  </div>
+</div>
+
 <div class="control-group">
-<div class="controls">
-<?php
-echo $this->formRow($form->get('password'));
-?></div></div>
+  <?php $password = $form->get('password'); ?>
+  <?php echo $this->formLabel($password); ?>
+  <div class="controls">
+    <?php echo $this->formPassword($password); ?>
+    <?php echo $this->formElementErrors() 
+                    ->setMessageOpenFormat('<span class="help-inline">')
+                    ->setMessageSeparatorString('</span><span class="help-inline">')
+                    ->setMessageCloseString('</span>')
+    				->render($password); ?>
+  </div>
+</div>
+
 <div class="control-group">
-<div class="controls">
-<?php
-echo $this->formRow($form->get('about'));
-?></div></div>
+  <?php $password_repeat = $form->get('password_repeat'); ?>
+  <?php echo $this->formLabel($password_repeat); ?>
+  <div class="controls">
+    <?php echo $this->formPassword($password_repeat); ?>
+    <?php echo $this->formElementErrors() 
+                    ->setMessageOpenFormat('<span class="help-inline">')
+                    ->setMessageSeparatorString('</span><span class="help-inline">')
+                    ->setMessageCloseString('</span>')
+    				->render($password_repeat); ?>
+  </div>
+</div>
+
 <div class="control-group">
-<div class="controls">
-<?php
-echo $this->formRow($form->get('interests'));
-?></div></div>
-<div class="control-group">
-<div class="controls">
-<?php
-echo $this->formRow($form->get('captcha'));
-?></div></div>
+  <?php $captcha = $form->get('captcha'); ?>
+  <?php echo $this->formLabel($captcha); ?>
+  <div class="controls">
+    <?php echo $this->formCaptcha($captcha); ?>
+    <?php echo $this->formElementErrors() 
+                    ->setMessageOpenFormat('<span class="help-inline">')
+                    ->setMessageSeparatorString('</span><span class="help-inline">')
+                    ->setMessageCloseString('</span>')
+    				->render($captcha); ?>
+  </div>
+</div>
+
 <?php 
 echo $this->formElement($form->get('security')) 
 ?>
+
+<div class="control-group">
+  <div class="controls">
+      <?php echo $this->formSubmit($form->get('submit')); ?>
+  </div>
+</div>
+
 <?php
-  echo $this->formSubmit($form->get('submit'));
   echo $this->form()->closeTag();
 ?>
 
@@ -100,8 +148,9 @@ echo $this->formElement($form->get('security'))
 
     // Setup form validation rules and set focus
     $(D).ready(function($) {
-        setupFormValidation();
         $("#first_name").focus();
+        setupFormValidation();
+        $("span.help-inline").parents("div.control-group").addClass("error");
     });
 
 })(jQuery, window, document);

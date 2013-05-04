@@ -15,6 +15,7 @@ class Member implements InputFilterAwareInterface
     public $email_address;
     public $email_address_private;
     public $password;
+    public $password_repeat;
     public $about;
     public $interests;    
     
@@ -28,6 +29,7 @@ class Member implements InputFilterAwareInterface
         $this->email_address = (isset($data['email_address'])) ? $data['email_address'] : null;
         $this->email_address_private = (isset($data['email_address_private'])) ? $data['email_address_private'] : null;
         $this->password = (isset($data['password'])) ? $data['password'] : null;
+        $this->password_repeat = (isset($data['password'])) ? $data['password_repeat'] : null;
         $this->about = (isset($data['about'])) ? $data['about'] : null;
         $this->interests = (isset($data['interests'])) ? $data['interests'] : null;
     }
@@ -40,7 +42,7 @@ class Member implements InputFilterAwareInterface
 
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
-        throw new \Exception("Not used");
+        throw new \Exception("Not used.");
     }
 
     public function getInputFilter()
@@ -61,6 +63,7 @@ class Member implements InputFilterAwareInterface
                 'name'     => 'first_name',
                 'required' => true,
                 'filters'  => array(
+                	array('name' => 'StripTags'),
                     array('name' => 'StringTrim'),
                 ),
                 'validators' => array(
@@ -68,11 +71,54 @@ class Member implements InputFilterAwareInterface
                         'name'    => 'StringLength',
                         'options' => array(
                             'encoding' => 'UTF-8',
-                            'min'      => 2,
-                            'max'      => 30,
+                            'min'      => 1,
+                            'max'      => 32,
                         ),
                     ),
                 ),
+            )));
+            
+            $inputFilter->add($factory->createInput(array(
+            		'name'     => 'last_name',
+            		'required' => true,
+            		'filters'  => array(
+            				array('name' => 'StripTags'),
+            				array('name' => 'StringTrim'),
+            		),
+            		'validators' => array(
+            				array(
+            						'name'    => 'StringLength',
+            						'options' => array(
+            								'encoding' => 'UTF-8',
+            								'min'      => 1,
+            								'max'      => 32,
+            						),
+            				),
+            		),
+            )));
+            
+            $inputFilter->add($factory->createInput(array(
+            		'name'     => 'email_address',
+            		'required' => true,
+            		'filters'  => array(
+            				array('name' => 'StringTrim'),
+            		),
+            		'validators' => array(
+            				array(
+            						'name'    => 'StringLength',
+            						'options' => array(
+            								'encoding' => 'UTF-8',
+            								'min'      => 3,
+            								'max'      => 96,
+            						),
+            				),
+            				array(
+            						'name'    => 'EmailAddress',
+            						'options' => array(
+            						),
+            				),
+            				
+            		),
             )));
 
             $this->inputFilter = $inputFilter;
