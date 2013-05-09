@@ -40,3 +40,7 @@ div.controls img {
     display: block;
     margin-bottom: 10px;
 }
+
+div.controls label.checkbox {
+    display: inline-block;
+}

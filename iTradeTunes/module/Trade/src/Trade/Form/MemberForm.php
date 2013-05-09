@@ -35,7 +35,7 @@ class MemberForm extends AbstractApplicationForm
 		
 		$email_address_private = new Element\Checkbox('email_address_private');
 		$email_address_private->setLabel('Private')
-		                      ->setLabelAttributes(array('class'  => 'control-label'))
+		                      ->setLabelAttributes(array('class'  => 'checkbox'))
 							  ->setAttributes(array('id' => 'email_address_private'))
 		                      ->setUseHiddenElement(true)
 		                      ->setCheckedValue("1")

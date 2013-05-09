@@ -11,3 +11,4 @@
   - generate sitemaps
   - globalization and translation
   - why is session cookie set twice in response
+  - version css to get refreshed

@@ -57,10 +57,8 @@ echo $this->formHidden($form->get('id'));
 </div>
 
 <div class="control-group">
-  <?php $email_address_private = $form->get('email_address_private'); ?>
-  <?php echo $this->formLabel($email_address_private); ?>
   <div class="controls">
-    <?php echo $this->formCheckbox($email_address_private); ?>
+    <?php echo $this->formRow($form->get('email_address_private')); ?>
   </div>
 </div>
 
