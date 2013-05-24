@@ -19,15 +19,15 @@ echo $this->doctype(); ?>
 
     <!-- Le styles -->
     <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/images/favicon.ico'))
-                    ->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.min.css')
-                    ->prependStylesheet($this->basePath() . '/css/style.css')
-                    ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
+                    ->prependStylesheet($this->basePath() . $this->urlLevelPath('css', 'bootstrap-responsive.min.css'))
+                    ->prependStylesheet($this->basePath() . $this->urlLevelPath('css', 'style.css'))
+                    ->prependStylesheet($this->basePath() . $this->urlLevelPath('css', 'bootstrap.min.css')) ?>
 
     <!-- Scripts -->
-    <?php echo $this->headScript()->prependFile($this->basePath() . '/js/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-                                  ->prependFile($this->basePath() . '/js/bootstrap.min.js') 
-                                  ->prependFile($this->basePath() . '/js/jquery.validate.min.js')
-                                  ->prependFile($this->basePath() . '/js/jquery-1.9.1.min.js') ?>
+    <?php echo $this->headScript()->prependFile($this->basePath() . $this->urlLevelPath('js', 'html5shiv.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
+                                  ->prependFile($this->basePath() . $this->urlLevelPath('js', 'bootstrap.min.js')) 
+                                  ->prependFile($this->basePath() . $this->urlLevelPath('js', 'jquery.validate.min.js'))
+                                  ->prependFile($this->basePath() . $this->urlLevelPath('js', 'jquery-1.9.1.min.js')) ?>
   </head>
 
   <body>

@@ -36,4 +36,5 @@ return array(
 		'retries' => 5,
 		'prune' => 30,
 	),
+	'level' => '1.0.0.0'
 );

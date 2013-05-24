@@ -3,4 +3,13 @@ RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
+
+# Static content cache control
+RewriteRule ^css/[\d\.]+/(.*)$	css/$1 [L]
+RewriteRule ^js/[\d\.]+/(.*)$	js/$1 [L]
+
+# Everything else gets routed to index.php
 RewriteRule ^.*$ index.php [NC,L]
+
+
+

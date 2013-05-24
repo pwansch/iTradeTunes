@@ -13,6 +13,7 @@ use Application\Utilities\Logger;
 use Application\Utilities\Mail;
 use Zend\Mvc\ModuleRouteListener;
 use Application\View\Helper\AbsoluteUrl;
+use Application\View\Helper\UrlLevelPath;
 
 class Module
 {
@@ -48,6 +49,11 @@ class Module
     					'absoluteUrl' => function($sm) {
     						$locator = $sm->getServiceLocator(); // $sm is the view helper manager, so we need to fetch the main service manager
     						return new AbsoluteUrl($locator->get('Request'));
+    					},
+    					
+    					'urlLevelPath' => function($sm) {
+    						$locator = $sm->getServiceLocator();
+    						return new UrlLevelPath($locator);
     					},
     			),
     			'invokables' => array(
